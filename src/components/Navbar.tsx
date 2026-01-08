@@ -6,6 +6,7 @@ export const Navbar = () => {
     return (
         <div className="sticky top-0 z-50 flex flex-row sm:flex-col items-center justify-between gap-6 sm:h-screen px-8 sm:px-auto py-6 sm:py-10 bg-linear-to-b from-neutral-950/95 via-neutral-950/50 to-transparent via-60% to-99% sm:bg-none overflow-hidden">
 
+            {/* Calque flou léger du haut vers le bas — visible uniquement < sm */}
             <div
                 aria-hidden="true"
                 className="absolute inset-0 pointer-events-none opacity-50"
