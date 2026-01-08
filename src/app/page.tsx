@@ -3,6 +3,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { About } from "@/components/About";
+import { Experiences } from "@/components/Experiences";
 import { Projects } from "@/components/Projects";
 
 export default function Home() {
@@ -12,6 +13,8 @@ export default function Home() {
       
       <div className="flex flex-col gap-20 px-8 py-6 sm:py-10">
         <About />
+
+        <Experiences />
 
         <Projects />
 
