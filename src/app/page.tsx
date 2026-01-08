@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -6,7 +7,7 @@ export default function Home() {
       <Navbar />
       
       <div className="flex flex-col gap-20 px-8 py-6 sm:py-10">
-        <div>Content</div>
+        <Footer />
       </div>
     </div>
   );
