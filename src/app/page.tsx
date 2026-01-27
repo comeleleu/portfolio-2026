@@ -5,6 +5,7 @@ import { About } from "@/components/About";
 import { Experiences } from "@/components/Experiences";
 import { Projects } from "@/components/Projects";
 import { Footer } from "@/components/Footer";
+import ListItemms from "@/components/TestFirebase/ListItems";
 
 export default function Home() {
 
@@ -14,6 +15,8 @@ export default function Home() {
 
             <div className="flex flex-col gap-32 px-8 py-6 sm:py-10">
                 <About />
+
+                <ListItemms />
 
                 <Experiences />
 
