@@ -1,5 +1,7 @@
 import { GlowingCard } from "./GlowingCard";
+import { SectionHeader } from "./SectionHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare, faCircleChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 export const Projects = () => {
@@ -36,7 +38,16 @@ export const Projects = () => {
 
     return (
         <section id="projects">
-            <h2 className="text-2xl mb-8">Projects</h2>
+            <SectionHeader
+                title="Projects"
+                links={[
+                    {
+                        url: "https://github.com/comeleleu",
+                        label: "Open-Source projects",
+                        icon: faGithub,
+                    },
+                ]}
+            />
             <div className="columns-1 md:columns-2 lg:columns-3 gap-6 [&>*]:mb-6 mb-8">
                 {projects.map((project) => (
                     <GlowingCard key={project.title} glowingBorderColor="bg-linear-to-r from-lime-400 via-teal-400 to-sky-300">
@@ -55,10 +66,6 @@ export const Projects = () => {
                         </div>
                     </GlowingCard>
                 ))}
-            </div>
-            <div className="group inline-flex w-max items-center gap-2 px-4 py-2 text-md text-indigo-500 bg-indigo-500/10 backdrop-blur-lg border border-indigo-500/10 rounded-full">
-                Voir touts les projets
-                <FontAwesomeIcon icon={faCircleChevronRight} className="inline-block text-lg text-neutral-400/50 transition-transform group-hover:translate-x-1 group-focus-visible:translate-x-1" />
             </div>
         </section>
     );
