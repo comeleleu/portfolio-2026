@@ -1,6 +1,8 @@
 import { GlowingCard } from "./GlowingCard";
+import { SectionHeader } from "./SectionHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare, faBuilding, faCircleChevronRight, faLaptop, faHouseLaptop, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faSquareLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faAddressCard, faArrowUpRightFromSquare, faBuilding, faCircleChevronRight, faLaptop, faHouseLaptop, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 const getLocationIcon = (locationType: string) => {
     switch (locationType) {
@@ -51,8 +53,24 @@ export const Experiences = () => {
 
     return (
         <section id="experiences">
-            <h2 className="text-3xl text-neutral-400 font-semibold mb-8">Experiences</h2>
-            <div className="flex flex-col gap-6 mb-6">
+
+            <SectionHeader
+                title="Experience and Education"
+                links={[
+                    {
+                        url: "https://www.linkedin.com/in/comeleleu/#experience",
+                        label: "Experiences",
+                        icon: faSquareLinkedin,
+                    },
+                    {
+                        url: "https://www.linkedin.com/in/comeleleu/#education",
+                        label: "Education",
+                        icon: faSquareLinkedin,
+                    },
+                ]}
+            />
+
+            <div className="flex flex-col gap-4 mb-4">
                 {experiences.map((experience) => (
                     <GlowingCard key={experience.title}>
                         <div className="relative flex flex-col gap-4 p-6">
