@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Lato } from "next/font/google";
+import { Geist, Geist_Mono, Lato, Story_Script } from "next/font/google";
 import "./globals.css";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -22,6 +22,12 @@ const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
 });
 
+const storyScript = Story_Script({
+  variable: "--font-story-script",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 export const metadata: Metadata = {
   title: "Côme Leleu's Portfolio",
   description: "The portfolio of Côme Leleu, a software engineer specializing in web development and open-source projects.",
@@ -35,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${lato.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${storyScript.variable} ${lato.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
       </body>
