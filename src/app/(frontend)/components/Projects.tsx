@@ -7,21 +7,15 @@ import { faArrowUpRightFromSquare, faCircleChevronRight } from "@fortawesome/fre
 export const Projects = async () => {
     let projects: any[] = [];
     try {
-        // Query Payload directly to avoid HTTP roundtrip and relative URL issues
-        const payload = (await import('payload')).default;
-        // Ensure Payload is initialized with the local config when running inside Next
-        if (!((payload as any).collections && Object.keys((payload as any).collections).length)) {
-            try {
-                const config = (await import('@payload-config')).default;
-                if (process.env.NODE_ENV === 'development') console.log('Initializing Payload with local config (server-side)');
-                await (payload as any).init({ config });
-            } catch (initErr) {
-                if (process.env.NODE_ENV === 'development') console.warn('Payload init skipped or failed:', initErr);
-            }
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXTAUTH_URL || `http://localhost:${process.env.PORT ?? 3000}`;
+        const url = new URL('/api/projects?limit=100&depth=1', baseUrl).toString();
+        const res = await fetch(url, { next: { revalidate: 60 } });
+        if (res.ok) {
+            const json = await res.json();
+            projects = json.docs || [];
+        } else {
+            console.error('Failed to fetch projects', res.status);
         }
-
-        const result = await payload.find({ collection: 'projects', limit: 100, depth: 1, overrideAccess: true });
-        projects = result?.docs || [];
     } catch (err) {
         console.error('Error fetching projects', err);
     }
