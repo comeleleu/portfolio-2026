@@ -7,15 +7,31 @@ import { faArrowUpRightFromSquare, faCircleChevronRight } from "@fortawesome/fre
 export const Projects = async () => {
     let projects: any[] = [];
     try {
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXTAUTH_URL || `http://localhost:${process.env.PORT ?? 3000}`;
-        const url = new URL('/api/projects?limit=100&depth=1', baseUrl).toString();
-        const res = await fetch(url, { next: { revalidate: 60 } });
-        if (res.ok) {
-            const json = await res.json();
-            projects = json.docs || [];
-        } else {
-            console.error('Failed to fetch projects', res.status);
+        // Method 1: Directly import Payload and fetch data server-side
+        const payload = (await import('payload')).default;
+        if (!((payload as any).collections && Object.keys((payload as any).collections).length)) {
+            try {
+                const config = (await import('@payload-config')).default;
+                if (process.env.NODE_ENV === 'development') console.log('Initializing Payload with local config (server-side)');
+                await (payload as any).init({ config });
+            } catch (initErr) {
+                if (process.env.NODE_ENV === 'development') console.warn('Payload init skipped or failed:', initErr);
+            }
         }
+
+        const result = await payload.find({ collection: 'projects', limit: 100, depth: 1, overrideAccess: true });
+        projects = result?.docs || [];
+
+        // Method 2: Fetch from API route
+        // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXTAUTH_URL || `http://localhost:${process.env.PORT ?? 3000}`;
+        // const url = new URL('/api/projects?limit=100&depth=1', baseUrl).toString();
+        // const res = await fetch(url, { next: { revalidate: 60 } });
+        // if (res.ok) {
+        //     const json = await res.json();
+        //     projects = json.docs || [];
+        // } else {
+        //     console.error('Failed to fetch projects', res.status);
+        // }
     } catch (err) {
         console.error('Error fetching projects', err);
     }
