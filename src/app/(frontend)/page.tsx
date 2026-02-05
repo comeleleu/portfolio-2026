@@ -1,5 +1,3 @@
-"use client";
-
 import { Navbar } from "@components/Navbar";
 import { About } from "@components/About";
 import { Experiences } from "@components/Experiences";
