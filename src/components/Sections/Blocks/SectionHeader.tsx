@@ -10,13 +10,21 @@ export type LinkItem = {
 
 type SectionHeaderProps = {
     title: string;
+    color?: string;
     links?: LinkItem[];
 };
 
-export const SectionHeader = ({ title, links }: SectionHeaderProps) => {
+export const SectionHeader = ({
+    title,
+    color = "bg-indigo-500",
+    links
+}: SectionHeaderProps) => {
     return (
         <div className="flex flex-row justify-between items-end mb-8">
-            <h2 className="text-5xl font-semibold text-neutral-300 tracking-wide">{title}</h2>
+            <div className="flex flex-col gap-1">
+                <h2 className="text-5xl font-semibold text-neutral-300 tracking-wide">{title}</h2>
+                <div className={`h-1 w-20 ${color} rounded-full`}></div>
+            </div>
             {(links && links.length > 0) && (
                 <div className="flex items-baseline gap-4">
                     {links && (

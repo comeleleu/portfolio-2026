@@ -1,4 +1,4 @@
-import { GlowingCard } from "./GlowingCard";
+import { GlowingCard } from "../Cards/GlowingCard";
 
 export const About = () => {
     return (
