@@ -1,8 +1,12 @@
 import { GlowingCard } from "./GlowingCard";
 import { SectionHeader } from "./SectionHeader";
+import { Description } from "./Cards/Description";
+import { Badge } from "./Cards/Badge";
+import { Title } from "./Cards/Title";
+import { Tags } from "./Cards/Tags";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faAddressCard, faArrowUpRightFromSquare, faBuilding, faCircleChevronRight, faLaptop, faHouseLaptop, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard, faBuilding, faCircleChevronRight, faLaptop, faHouseLaptop, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 const getLocationIcon = (locationType: string) => {
     switch (locationType) {
@@ -121,43 +125,40 @@ export const Experiences = () => {
             <div className="flex flex-col gap-4 mb-4">
                 {experiences.map((experience) => (
                     <GlowingCard key={experience.title}>
-                        <div className="relative flex flex-col gap-4 p-6">
+                        <div className="relative flex flex-col gap-6 p-6">
                             <div className="flex flex-row justify-between items-center gap-6">
-                                <div title={formatFullDate(experience.startDate) + " to " + formatFullDate(experience.endDate)} className="px-4 py-2 text-xs text-indigo-500 font-semibold bg-indigo-600/10 backdrop-blur-lg border border-indigo-400/10 rounded-full cursor-help">
-                                    {formatDate(experience.startDate)} – {formatDate(experience.endDate)}
-                                </div>
+                                <Badge
+                                    label={`${formatDate(experience.startDate)} — ${formatDate(experience.endDate)}`}
+                                    labelHover={`${formatFullDate(experience.startDate)} to ${formatFullDate(experience.endDate)}`}
+                                    color="text-indigo-500 bg-indigo-600/10 border-indigo-400/10"
+                                />
                                 <div className="flex items-center gap-2">
                                     {experience.selfEmployed && (
-                                        <div className="flex items-center gap-2 px-4 py-2 text-xs text-neutral-500 font-semibold bg-neutral-600/10 backdrop-blur-lg border border-neutral-400/10 rounded-full">
-                                            <FontAwesomeIcon icon={faAddressCard} className="text-xs" />
-                                            Self-employed
-                                        </div>
+                                        <Badge
+                                            label="Self-employed"
+                                            icon={faAddressCard}
+                                        />
                                     )}
-                                    <div className="flex items-center gap-2 px-4 py-2 text-xs text-neutral-500 font-semibold bg-neutral-600/10 backdrop-blur-lg border border-neutral-400/10 rounded-full">
-                                        <FontAwesomeIcon icon={getLocationIcon(experience.locationType)} className="text-xs" />
-                                        {experience.locationType}
-                                    </div>
+                                    <Badge
+                                        label={experience.locationType}
+                                        icon={getLocationIcon(experience.locationType)}
+                                    />
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-2">
-                                <h3 className="flex items-center gap-4 text-2xl font-semibold text-neutral-200">
-                                    {experience.title}
-                                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="inline-block text-xs text-neutral-400/40 group-hover:text-neutral-400/50 transition-all ease-in-out duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-focus-visible:translate-x-1 group-focus-visible:-translate-y-1" />
-                                </h3>
-                                <div className="flex items-baseline gap-8 text-indigo-500">
-                                    <p className="text-md font-semibold">{experience.company}</p>
-                                    <p className="flex items-baseline gap-2 text-sm">
-                                        <FontAwesomeIcon icon={faLocationDot} className="text-xs" />
-                                        {experience.companyLocation}
-                                    </p>
-                                </div>
-                            </div>
-                            <p className="text-sm text-neutral-400">{experience.description}</p>
-                            <ul className="flex flex-row flex-wrap gap-2">
-                                {experience.tags.map((tag) => (
-                                    <li key={tag} className="px-4 py-2 text-xs text-neutral-500 bg-neutral-500/10 backdrop-blur-lg border border-neutral-400/10 rounded-full">{tag}</li>
-                                ))}
-                            </ul>
+                            <Title
+                                title={experience.title}
+                                subtitle={experience.company}
+                            >
+                                <p className="flex items-baseline gap-2 text-sm">
+                                    <FontAwesomeIcon icon={faLocationDot} className="text-xs" />
+                                    {experience.companyLocation}
+                                </p>
+                            </Title>
+                            <Description text={experience.description} />
+                            <Tags
+                                tags={experience.tags}
+                                color="text-indigo-500 bg-indigo-600/10 border-indigo-400/10 hover:bg-indigo-500/20"
+                            />
                         </div>
                     </GlowingCard>
                 ))}
