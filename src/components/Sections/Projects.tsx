@@ -1,8 +1,8 @@
-import { GlowingCard } from "./GlowingCard";
-import { SectionHeader } from "./SectionHeader";
-import { Description } from "./Cards/Description";
-import { Title } from "./Cards/Title";
-import { Tags } from "./Cards/Tags";
+import { GlowingCard } from "../Cards/GlowingCard";
+import { SectionHeader } from "./Blocks/SectionHeader";
+import { Description } from "../Cards/Blocks/Description";
+import { Title } from "../Cards/Blocks/Title";
+import { Tags } from "../Cards/Blocks/Tags";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faCircleChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -43,6 +43,7 @@ export const Projects = () => {
         <section id="projects">
             <SectionHeader
                 title="Projects"
+                color="bg-emerald-500"
                 links={[
                     {
                         url: "https://github.com/comeleleu",
@@ -51,7 +52,7 @@ export const Projects = () => {
                     },
                 ]}
             />
-            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 [&>*]:mb-6 mb-8">
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-4 [&>*]:mb-4">
                 {projects.map((project) => (
                     <GlowingCard key={project.title} glowingBorderColor="bg-linear-to-r from-lime-400 via-teal-400 to-sky-300">
                         <div className="flex flex-col gap-6 p-6">

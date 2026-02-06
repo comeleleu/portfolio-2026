@@ -1,9 +1,9 @@
-import { GlowingCard } from "./GlowingCard";
-import { SectionHeader } from "./SectionHeader";
-import { Description } from "./Cards/Description";
-import { Badge } from "./Cards/Badge";
-import { Title } from "./Cards/Title";
-import { Tags } from "./Cards/Tags";
+import { GlowingCard } from "../Cards/GlowingCard";
+import { SectionHeader } from "./Blocks/SectionHeader";
+import { Description } from "../Cards/Blocks/Description";
+import { Badge } from "../Cards/Blocks/Badge";
+import { Title } from "../Cards/Blocks/Title";
+import { Tags } from "../Cards/Blocks/Tags";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faAddressCard, faBuilding, faCircleChevronRight, faLaptop, faHouseLaptop, faLocationDot } from "@fortawesome/free-solid-svg-icons";
