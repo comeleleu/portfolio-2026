@@ -1,8 +1,11 @@
 import { GlowingCard } from "./GlowingCard";
 import { SectionHeader } from "./SectionHeader";
+import { Description } from "./Cards/Description";
+import { Title } from "./Cards/Title";
+import { Tags } from "./Cards/Tags";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faArrowUpRightFromSquare, faCircleChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faCircleChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 export const Projects = () => {
     const projects = [
@@ -51,18 +54,18 @@ export const Projects = () => {
             <div className="columns-1 md:columns-2 lg:columns-3 gap-6 [&>*]:mb-6 mb-8">
                 {projects.map((project) => (
                     <GlowingCard key={project.title} glowingBorderColor="bg-linear-to-r from-lime-400 via-teal-400 to-sky-300">
-                        <div className="flex flex-col gap-4 p-6">
-                            <h3 className="flex items-center gap-4 text-2xl font-semibold text-neutral-200">
-                                {project.title}
-                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="inline-block text-xs text-neutral-400/50 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-focus-visible:translate-x-1 group-focus-visible:-translate-y-1" />
-                            </h3>
-                            <p className="text-md font-semibold text-emerald-500">{project.context}</p>
-                            <p className="text-sm text-neutral-400">{project.description}</p>
-                            <ul className="flex flex-row flex-wrap gap-2">
-                                {project.tags.map((tag) => (
-                                    <li key={tag} className="px-4 py-2 text-xs text-neutral-500 bg-neutral-500/10 backdrop-blur-lg border border-neutral-500/10 rounded-full">{tag}</li>
-                                ))}
-                            </ul>
+                        <div className="flex flex-col gap-6 p-6">
+                            <Title
+                                title={project.title}
+                                subtitle={project.context}
+                                subtitleColor="text-emerald-500"
+                            />
+                            <Description text={project.description} />
+                            <Tags
+                                tags={project.tags}
+                                maxTags={2}
+                                color="text-emerald-500 bg-emerald-600/10 border-emerald-400/10 hover:bg-emerald-500/20"
+                            />
                         </div>
                     </GlowingCard>
                 ))}

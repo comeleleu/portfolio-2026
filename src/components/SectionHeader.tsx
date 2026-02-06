@@ -16,7 +16,7 @@ type SectionHeaderProps = {
 export const SectionHeader = ({ title, links }: SectionHeaderProps) => {
     return (
         <div className="flex flex-row justify-between items-end mb-8">
-            <h2 className="text-5xl font-semibold text-neutral-400 tracking-wide">{title}</h2>
+            <h2 className="text-5xl font-semibold text-neutral-300 tracking-wide">{title}</h2>
             {(links && links.length > 0) && (
                 <div className="flex items-baseline gap-4">
                     {links && (
