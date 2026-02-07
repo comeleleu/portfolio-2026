@@ -21,7 +21,7 @@ export const Projects = () => {
             description: "Une autre description pour un projet différent, un peu plus longue pour voir comment le texte se comporte.",
             context: "Projet open-source",
             tags: ["TypeScript", "Node.js", "Express"],
-            url: "#",
+            url: "",
         },
         {
             title: "Titre du Projet 3",
@@ -54,11 +54,16 @@ export const Projects = () => {
             />
             <div className="columns-1 md:columns-2 lg:columns-3 gap-4 [&>*]:mb-4">
                 {projects.map((project) => (
-                    <GlowingCard key={project.title} glowingBorderColor="bg-linear-to-r from-lime-400 via-teal-400 to-sky-300">
+                    <GlowingCard
+                        key={project.title}
+                        glowingBorderColor="bg-linear-to-r from-lime-400 via-teal-400 to-sky-300"
+                        url={project.url}
+                    >
                         <div className="flex flex-col gap-6 p-6">
                             <Title
                                 title={project.title}
                                 subtitle={project.context}
+                                isLink={!!project.url}
                                 subtitleColor="text-emerald-500"
                             />
                             <Description text={project.description} />
