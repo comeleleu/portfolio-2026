@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 type BadgeProps = {
     label: string;
     labelHover?: string;
     color?: string;
-    icon?: string;
+    icon?: IconProp;
 };
 
 export const Badge = ({

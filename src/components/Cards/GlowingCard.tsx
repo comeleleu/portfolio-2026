@@ -1,13 +1,15 @@
-import { useEffect, ReactNode } from "react";
+import { useEffect, ReactNode, ElementType } from "react";
 
 type GlowingCardProps = {
-    children?: ReactNode;
     glowingBorderColor?: string;
+    url?: string;
+    children?: ReactNode;
 };
 
 export const GlowingCard = ({
-    children,
     glowingBorderColor = "bg-linear-to-r from-blue-400 via-indigo-400 to-purple-300",
+    url,
+    children,
 }: GlowingCardProps) => {
 
     useEffect(() => {
@@ -41,9 +43,14 @@ export const GlowingCard = ({
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, []);
 
+    const Tag = (url ? "a" : "div") as ElementType;
+
     return (
-        <div
-            className="glowingCard group relative block break-inside-avoid p-px bg-neutral-800 hover:bg-neutral-700 rounded-3xl shadow-lg transition-colors ease-in-out duration-800 overflow-hidden cursor-pointer"
+        <Tag
+            href={url}
+            target={url?.startsWith("http") ? "_blank" : undefined}
+            rel={url?.startsWith("http") ? "noopener noreferrer" : undefined}
+            className={`glowingCard group relative block break-inside-avoid p-px bg-neutral-800 hover:bg-neutral-700 rounded-3xl shadow-lg transition-colors ease-in-out duration-800 overflow-hidden ${url ? "cursor-pointer" : "cursor-default"}`}
         >
             <div
                 className={`glowingCardBorder absolute z-0 size-60 blur-3xl ${glowingBorderColor} rounded-full transition-opacity ease-in-out duration-500 opacity-0 pointer-events-none`}
@@ -52,8 +59,8 @@ export const GlowingCard = ({
             <div className="relative z-10 w-full h-full bg-linear-to-br from-neutral-950/80 to-neutral-950/90 rounded-[inherit] overflow-hidden">
                 {children ? (
                     children
-                ) :  null}
+                ) : null}
             </div>
-        </div>
+        </Tag>
     );
 };
