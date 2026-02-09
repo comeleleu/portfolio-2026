@@ -23,6 +23,8 @@ export const Tags = ({
             {hasMore && (
                 <li
                     onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
                         setShowAll(!showAll);
                     }}
                     className={`flex items-center gap-1 px-4 py-2 text-xs font-extrabold backdrop-blur-lg border ${color} rounded-full cursor-pointer transition-colors ease-in-out duration-500`}
