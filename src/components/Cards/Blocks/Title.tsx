@@ -22,7 +22,7 @@ export const Title = ({
             <h3 className="flex items-center gap-4 text-2xl font-semibold text-neutral-200">
                 {title}
                 {isLink && (
-                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="inline-block text-xs text-neutral-400/40 group-hover:text-neutral-400/50 transition-all ease-in-out duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-focus-visible:translate-x-1 group-focus-visible:-translate-y-1" />
+                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="inline-block text-xs text-neutral-400/20 group-hover:text-neutral-400/50 transition-all ease-in-out duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5" />
                 )}
             </h3>
             {(subtitle || children) && (
