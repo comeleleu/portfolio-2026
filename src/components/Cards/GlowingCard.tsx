@@ -50,7 +50,7 @@ export const GlowingCard = ({
             href={url}
             target={url?.startsWith("http") ? "_blank" : undefined}
             rel={url?.startsWith("http") ? "noopener noreferrer" : undefined}
-            className={`glowingCard group relative block break-inside-avoid p-px bg-neutral-800 hover:bg-neutral-700 rounded-3xl shadow-lg transition-colors ease-in-out duration-800 overflow-hidden ${url ? "cursor-pointer" : "cursor-default"}`}
+            className={`glowingCard group relative block break-inside-avoid p-px bg-neutral-800 rounded-3xl shadow-lg overflow-hidden ${url ? "hover:bg-neutral-700 transition-colors ease-in-out duration-500 cursor-pointer" : "cursor-default"}`}
         >
             <div
                 className={`glowingCardBorder absolute z-0 size-60 blur-3xl ${glowingBorderColor} rounded-full transition-opacity ease-in-out duration-500 opacity-0 pointer-events-none`}

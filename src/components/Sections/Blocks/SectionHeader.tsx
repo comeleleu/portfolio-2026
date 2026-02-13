@@ -30,7 +30,7 @@ export const SectionHeader = ({
                     {links && (
                         <div className="flex flex-row flex-wrap gap-2">
                             {links.map((link) => (
-                                <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 px-6 py-3 text-sm text-neutral-500 font-semibold bg-neutral-600/10 backdrop-blur-lg border border-neutral-400/10 rounded-full hover:bg-neutral-600/20 transition-colors">
+                                <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 px-6 py-3 text-sm text-neutral-500 font-semibold bg-neutral-600/10 hover:bg-neutral-600/20 backdrop-blur-lg border border-neutral-400/10 rounded-full transition-colors ease-in-out duration-500">
                                     <FontAwesomeIcon icon={link.icon} className="text-lg" />
                                     {link.label}
                                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="inline-block text-xs text-neutral-400/20 group-hover:text-neutral-400/50 transition-all ease-in-out duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5" />
