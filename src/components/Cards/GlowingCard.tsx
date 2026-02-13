@@ -1,12 +1,16 @@
-import { useEffect, ReactNode } from "react";
+import { useEffect, ReactNode, ElementType } from "react";
 
 type GlowingCardProps = {
-    children?: ReactNode;
     glowingBorderColor?: string;
-    overflowHidden?: boolean;
+    url?: string;
+    children?: ReactNode;
 };
 
-export const GlowingCard = ({ children, glowingBorderColor, overflowHidden }: GlowingCardProps) => {
+export const GlowingCard = ({
+    glowingBorderColor = "bg-linear-to-r from-blue-400 via-indigo-400 to-purple-300",
+    url,
+    children,
+}: GlowingCardProps) => {
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
@@ -39,19 +43,24 @@ export const GlowingCard = ({ children, glowingBorderColor, overflowHidden }: Gl
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, []);
 
+    const Tag = (url ? "a" : "div") as ElementType;
+
     return (
-        <div
-            className="glowingCard group relative block break-inside-avoid p-px bg-neutral-800 hover:bg-neutral-700 rounded-3xl shadow-lg transition-colors ease-in-out duration-800 overflow-hidden cursor-pointer"
+        <Tag
+            href={url}
+            target={url?.startsWith("http") ? "_blank" : undefined}
+            rel={url?.startsWith("http") ? "noopener noreferrer" : undefined}
+            className={`glowingCard group relative block break-inside-avoid p-px bg-neutral-800 rounded-3xl shadow-lg overflow-hidden ${url ? "hover:bg-neutral-700 transition-colors ease-in-out duration-500 cursor-pointer" : "cursor-default"}`}
         >
             <div
-                className={`glowingCardBorder absolute z-0 size-60 blur-3xl ${glowingBorderColor ?? "bg-linear-to-r from-blue-400 via-indigo-400 to-purple-300"} rounded-full transition-opacity ease-in-out duration-500 opacity-0 pointer-events-none`}
+                className={`glowingCardBorder absolute z-0 size-60 blur-3xl ${glowingBorderColor} rounded-full transition-opacity ease-in-out duration-500 opacity-0 pointer-events-none`}
             />
 
-            <div className={`relative z-10 w-full h-full bg-linear-to-br from-neutral-950/80 to-neutral-950/90 rounded-[inherit] ${overflowHidden ? "overflow-hidden" : ""}`}>
+            <div className="relative z-10 w-full h-full bg-linear-to-br from-neutral-950/80 to-neutral-950/90 rounded-[inherit] overflow-hidden">
                 {children ? (
                     children
-                ) :  null}
+                ) : null}
             </div>
-        </div>
+        </Tag>
     );
 };

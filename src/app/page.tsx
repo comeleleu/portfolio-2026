@@ -1,9 +1,9 @@
 "use client";
 
 import { Navbar } from "@/components/Navbar";
-import { About } from "@/components/About";
-import { Experiences } from "@/components/Experiences";
-import { Projects } from "@/components/Projects";
+import { About } from "@/components/Sections/About";
+import { Experiences } from "@/components/Sections/Experiences";
+import { Projects } from "@/components/Sections/Projects";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
