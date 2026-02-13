@@ -19,7 +19,7 @@ export const Badge = ({
             title={labelHover}
             className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold backdrop-blur-lg border rounded-full ${labelHover ? "cursor-help" : ""} ${color}`}
         >
-            {icon && <FontAwesomeIcon icon={icon} className="text-xs" />} 
+            {icon && <FontAwesomeIcon icon={icon} className="text-sm" />}
             {label}
         </div>
     );
