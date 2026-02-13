@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, ReactNode, ElementType } from "react";
 
 type GlowingCardProps = {
