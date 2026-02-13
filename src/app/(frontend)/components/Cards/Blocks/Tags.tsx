@@ -14,6 +14,9 @@ export const Tags = ({
     color = "text-neutral-500 bg-neutral-600/10 border-neutral-400/10 hover:bg-neutral-500/20",
 }: TagsProps) => {
     const [showAll, setShowAll] = useState(false);
+
+    if (!tags || tags.length === 0) return null;
+
     const displayedTags = showAll ? tags : tags.slice(0, maxTags);
     const hasMore = tags.length > maxTags;
 
