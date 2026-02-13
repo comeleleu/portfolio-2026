@@ -49,7 +49,7 @@ export const GlowingCard = ({
 
     return (
         <Tag
-            href={url}
+            href={url || undefined}
             target={url?.startsWith("http") ? "_blank" : undefined}
             rel={url?.startsWith("http") ? "noopener noreferrer" : undefined}
             className={`glowingCard group relative block break-inside-avoid p-px bg-neutral-800 rounded-3xl shadow-lg overflow-hidden ${url ? "hover:bg-neutral-700 transition-colors ease-in-out duration-500 cursor-pointer" : "cursor-default"}`}
