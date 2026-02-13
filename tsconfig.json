@@ -19,7 +19,11 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@app/*": ["./src/app/(frontend)/*"],
+      "@components/*": ["./src/app/(frontend)/components/*"],
+      "@collections/*": ["./src/collections/*"],
+      "@payload-config": ["./payload.config.ts"]
     }
   },
   "include": [
