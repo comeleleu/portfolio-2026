@@ -23,6 +23,7 @@
       "@app/*": ["./src/app/(frontend)/*"],
       "@components/*": ["./src/app/(frontend)/components/*"],
       "@collections/*": ["./src/collections/*"],
+      "@fields/*": ["./src/fields/*"],
       "@utils/*": ["./src/utils/*"],
       "@payload-config": ["./payload.config.ts"]
     }

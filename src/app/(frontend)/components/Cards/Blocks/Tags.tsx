@@ -23,7 +23,7 @@ export const Tags = ({
     return (
         <ul className="flex flex-row flex-wrap gap-2">
             {displayedTags.map((tag) => (
-                <li key={tag.id} className="px-4 py-2 text-xs text-neutral-500 bg-neutral-500/10 backdrop-blur-lg border border-neutral-400/10 rounded-full">{tag.name}</li>
+                <li key={tag.id} className="px-4 py-2 text-xs text-neutral-500 bg-neutral-500/10 backdrop-blur-lg border border-neutral-400/10 rounded-full">{tag.label}</li>
             ))}
             {hasMore && (
                 <li
