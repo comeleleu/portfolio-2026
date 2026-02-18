@@ -4,12 +4,12 @@ import { faAddressCard, faBuilding, faLaptop, faHouseLaptop, faLocationDot } fro
 import { getPayload } from "@utils/getPayload";
 import { formatDate } from "@utils/formatDate";
 import { GlowingCard } from "@components/Cards/GlowingCard";
-import { Badge } from "@components/Cards/Blocks/Badge";
-import { Title } from "@components/Cards/Blocks/Title";
-import { Description } from "@components/Cards/Blocks/Description";
-import { Tags } from "@components/Cards/Blocks/Tags";
-import { SectionHeader } from "@components/Sections/Blocks/SectionHeader";
-import { NoResultMessage } from "@components/Sections/Blocks/NoResultMessage";
+import { Badge } from "@components/Cards/Elements/Badge";
+import { Title } from "@components/Cards/Elements/Title";
+import { Description } from "@components/Cards/Elements/Description";
+import { Tags } from "@components/Cards/Elements/Tags";
+import { SectionHeader } from "@components/Sections/Elements/SectionHeader";
+import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
 const getLocationIcon = (locationType: string) => {
     switch (locationType) {
