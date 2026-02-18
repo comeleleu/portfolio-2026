@@ -26,11 +26,22 @@ export const Projects: CollectionConfig = {
     {
       name: 'published',
       type: 'checkbox',
-      defaultValue: true,
+      defaultValue: false,
     },
     {
       name: 'title',
       type: 'text',
+      required: true,
+    },
+    {
+      name: 'context',
+      type: 'select',
+      options: [
+        { label: 'Personnal', value: 'personnal' },
+        { label: 'Professional', value: 'professional' },
+        { label: 'Hackathon', value: 'hackathon' },
+        { label: 'Open Source', value: 'open-source' },
+      ],
       required: true,
     },
     {
@@ -52,10 +63,6 @@ export const Projects: CollectionConfig = {
         ],
       }),
       required: true,
-    },
-    {
-      name: 'context',
-      type: 'text',
     },
     {
       name: 'url',
