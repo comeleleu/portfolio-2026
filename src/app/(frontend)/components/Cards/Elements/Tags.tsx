@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 type TagsProps = {
-    tags: string | any[];
+    tags: { id: string; label: string }[];
     maxTags?: number;
     color?: string;
 };

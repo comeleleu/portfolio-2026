@@ -63,7 +63,7 @@ export const Projects = async () => {
                         </GlowingCard>
                 ))
                 ) : (
-                    <NoResultMessage message="No project found." />
+                    <NoResultMessage message="No projects found." />
                 )}
             </div>
         </section>
