@@ -1,10 +1,11 @@
-import { GlowingCard } from "@components/Cards/GlowingCard";
-import { Title } from "@components/Cards/Blocks/Title";
-import { Description } from "@components/Cards/Blocks/Description";
-import { Tags } from "@components/Cards/Blocks/Tags";
-import { SectionHeader } from "@components/Sections/Blocks/SectionHeader";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { getPayload } from "@utils/getPayload";
+import { GlowingCard } from "@components/Cards/GlowingCard";
+import { Title } from "@components/Cards/Elements/Title";
+import { Description } from "@components/Cards/Elements/Description";
+import { Tags } from "@components/Cards/Elements/Tags";
+import { SectionHeader } from "@components/Sections/Elements/SectionHeader";
+import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
 export const Projects = async () => {
     let projects: any[] = [];
@@ -62,7 +63,7 @@ export const Projects = async () => {
                         </GlowingCard>
                 ))
                 ) : (
-                    <p className="text-sm text-neutral-400">No project found</p>
+                    <NoResultMessage message="No projects found." />
                 )}
             </div>
         </section>
