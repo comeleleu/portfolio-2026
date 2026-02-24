@@ -4,8 +4,11 @@ import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { buildConfig } from 'payload'
 import { Companies } from '@collections/Companies'
 import { Experiences } from '@collections/Experiences'
+import { Links } from '@collections/Links'
+import { Medias } from '@/collections/Medias'
 import { Projects } from '@collections/Projects'
 import { Tags } from '@collections/Tags'
+import { Sections } from '@globals/Sections'
 
 
 export default buildConfig({
@@ -14,9 +17,16 @@ export default buildConfig({
   collections: [
     Companies,
     Experiences,
+    Links,
+    Medias,
     Projects,
     Tags,
   ],
+
+  globals: [
+    Sections,
+  ],
+
 
   secret: process.env.PAYLOAD_SECRET || '',
   db: sqliteAdapter({

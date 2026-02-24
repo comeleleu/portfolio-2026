@@ -24,6 +24,7 @@
       "@components/*": ["./src/app/(frontend)/components/*"],
       "@collections/*": ["./src/collections/*"],
       "@fields/*": ["./src/fields/*"],
+      "@globals/*": ["./src/globals/*"],
       "@utils/*": ["./src/utils/*"],
       "@payload-config": ["./payload.config.ts"]
     }

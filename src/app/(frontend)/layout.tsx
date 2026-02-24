@@ -30,7 +30,7 @@ const storyScript = Story_Script({
 
 export const metadata: Metadata = {
   title: "Côme Leleu's Portfolio",
-  description: "The portfolio of Côme Leleu, a software engineer specializing in web development and open-source projects.",
+  description: "Software engineer specializing in web development.",
 };
 
 export default function RootLayout({
