@@ -1,18 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import {
-  lexicalEditor,
-  FixedToolbarFeature,
-  OrderedListFeature,
-  UnorderedListFeature,
-  ParagraphFeature,
-  BoldFeature,
-  ItalicFeature,
-  UnderlineFeature,
-  StrikethroughFeature,
-  SubscriptFeature,
-  SuperscriptFeature,
-  InlineCodeFeature,
-} from '@payloadcms/richtext-lexical'
+import { RichText } from '@fields/RichText'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
@@ -44,26 +31,7 @@ export const Projects: CollectionConfig = {
       ],
       required: true,
     },
-    {
-      name: 'description',
-      type: 'richText',
-      editor: lexicalEditor({
-        features: () => [
-          FixedToolbarFeature(),
-          OrderedListFeature(),
-          UnorderedListFeature(),
-          ParagraphFeature(),
-          BoldFeature(),
-          ItalicFeature(),
-          UnderlineFeature(),
-          StrikethroughFeature(),
-          SubscriptFeature(),
-          SuperscriptFeature(),
-          InlineCodeFeature(),
-        ],
-      }),
-      required: true,
-    },
+    RichText({ name: 'description', required: true }),
     {
       name: 'url',
       type: 'text',
