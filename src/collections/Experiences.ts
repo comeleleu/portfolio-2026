@@ -1,19 +1,6 @@
 import type { CollectionConfig } from 'payload'
-import {
-  lexicalEditor,
-  FixedToolbarFeature,
-  OrderedListFeature,
-  UnorderedListFeature,
-  ParagraphFeature,
-  BoldFeature,
-  ItalicFeature,
-  UnderlineFeature,
-  StrikethroughFeature,
-  SubscriptFeature,
-  SuperscriptFeature,
-  InlineCodeFeature,
-} from '@payloadcms/richtext-lexical'
 import { LocationField } from '@fields/location/field';
+import { RichText } from '@fields/RichText'
 
 export const Experiences: CollectionConfig = {
   slug: 'experiences',
@@ -86,26 +73,7 @@ export const Experiences: CollectionConfig = {
       ],
       required: true,
     },
-    {
-      name: 'description',
-      type: 'richText',
-      editor: lexicalEditor({
-        features: () => [
-          FixedToolbarFeature(),
-          OrderedListFeature(),
-          UnorderedListFeature(),
-          ParagraphFeature(),
-          BoldFeature(),
-          ItalicFeature(),
-          UnderlineFeature(),
-          StrikethroughFeature(),
-          SubscriptFeature(),
-          SuperscriptFeature(),
-          InlineCodeFeature(),
-        ],
-      }),
-      required: true,
-    },
+    RichText({ name: 'description', required: true }),
     {
       name: 'url',
       type: 'text',
