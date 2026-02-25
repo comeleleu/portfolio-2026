@@ -1,7 +1,10 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import { getPayload } from "@utils/getPayload";
 import { Navbar } from "@components/Navbar";
 import { About } from "@components/Sections/About";
 import { Experiences } from "@components/Sections/Experiences";
+import { Studies } from "@components/Sections/Studies";
 import { Projects } from "@components/Sections/Projects";
 import { Footer } from "@components/Footer";
 
@@ -26,7 +29,20 @@ export default async function Home() {
             <div className="flex flex-col gap-32 px-8 py-6 sm:py-10">
                 <About sectionParameters={sectionsData?.about} />
 
-                <Experiences sectionParameters={sectionsData?.experiences} />
+                
+                <div className="flex flex-col gap-12">
+                    <Experiences sectionParameters={sectionsData?.experiences} />
+
+                    <div className="w-1/2 flex items-center text-sm font-semibold text-neutral-600/80 before:flex-1 before:border-t before:border-dashed before:border-neutral-800/80 before:me-8">
+                        <div className="flex items-center gap-2">
+                            <FontAwesomeIcon icon={faGraduationCap} className="text-lg" />
+                            Studies
+                        </div>
+                    </div>
+
+                    <Studies />
+                </div>
+                
 
                 <Projects sectionParameters={sectionsData?.projects} />
 
