@@ -7,9 +7,10 @@ import { Experiences } from '@collections/Experiences'
 import { Links } from '@collections/Links'
 import { Medias } from '@/collections/Medias'
 import { Projects } from '@collections/Projects'
+import { Schools } from '@/collections/Schools'
+import { Studies } from '@/collections/Studies'
 import { Tags } from '@collections/Tags'
 import { Sections } from '@globals/Sections'
-
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -20,6 +21,8 @@ export default buildConfig({
     Links,
     Medias,
     Projects,
+    Schools,
+    Studies,
     Tags,
   ],
 
