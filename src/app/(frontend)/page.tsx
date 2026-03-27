@@ -23,22 +23,15 @@ export default async function Home() {
     }
 
     return (
-        <div className="grid sm:grid-cols-[auto_1fr] min-h-screen max-w-7xl mx-auto">
-            <Navbar sectionParameters={sectionsData?.navbar}/>
+        <div className="sm:grid sm:grid-cols-[auto_1fr] min-h-screen max-w-7xl mx-auto">
+            <Navbar sectionParameters={sectionsData?.navbar} />
 
-            <div className="flex flex-col gap-32 px-8 py-6 sm:py-10">
+            <div className="flex flex-col gap-16 px-8">
                 <About sectionParameters={sectionsData?.about} />
 
                 
-                <div className="flex flex-col gap-12">
+                <div className="flex flex-col">
                     <Experiences sectionParameters={sectionsData?.experiences} />
-
-                    <div className="w-1/2 flex items-center text-sm font-semibold text-neutral-600/80 before:flex-1 before:border-t before:border-dashed before:border-neutral-800/80 before:me-8">
-                        <div className="flex items-center gap-2">
-                            <FontAwesomeIcon icon={faGraduationCap} className="text-lg" />
-                            Studies
-                        </div>
-                    </div>
 
                     <Studies />
                 </div>

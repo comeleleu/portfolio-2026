@@ -28,7 +28,17 @@ export const Studies = async () => {
     }
 
     return (
-        <section id="studies">
+        <section id="studies" className="scroll-mt-16 sm:scroll-mt-0">
+
+            <div className="flex items-center my-8 font-semibold text-neutral-600 before:flex-1 before:border-t before:border-dashed before:border-neutral-700/80 before:me-8 after:flex-1 after:border-t after:border-dashed after:border-neutral-700/80 after:ms-8">
+                <div className="flex items-center gap-4">
+                    <FontAwesomeIcon icon={Fas.faGraduationCap} className="text-lg" />
+                    <div className="text-xl">
+                        Studies
+                    </div>
+                </div>
+            </div>
+
             {studies.length > 0 ? (
                 <div className="flex flex-col gap-4 mb-4">
                     {studies.map((study: any) => (
