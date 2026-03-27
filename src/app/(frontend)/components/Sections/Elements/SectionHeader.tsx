@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import * as Fab from "@fortawesome/free-brands-svg-icons";
+import * as Fas from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export type LinkItem = {
@@ -10,20 +11,25 @@ export type LinkItem = {
 
 type SectionHeaderProps = {
     title: string;
+    sectionIcon?: IconProp;
     color?: string;
     links?: LinkItem[];
 };
 
 export const SectionHeader = ({
     title,
-    color = "bg-indigo-500",
+    sectionIcon,
+    color = "after:bg-indigo-500",
     links
 }: SectionHeaderProps) => {
+
     return (
-        <div className="flex flex-col md:flex-row justify-between items-baseline md:items-end gap-8 mb-8">
-            <div className="flex flex-col gap-1">
-                <h2 className="text-5xl font-semibold text-neutral-300 tracking-wide">{title}</h2>
-                <div className={`h-1 w-20 ${color} rounded-full`}></div>
+        <div className="flex flex-col md:flex-row justify-between items-baseline md:items-end gap-8 my-8">
+            <div className="flex flex-row gap-4 items-baseline">
+                {sectionIcon && <span className="text-2xl text-neutral-600"><FontAwesomeIcon icon={sectionIcon} className="text-xl" /></span>}
+                <h2 className={`text-5xl font-semibold text-neutral-300 tracking-wide relative after:content-[''] after:absolute after:h-1 after:w-4/5 ${color} after:rounded-full after:-bottom-1 after:-left-6`}>
+                    {title}
+                </h2>
             </div>
             {(links && links.length > 0) && (
                 <div className="flex justify-between md:justify-end flex-wrap gap-2">
@@ -38,7 +44,7 @@ export const SectionHeader = ({
                             >
                                 <FontAwesomeIcon icon={link.icon} className="text-lg" />
                                 {link.label}
-                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="inline-block text-xs text-neutral-400/20 group-hover:text-neutral-400/50 transition-all ease-in-out duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5" />
+                                <FontAwesomeIcon icon={Fas.faArrowUpRightFromSquare} className="inline-block text-xs text-neutral-400/20 group-hover:text-neutral-400/50 transition-all ease-in-out duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5" />
                             </a>
                         ))
                     )}
