@@ -33,7 +33,7 @@ export const Description = ({
             {content.map((node: any, index: number) => {
                 if (node.type === "paragraph") {
                     return (
-                        <p key={index} className="indent-8 mb-2">
+                        <p key={index} className="mb-2">
                             {node.children?.map((child: any, childIndex: number) => renderText(child, childIndex))}
                         </p>
                     );

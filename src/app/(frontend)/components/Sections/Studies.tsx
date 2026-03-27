@@ -16,7 +16,7 @@ export const Studies = async () => {
         const result = await payload.find({
             collection: 'studies',
             limit: 100,
-            depth: 1,
+            depth: 2,
             overrideAccess: true,
             where: {
                 published: { equals: true },
@@ -40,7 +40,7 @@ export const Studies = async () => {
             </div>
 
             {studies.length > 0 ? (
-                <div className="flex flex-col gap-4 mb-4">
+                <div className="flex flex-col gap-4">
                     {studies.map((study: any) => (
                         <GlowingCard
                             key={study.id ?? study._id ?? study.degree}
@@ -58,16 +58,25 @@ export const Studies = async () => {
                                         icon={Fas.faGraduationCap}
                                     />
                                 </div>
-                                <Title
-                                    title={study.degree}
-                                    subtitle={study.school.name}
-                                    isLink={!!study.url}
-                                >
-                                    <p className="flex items-baseline gap-2 text-sm">
-                                        <FontAwesomeIcon icon={Fas.faLocationDot} className="text-xs" />
-                                        {study.school.location}
-                                    </p>
-                                </Title>
+                                <div className="flex flex-row gap-4 items-start">
+                                    {study.school?.logo?.url && (
+                                            <img
+                                                src={study.school.logo.url}
+                                                alt={study.school.logo.alt || study.school.name}
+                                                className="w-12 h-12 object-contain rounded-lg"
+                                            />
+                                    )}
+                                    <Title
+                                        title={study.degree}
+                                        subtitle={study.school.name}
+                                        isLink={!!study.url}
+                                    >
+                                        <p className="flex items-baseline gap-2 text-sm">
+                                            <FontAwesomeIcon icon={Fas.faLocationDot} className="text-xs" />
+                                            {study.school.location}
+                                        </p>
+                                    </Title>
+                                </div>
                                 <Description text={study.description} />
                                 <Tags
                                     tags={study.tags}
