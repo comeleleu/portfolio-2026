@@ -25,7 +25,10 @@ const lato = Lato({
 const storyScript = Story_Script({
   variable: "--font-story-script",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: "400",
+  display: "swap",
+  fallback: ["cursive"],
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -42,6 +45,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${storyScript.variable} ${lato.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         {children}
       </body>

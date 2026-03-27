@@ -31,11 +31,12 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
         const result = await payload.find({
             collection: 'experiences',
             limit: 100,
-            depth: 1,
+            depth: 2,
             overrideAccess: true,
             where: {
                 published: { equals: true },
             },
+            sort: ['-endDate'],
         });
         experiences = result?.docs || [];
     } catch (err) {
@@ -57,50 +58,74 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
             />
 
             {experiences.length > 0 ? (
-                <div className="flex flex-col gap-4 mb-4">
-                    {experiences.map((experience: any) => (
-                        <GlowingCard
-                            key={experience.id ?? experience._id ?? experience.title}
-                            url={experience.url}
-                        >
-                            <div className="relative flex flex-col gap-6 p-6">
-                                <div className="flex flex-row justify-between items-center gap-6">
-                                    <Badge
-                                        label={`${formatDate(experience.startDate, 'short')} — ${experience.currentWork ? "Today" : formatDate(experience.endDate, 'short')}`}
-                                        labelHover={`${formatDate(experience.startDate, 'long')} to ${experience.currentWork ? "Today" : formatDate(experience.endDate, 'long')}`}
-                                        color="text-indigo-500 bg-indigo-600/10 border-indigo-400/10"
-                                    />
-                                    <div className="flex items-center gap-2">
-                                        {experience.selfEmployed && (
+                <div className="flex flex-col gap-4">
+                    {experiences.map((experience: any, index: number) => {
+                        const previousExperience = experiences[index + 1];
+                        const showLocationChange = previousExperience && experience.location !== previousExperience.location;
+
+                        return (
+                            <div key={experience.id ?? experience._id ?? experience.title} className="flex flex-col justify-start gap-4">
+                                <GlowingCard
+                                    key={experience.id ?? experience._id ?? experience.title}
+                                    url={experience.url}
+                                >
+                                    <div className="relative flex flex-col gap-6 p-6">
+                                        <div className="flex flex-row justify-between items-center gap-6">
                                             <Badge
-                                                label="Self-employed"
-                                                icon={Fas.faAddressCard}
+                                                label={`${formatDate(experience.startDate, 'short')} — ${experience.currentWork ? "Today" : formatDate(experience.endDate, 'short')}`}
+                                                labelHover={`${formatDate(experience.startDate, 'long')} to ${experience.currentWork ? "Today" : formatDate(experience.endDate, 'long')}`}
+                                                color="text-indigo-500 bg-indigo-600/10 border-indigo-400/10"
                                             />
-                                        )}
-                                        <Badge
-                                            label={experience.locationType}
-                                            icon={getLocationIcon(experience.locationType)}
+                                            <div className="flex items-center gap-2">
+                                                {experience.selfEmployed && (
+                                                    <Badge
+                                                        label="Self-employed"
+                                                        icon={Fas.faAddressCard}
+                                                    />
+                                                )}
+                                                <Badge
+                                                    label={experience.locationType}
+                                                    icon={getLocationIcon(experience.locationType)}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-row gap-4 items-start">
+                                            {experience.company?.logo?.url && (
+                                                    <img
+                                                        src={experience.company.logo.url}
+                                                        alt={experience.company.logo.alt || experience.company.name}
+                                                        className="w-12 h-12 object-contain rounded-lg"
+                                                    />
+                                            )}
+                                            <Title
+                                                title={experience.title}
+                                                subtitle={experience.company.name}
+                                                isLink={!!experience.url}
+                                            >
+                                                <p className="flex items-baseline gap-2 text-sm">
+                                                    <FontAwesomeIcon icon={Fas.faLocationDot} className="text-xs" />
+                                                    {experience.company.location}
+                                                </p>
+                                            </Title>
+                                        </div>
+                                        <Description text={experience.description} />
+                                        <Tags
+                                            tags={experience.tags}
+                                            color="text-indigo-500 bg-indigo-600/10 border-indigo-400/10 hover:bg-indigo-500/20"
                                         />
                                     </div>
-                                </div>
-                                <Title
-                                    title={experience.title}
-                                    subtitle={experience.company.name}
-                                    isLink={!!experience.url}
-                                >
-                                    <p className="flex items-baseline gap-2 text-sm">
-                                        <FontAwesomeIcon icon={Fas.faLocationDot} className="text-xs" />
-                                        {experience.company.location}
-                                    </p>
-                                </Title>
-                                <Description text={experience.description} />
-                                <Tags
-                                    tags={experience.tags}
-                                    color="text-indigo-500 bg-indigo-600/10 border-indigo-400/10 hover:bg-indigo-500/20"
-                                />
+                                </GlowingCard>
+                                {showLocationChange && (
+                                    <div className="w-3/4 sm:w-2/3 md:w-3/5 lg:w-2/5 flex items-center text-sm font-semibold text-neutral-600 before:flex-1 before:border-t before:border-dashed before:border-neutral-700/70 before:me-8">
+                                        <div className="flex items-center gap-2">
+                                            <FontAwesomeIcon icon={Fas.faTruck} className="text-lg" />
+                                            Moved to {experience.location}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
-                        </GlowingCard>
-                    ))}
+                        );
+                    })}
                 </div>
             ) : (
                 <NoResultMessage message="No experiences found" />
