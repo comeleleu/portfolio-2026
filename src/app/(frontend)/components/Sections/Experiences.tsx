@@ -49,9 +49,10 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
     })) || [];
 
     return (
-        <section id="experiences">
+        <section id="experiences" className="scroll-mt-16 sm:scroll-mt-0">
             <SectionHeader
                 title={sectionParameters?.title || "Experiences"}
+                sectionIcon={Fas.faLaptopCode}
                 links={headerLinks}
             />
 
