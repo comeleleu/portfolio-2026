@@ -21,6 +21,7 @@ export const Studies = async () => {
             where: {
                 published: { equals: true },
             },
+            sort: ['-endDate'],
         });
         studies = result?.docs || [];
     } catch (err) {
@@ -30,10 +31,10 @@ export const Studies = async () => {
     return (
         <section id="studies" className="scroll-mt-16 sm:scroll-mt-0">
 
-            <div className="flex items-center my-8 font-semibold text-neutral-600 before:flex-1 before:border-t before:border-dashed before:border-neutral-700/80 before:me-8 after:flex-1 after:border-t after:border-dashed after:border-neutral-700/80 after:ms-8">
-                <div className="flex items-center gap-4">
-                    <FontAwesomeIcon icon={Fas.faGraduationCap} className="text-lg" />
-                    <div className="text-xl">
+            <div className="flex items-center my-8 font-semibold text-neutral-500 before:flex-1 before:border-t before:border-dashed before:border-neutral-600/90 before:me-8 after:flex-1 after:border-t after:border-dashed after:border-neutral-600/90 after:ms-8">
+                <div className="flex items-center gap-4 text-xl">
+                    <FontAwesomeIcon icon={Fas.faGraduationCap} />
+                    <div>
                         Studies
                     </div>
                 </div>
@@ -44,14 +45,17 @@ export const Studies = async () => {
                     {studies.map((study: any) => (
                         <GlowingCard
                             key={study.id ?? study._id ?? study.degree}
+                            glowingBorderColor="bg-linear-to-r from-blue-400 via-indigo-400 to-purple-300"
                             url={study.url}
                         >
-                            <div className="relative flex flex-col gap-6 p-6">
+                            <div className="relative flex flex-col gap-6 px-8 py-6">
                                 <div className="flex flex-row justify-between items-center gap-6">
                                     <Badge
                                         label={`${formatDate(study.startDate, 'short')} — ${study.currentStudy ? "Today" : formatDate(study.endDate, 'short')}`}
                                         labelHover={`${formatDate(study.startDate, 'long')} to ${study.currentStudy ? "Today" : formatDate(study.endDate, 'long')}`}
-                                        color="text-indigo-500 bg-indigo-600/10 border-indigo-400/10"
+                                        textColor="text-indigo-400"
+                                        backgroundColor="bg-indigo-600/10"
+                                        borderColor="border-indigo-300/10"
                                     />
                                     <Badge
                                         label={`${study.level} — ${study.field}`}
@@ -60,19 +64,19 @@ export const Studies = async () => {
                                 </div>
                                 <div className="flex flex-row gap-4 items-start">
                                     {study.school?.logo?.url && (
-                                            <img
-                                                src={study.school.logo.url}
-                                                alt={study.school.logo.alt || study.school.name}
-                                                className="w-12 h-12 object-contain rounded-lg"
-                                            />
+                                        <img
+                                            src={study.school.logo.url}
+                                            alt={study.school.logo.alt || study.school.name}
+                                            className="w-14 h-14 object-contain rounded-xl"
+                                        />
                                     )}
                                     <Title
                                         title={study.degree}
                                         subtitle={study.school.name}
                                         isLink={!!study.url}
                                     >
-                                        <p className="flex items-baseline gap-2 text-sm">
-                                            <FontAwesomeIcon icon={Fas.faLocationDot} className="text-xs" />
+                                        <p className="flex items-center gap-2">
+                                            <FontAwesomeIcon icon={Fas.faLocationDot} className="text-md" />
                                             {study.school.location}
                                         </p>
                                     </Title>
@@ -80,7 +84,9 @@ export const Studies = async () => {
                                 <Description text={study.description} />
                                 <Tags
                                     tags={study.tags}
-                                    color="text-indigo-500 bg-indigo-600/10 border-indigo-400/10 hover:bg-indigo-500/20"
+                                    textColor="text-indigo-400 hover:text-indigo-300"
+                                    backgroundColor="bg-indigo-600/15 hover:bg-indigo-500/20"
+                                    borderColor="border-indigo-400/15 hover:border-indigo-300/20"
                                 />
                             </div>
                         </GlowingCard>

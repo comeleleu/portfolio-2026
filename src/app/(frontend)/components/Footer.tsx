@@ -4,7 +4,7 @@ import * as Fas from "@fortawesome/free-solid-svg-icons";
 
 export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
     return (
-        <footer className="flex flex-row justify-between text-sm text-neutral-500 border-t border-neutral-800 py-6 sm:py-10">
+        <footer className="flex flex-row justify-between text-sm text-neutral-400 border-t border-neutral-700 py-6 sm:py-10">
             <p>© {new Date().getFullYear()} - Côme Leleu</p>
             <div className="hidden sm:flex flex-row items-center gap-4">
                 {sectionParameters?.links?.map((link: any) => {

@@ -37,11 +37,11 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
             <SectionHeader
                 title={sectionParameters?.title || "Projects"}
                 sectionIcon={Fas.faFolderOpen}
-                color="after:bg-emerald-500"
+                afterColor="after:bg-emerald-500"
                 links={headerLinks}
             />
             {projects.length > 0 ? (
-                <div className="columns-1 md:columns-2 lg:columns-3 gap-4 [&>*]:mb-4">
+                <div className="columns-1 md:columns-2 lg:columns-3 gap-4 *:mb-4">
                     {projects.map((project: any) => (
                         <GlowingCard
                             key={project.id ?? project._id ?? project.title}
@@ -59,7 +59,9 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                                 <Tags
                                     tags={project.tags}
                                     maxTags={2}
-                                    color="text-emerald-500 bg-emerald-600/10 border-emerald-400/10 hover:bg-emerald-500/20"
+                                    textColor="text-emerald-400 hover:text-emerald-300"
+                                    backgroundColor="bg-emerald-600/15 hover:bg-emerald-500/15"
+                                    borderColor="border-emerald-400/15 hover:border-emerald-300/20"
                                 />
                             </div>
                         </GlowingCard>

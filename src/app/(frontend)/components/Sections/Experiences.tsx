@@ -66,15 +66,17 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                         return (
                             <div key={experience.id ?? experience._id ?? experience.title} className="flex flex-col justify-start gap-4">
                                 <GlowingCard
-                                    key={experience.id ?? experience._id ?? experience.title}
+                                    glowingBorderColor="bg-linear-to-r from-blue-400 via-indigo-400 to-purple-300"
                                     url={experience.url}
                                 >
-                                    <div className="relative flex flex-col gap-6 p-6">
+                                    <div className="relative flex flex-col gap-6 px-8 py-6">
                                         <div className="flex flex-row justify-between items-center gap-6">
                                             <Badge
                                                 label={`${formatDate(experience.startDate, 'short')} — ${experience.currentWork ? "Today" : formatDate(experience.endDate, 'short')}`}
                                                 labelHover={`${formatDate(experience.startDate, 'long')} to ${experience.currentWork ? "Today" : formatDate(experience.endDate, 'long')}`}
-                                                color="text-indigo-500 bg-indigo-600/10 border-indigo-400/10"
+                                                textColor="text-indigo-400"
+                                                backgroundColor="bg-indigo-600/10"
+                                                borderColor="border-indigo-300/10"
                                             />
                                             <div className="flex items-center gap-2">
                                                 {experience.selfEmployed && (
@@ -91,19 +93,19 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                         </div>
                                         <div className="flex flex-row gap-4 items-start">
                                             {experience.company?.logo?.url && (
-                                                    <img
-                                                        src={experience.company.logo.url}
-                                                        alt={experience.company.logo.alt || experience.company.name}
-                                                        className="w-12 h-12 object-contain rounded-lg"
-                                                    />
+                                                <img
+                                                    src={experience.company.logo.url}
+                                                    alt={experience.company.logo.alt || experience.company.name}
+                                                    className="w-14 h-14 object-contain rounded-xl"
+                                                />
                                             )}
                                             <Title
                                                 title={experience.title}
                                                 subtitle={experience.company.name}
                                                 isLink={!!experience.url}
                                             >
-                                                <p className="flex items-baseline gap-2 text-sm">
-                                                    <FontAwesomeIcon icon={Fas.faLocationDot} className="text-xs" />
+                                                <p className="flex items-center gap-2">
+                                                    <FontAwesomeIcon icon={Fas.faLocationDot} className="text-md" />
                                                     {experience.company.location}
                                                 </p>
                                             </Title>
@@ -111,12 +113,14 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                         <Description text={experience.description} />
                                         <Tags
                                             tags={experience.tags}
-                                            color="text-indigo-500 bg-indigo-600/10 border-indigo-400/10 hover:bg-indigo-500/20"
+                                            textColor="text-indigo-400 hover:text-indigo-300"
+                                            backgroundColor="bg-indigo-600/15 hover:bg-indigo-500/20"
+                                            borderColor="border-indigo-400/15 hover:border-indigo-300/20"
                                         />
                                     </div>
                                 </GlowingCard>
                                 {showLocationChange && (
-                                    <div className="w-3/4 sm:w-2/3 md:w-3/5 lg:w-2/5 flex items-center text-sm font-semibold text-neutral-600 before:flex-1 before:border-t before:border-dashed before:border-neutral-700/70 before:me-8">
+                                    <div className="w-3/4 sm:w-2/3 md:w-3/5 lg:w-2/5 flex items-center text-sm font-semibold text-neutral-500 before:flex-1 before:border-t before:border-dashed before:border-neutral-600/90 before:me-8">
                                         <div className="flex items-center gap-2">
                                             <FontAwesomeIcon icon={Fas.faTruck} className="text-lg" />
                                             Moved to {experience.location}
@@ -130,7 +134,6 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
             ) : (
                 <NoResultMessage message="No experiences found" />
             )}
-
         </section>
     );
 };

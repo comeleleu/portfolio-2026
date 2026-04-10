@@ -48,6 +48,11 @@ export const Sections: GlobalConfig = {
               relationTo: 'medias',
               required: true,
             },
+            {
+              name: 'glowingBorderColor',
+              label: 'Glowing Border Color',
+              type: 'text',
+            },
           ],
         },
         {
