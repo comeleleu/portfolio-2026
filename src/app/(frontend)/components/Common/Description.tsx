@@ -22,18 +22,18 @@ export const Description = ({
 }: DescriptionProps) => {
     if (typeof text === "string") {
         return (
-            <p className="text-sm text-neutral-400 indent-8">{text}</p>
+            <p className="text-sm text-neutral-400">{text}</p>
         );
     }
 
     const content = text?.root?.children || (Array.isArray(text) ? text : []);
 
     return (
-        <div className="text-sm text-neutral-400">
+        <div className="flex flex-col gap-2 text-sm text-neutral-300">
             {content.map((node: any, index: number) => {
                 if (node.type === "paragraph") {
                     return (
-                        <p key={index} className="mb-2">
+                        <p key={index}>
                             {node.children?.map((child: any, childIndex: number) => renderText(child, childIndex))}
                         </p>
                     );
@@ -42,7 +42,7 @@ export const Description = ({
                     const Tag = node.listType === "number" ? "ol" : "ul";
                     const listClass = node.listType === "number" ? "list-decimal" : "list-disc";
                     return (
-                        <Tag key={index} className={`${listClass} ml-8 mb-2 pl-4`}>
+                        <Tag key={index} className={`${listClass} ml-8 pl-4`}>
                             {node.children?.map((listItem: any, itemIndex: number) => (
                                 <li key={itemIndex}>
                                     {listItem.children?.map((child: any, childIndex: number) => renderText(child, childIndex))}
