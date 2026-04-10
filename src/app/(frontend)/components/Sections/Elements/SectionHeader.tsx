@@ -45,7 +45,7 @@ export const SectionHeader = ({
                             >
                                 <FontAwesomeIcon icon={link.icon} className="text-lg" />
                                 {link.label}
-                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="inline-block text-xs text-neutral-400/40 group-hover:text-neutral-400/80 transition-all ease-in-out duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5" />
+                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="inline-block text-xs text-neutral-700 group-hover:text-neutral-500 transition-all ease-in-out duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5" />
                             </a>
                         ))
                     )}
