@@ -52,8 +52,8 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                         <a
                             key={link.id ?? link.url}
                             href={link.url}
-                            target={link.url?.startsWith("http") ? "_blank" : undefined}
-                            rel={link.url?.startsWith("http") ? "noopener noreferrer" : undefined}
+                            target={link.external ? "_blank" : undefined}
+                            rel={link.external ? "noopener noreferrer" : undefined}
                             className="text-neutral-200 hover:text-neutral-50 hover:scale-115 transition-all ease-in-out duration-500"
                         >
                             <FontAwesomeIcon icon={(Fas as any)[link.icon] || (Fab as any)[link.icon] || Fas.faLink} className="text-lg" />

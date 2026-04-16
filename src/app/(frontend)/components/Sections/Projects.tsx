@@ -28,8 +28,9 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
 
     const headerLinks = sectionParameters?.links?.map((link: any) => ({
         id: link.id,
-        url: link.url,
         label: link.label,
+        url: link.url,
+        external: link.external,
         icon: (Fas as any)[link.icon] || (Fab as any)[link.icon] || Fas.faLink
     })) || [];
 
