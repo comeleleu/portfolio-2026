@@ -20,6 +20,11 @@ export const Links: CollectionConfig = {
       required: true,
     },
     {
+      name: 'external',
+      type: 'checkbox',
+      defaultValue: false,
+    },
+    {
       name: 'icon',
       type: 'select',
       options: [

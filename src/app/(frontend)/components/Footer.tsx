@@ -10,7 +10,13 @@ export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
                 {sectionParameters?.links?.map((link: any) => {
                     const icon = (Fas as any)[link.icon] || (Fab as any)[link.icon] || Fas.faLink;
                     return (
-                        <a key={link.id ?? link.url} href={link.url} target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300 hover:scale-115 transition-all ease-in-out duration-500">
+                        <a
+                            key={link.id ?? link.url}
+                            href={link.url}
+                            target={link.url?.startsWith("http") ? "_blank" : undefined}
+                            rel={link.url?.startsWith("http") ? "noopener noreferrer" : undefined}
+                            className="hover:text-neutral-300 hover:scale-115 transition-all ease-in-out duration-500"
+                        >
                             <FontAwesomeIcon icon={icon} className="text-lg" />
                         </a>
                     );

@@ -3,6 +3,7 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export type LinkItem = {
+    id: string;
     url: string;
     label: string;
     icon: IconProp;
@@ -37,7 +38,7 @@ export const SectionHeader = ({
                     {links && (
                         links.map((link) => (
                             <a
-                                key={link.label}
+                                key={link.id ?? link.url}
                                 href={link.url}
                                 target={link.url?.startsWith("http") ? "_blank" : undefined}
                                 rel={link.url?.startsWith("http") ? "noopener noreferrer" : undefined}

@@ -45,7 +45,7 @@ export const Studies: CollectionConfig = {
     {
       name: 'currentStudy',
       type: 'checkbox',
-      label: 'Current Studies',
+      label: 'Current Study',
       defaultValue: false,
     },
     {

@@ -13,20 +13,20 @@ export const Medias: CollectionConfig = {
     imageSizes: [
       {
         name: 'thumbnail',
+        height: undefined,
         width: 400,
-        height: 300,
         position: 'centre',
       },
       {
         name: 'card',
+        height: undefined,
         width: 768,
-        height: 1024,
         position: 'centre',
       },
       {
         name: 'tablet',
-        width: 1024,
         height: undefined,
+        width: 1024,
         position: 'centre',
       },
     ],
