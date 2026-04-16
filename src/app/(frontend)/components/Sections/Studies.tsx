@@ -45,7 +45,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                     {studies.map((study: any) => (
                         <GlowingCard
                             key={study.id ?? study._id ?? study.degree}
-                            glowingBorderColor="bg-linear-to-r from-cyan-400 via-blue-400 to-violet-400"
+                            glowingBorderColor="bg-linear-to-r/oklch from-cyan-400 via-blue-400 to-violet-400"
                             url={study.url ?? study.school?.url}
                         >
                             <div className="relative flex flex-col gap-6 px-8 py-6">

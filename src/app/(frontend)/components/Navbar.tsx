@@ -86,7 +86,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                             </span>
                             <span
                                 className={`
-                                    sm:max-w-none text-sm font-bold overflow-hidden whitespace-nowrap transition-all ease-in-out duration-500 sm:rotate-180
+                                    sm:max-w-none text-sm font-semibold overflow-hidden whitespace-nowrap transition-all ease-in-out duration-500 sm:rotate-180
                                     ${activeSection === section.id ? "max-w-40 sm:max-h-40 opacity-100 pl-2 sm:pl-0 sm:pt-3"
                                     : "max-w-0 sm:max-h-0 opacity-0"}
                                 `}
