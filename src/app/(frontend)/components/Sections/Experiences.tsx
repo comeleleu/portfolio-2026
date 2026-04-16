@@ -56,6 +56,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
             <SectionHeader
                 title={sectionParameters?.title || "Experiences"}
                 sectionIcon={Fas.faLaptopCode}
+                afterColor="after:bg-indigo-500"
                 links={headerLinks}
             />
 
@@ -68,7 +69,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                         return (
                             <div key={experience.id ?? experience._id ?? experience.title} className="flex flex-col justify-start gap-4">
                                 <GlowingCard
-                                    glowingBorderColor="bg-linear-to-r from-blue-400 via-indigo-400 to-purple-300"
+                                    glowingBorderColor="bg-linear-to-r from-sky-400 via-indigo-400 to-purple-400"
                                     url={experience.url ?? experience.company?.url}
                                 >
                                     <div className="relative flex flex-col gap-6 px-8 py-6">
@@ -105,6 +106,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                                 title={experience.title}
                                                 subtitle={experience.company.name}
                                                 isLink={!!(experience.url ?? experience.company?.url)}
+                                                subtitleColor="text-indigo-500"
                                             >
                                                 <p className="flex items-center gap-2">
                                                     <FontAwesomeIcon icon={Fas.faLocationDot} className="text-md" />

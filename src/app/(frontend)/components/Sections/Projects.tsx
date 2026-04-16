@@ -39,7 +39,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
             <SectionHeader
                 title={sectionParameters?.title || "Projects"}
                 sectionIcon={Fas.faFolderOpen}
-                afterColor="after:bg-emerald-500"
+                afterColor="after:bg-cyan-500"
                 links={headerLinks}
             />
             {projects.length > 0 ? (
@@ -47,7 +47,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                     {projects.map((project: any) => (
                         <GlowingCard
                             key={project.id ?? project._id ?? project.title}
-                            glowingBorderColor="bg-linear-to-r from-lime-400 via-teal-400 to-sky-300"
+                            glowingBorderColor="bg-linear-to-r from-emerald-200 via-cyan-400 to-blue-400"
                             url={project.url}
                         >
                             <div className="flex flex-col gap-6 p-6">
@@ -55,15 +55,15 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                                     title={project.title}
                                     subtitle={project.context}
                                     isLink={!!project.url}
-                                    subtitleColor="text-emerald-500"
+                                    subtitleColor="text-cyan-500"
                                 />
                                 <Description text={project.description} />
                                 <Tags
                                     tags={project.tags}
                                     maxTags={2}
-                                    textColor="text-emerald-400 hover:text-emerald-300"
-                                    backgroundColor="bg-emerald-600/15 hover:bg-emerald-500/15"
-                                    borderColor="border-emerald-400/15 hover:border-emerald-300/20"
+                                    textColor="text-cyan-400 hover:text-cyan-300"
+                                    backgroundColor="bg-cyan-600/15 hover:bg-cyan-500/15"
+                                    borderColor="border-cyan-400/15 hover:border-cyan-300/20"
                                 />
                             </div>
                         </GlowingCard>
