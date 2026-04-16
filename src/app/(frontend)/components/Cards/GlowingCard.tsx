@@ -58,7 +58,7 @@ export const GlowingCard = ({
                 className={`glowingCardBorder absolute left-(--mouse-x) top-(--mouse-y) -translate-x-1/2 -translate-y-1/2 z-0 size-80 ${glowingBorderColor} blur-3xl rounded-full transition-opacity ease-in-out duration-500 opacity-0 pointer-events-none`}
             />
 
-            <div className="relative z-10 w-full h-full bg-linear-to-br from-zinc-950/80 to-zinc-950/90 rounded-[inherit] overflow-hidden">
+            <div className="relative z-10 w-full h-full bg-linear-to-br/oklch from-zinc-950/80 to-zinc-950/90 rounded-[inherit] overflow-hidden">
                 {children ? (
                     children
                 ) : null}

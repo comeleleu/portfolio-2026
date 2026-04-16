@@ -39,7 +39,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
             <SectionHeader
                 title={sectionParameters?.title || "Projects"}
                 sectionIcon={Fas.faFolderOpen}
-                afterColor="after:bg-linear-to-r after:from-blue-400 after:to-cyan-400 after:to-70%"
+                afterColor="after:bg-linear-to-r/oklch after:from-blue-400 after:to-cyan-400 after:to-70%"
                 links={headerLinks}
             />
             {projects.length > 0 ? (
@@ -47,7 +47,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                     {projects.map((project: any) => (
                         <GlowingCard
                             key={project.id ?? project._id ?? project.title}
-                            glowingBorderColor="bg-linear-to-r from-emerald-200 via-cyan-400 to-blue-400"
+                            glowingBorderColor="bg-linear-to-r/oklch from-emerald-200 via-cyan-400 to-blue-400"
                             url={project.url}
                         >
                             <div className="flex flex-col gap-6 p-6">
