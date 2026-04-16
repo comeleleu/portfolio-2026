@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import { getPayload } from "@utils/getPayload";
 import { Navbar } from "@components/Navbar";
 import { About } from "@components/Sections/About";
@@ -33,13 +31,13 @@ export default async function Home() {
                 <div className="flex flex-col">
                     <Experiences sectionParameters={sectionsData?.experiences} />
 
-                    <Studies />
+                    <Studies sectionParameters={sectionsData?.studies} />
                 </div>
                 
 
                 <Projects sectionParameters={sectionsData?.projects} />
 
-                <Footer />
+                <Footer sectionParameters={sectionsData?.navbar} />
             </div>
         </div>
     );

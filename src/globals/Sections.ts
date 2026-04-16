@@ -48,6 +48,11 @@ export const Sections: GlobalConfig = {
               relationTo: 'medias',
               required: true,
             },
+            {
+              name: 'glowingBorderColor',
+              label: 'Glowing Border Color',
+              type: 'text',
+            },
           ],
         },
         {
@@ -64,6 +69,17 @@ export const Sections: GlobalConfig = {
               type: 'relationship',
               relationTo: 'links',
               hasMany: true,
+            },
+          ],
+        },
+        {
+          name: 'studies',
+          label: 'Studies Section',
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              required: true,
             },
           ],
         },
