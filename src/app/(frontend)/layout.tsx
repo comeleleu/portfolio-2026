@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Lato, Story_Script } from "next/font/google";
+import { Geist, Geist_Mono, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -16,19 +16,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const lato = Lato({
-  variable: "--font-lato",
+const bricolageGrotesque = Bricolage_Grotesque({
+  variable: "--font-bricolage-grotesque",
   subsets: ["latin"],
-  weight: ["100", "300", "400", "700", "900"],
-});
-
-const storyScript = Story_Script({
-  variable: "--font-story-script",
-  subsets: ["latin"],
-  weight: "400",
   display: "swap",
-  fallback: ["cursive"],
-  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -44,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${storyScript.variable} ${lato.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${bricolageGrotesque.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
         {children}
