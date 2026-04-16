@@ -44,6 +44,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
     }
 
     const headerLinks = sectionParameters?.links?.map((link: any) => ({
+        id: link.id,
         url: link.url,
         label: link.label,
         icon: (Fas as any)[link.icon] || (Fab as any)[link.icon] || Fas.faLink
@@ -67,7 +68,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                             <div key={experience.id ?? experience._id ?? experience.title} className="flex flex-col justify-start gap-4">
                                 <GlowingCard
                                     glowingBorderColor="bg-linear-to-r from-blue-400 via-indigo-400 to-purple-300"
-                                    url={experience.url}
+                                    url={experience.url ?? experience.company?.url}
                                 >
                                     <div className="relative flex flex-col gap-6 px-8 py-6">
                                         <div className="flex flex-row justify-between items-center gap-6">
@@ -102,7 +103,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                             <Title
                                                 title={experience.title}
                                                 subtitle={experience.company.name}
-                                                isLink={!!experience.url}
+                                                isLink={!!(experience.url ?? experience.company?.url)}
                                             >
                                                 <p className="flex items-center gap-2">
                                                     <FontAwesomeIcon icon={Fas.faLocationDot} className="text-md" />

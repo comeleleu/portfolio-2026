@@ -49,9 +49,15 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
             <nav className="flex flex-row sm:flex-col items-center gap-6 grow w-auto sm:w-14 h-14 sm:h-auto px-6 sm:px-2 py-2 sm:py-6 bg-neutral-900/50 sm:bg-neutral-900/40 backdrop-blur-lg border border-neutral-800/50 sm:border-neutral-700/50 rounded-full">
                 <div className="flex flex-row sm:flex-col items-center gap-4">
                     {sectionParameters?.links?.map((link: any) => (
-                            <a key={link.id ?? link.url} href={link.url} target="_blank" rel="noopener noreferrer" className="text-neutral-200 hover:text-neutral-50 hover:scale-115 transition-all ease-in-out duration-500">
-                                <FontAwesomeIcon icon={(Fas as any)[link.icon] || (Fab as any)[link.icon] || Fas.faLink} className="text-lg" />
-                            </a>
+                        <a
+                            key={link.id ?? link.url}
+                            href={link.url}
+                            target={link.url?.startsWith("http") ? "_blank" : undefined}
+                            rel={link.url?.startsWith("http") ? "noopener noreferrer" : undefined}
+                            className="text-neutral-200 hover:text-neutral-50 hover:scale-115 transition-all ease-in-out duration-500"
+                        >
+                            <FontAwesomeIcon icon={(Fas as any)[link.icon] || (Fab as any)[link.icon] || Fas.faLink} className="text-lg" />
+                        </a>
                     ))}
                 </div>
                 <div className="h-px sm:h-20 w-10 sm:w-px bg-neutral-600"></div>

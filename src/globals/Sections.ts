@@ -73,6 +73,17 @@ export const Sections: GlobalConfig = {
           ],
         },
         {
+          name: 'studies',
+          label: 'Studies Section',
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              required: true,
+            },
+          ],
+        },
+        {
           name: 'projects',
           label: 'Projects Section',
           fields: [

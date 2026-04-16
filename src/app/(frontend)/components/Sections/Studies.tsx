@@ -9,7 +9,7 @@ import { Tags } from "@components/Cards/Elements/Tags";
 import { Description } from "@components/Common/Description";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
-export const Studies = async () => {
+export const Studies = async ({ sectionParameters }: { sectionParameters: any }) => {
     let studies: any[] = [];
     try {
         const payload = await getPayload();
@@ -35,7 +35,7 @@ export const Studies = async () => {
                 <div className="flex items-center gap-4 text-xl">
                     <FontAwesomeIcon icon={Fas.faGraduationCap} />
                     <div>
-                        Studies
+                        {sectionParameters?.title || "Studies"}
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@ export const Studies = async () => {
                         <GlowingCard
                             key={study.id ?? study._id ?? study.degree}
                             glowingBorderColor="bg-linear-to-r from-blue-400 via-indigo-400 to-purple-300"
-                            url={study.url}
+                            url={study.url ?? study.school?.url}
                         >
                             <div className="relative flex flex-col gap-6 px-8 py-6">
                                 <div className="flex flex-row justify-between items-center gap-6">
@@ -73,7 +73,7 @@ export const Studies = async () => {
                                     <Title
                                         title={study.degree}
                                         subtitle={study.school.name}
-                                        isLink={!!study.url}
+                                        isLink={!!(study.url ?? study.school?.url)}
                                     >
                                         <p className="flex items-center gap-2">
                                             <FontAwesomeIcon icon={Fas.faLocationDot} className="text-md" />

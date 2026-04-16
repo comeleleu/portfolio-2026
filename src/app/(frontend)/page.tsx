@@ -31,7 +31,7 @@ export default async function Home() {
                 <div className="flex flex-col">
                     <Experiences sectionParameters={sectionsData?.experiences} />
 
-                    <Studies />
+                    <Studies sectionParameters={sectionsData?.studies} />
                 </div>
                 
 

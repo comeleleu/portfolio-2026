@@ -26,7 +26,7 @@ export const Title = ({
                 )}
             </h3>
             {(subtitle || children) && (
-                <div className={`flex items-center gap-12 text-lg ${subtitleColor}`}>
+                <div className={`flex flex-col md:flex-row md:items-center gap-1 md:gap-12 text-lg ${subtitleColor}`}>
                     {subtitle && (
                         <p className="font-semibold">{subtitle}</p>
                     )}
