@@ -56,7 +56,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
             <SectionHeader
                 title={sectionParameters?.title || "Experiences"}
                 sectionIcon={Fas.faLaptopCode}
-                afterColor="after:bg-indigo-500"
+                afterColor="after:bg-linear-to-r after:from-indigo-500 after:to-blue-500 after:from-30%"
                 links={headerLinks}
             />
 
