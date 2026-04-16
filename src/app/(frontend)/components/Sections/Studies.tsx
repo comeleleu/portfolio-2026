@@ -45,7 +45,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                     {studies.map((study: any) => (
                         <GlowingCard
                             key={study.id ?? study._id ?? study.degree}
-                            glowingBorderColor="bg-linear-to-r from-blue-400 via-indigo-400 to-purple-300"
+                            glowingBorderColor="bg-linear-to-r from-cyan-400 via-blue-400 to-violet-400"
                             url={study.url ?? study.school?.url}
                         >
                             <div className="relative flex flex-col gap-6 px-8 py-6">
@@ -53,9 +53,9 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                                     <Badge
                                         label={`${formatDate(study.startDate, 'short')} — ${study.currentStudy ? "Today" : formatDate(study.endDate, 'short')}`}
                                         labelHover={`${formatDate(study.startDate, 'long')} to ${study.currentStudy ? "Today" : formatDate(study.endDate, 'long')}`}
-                                        textColor="text-indigo-400"
-                                        backgroundColor="bg-indigo-600/10"
-                                        borderColor="border-indigo-300/10"
+                                        textColor="text-blue-400"
+                                        backgroundColor="bg-blue-600/10"
+                                        borderColor="border-blue-300/10"
                                     />
                                     <Badge
                                         label={`${study.level} — ${study.field}`}
@@ -74,6 +74,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                                         title={study.degree}
                                         subtitle={study.school.name}
                                         isLink={!!(study.url ?? study.school?.url)}
+                                        subtitleColor="text-blue-500"
                                     >
                                         <p className="flex items-center gap-2">
                                             <FontAwesomeIcon icon={Fas.faLocationDot} className="text-md" />
@@ -84,9 +85,9 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                                 <Description text={study.description} />
                                 <Tags
                                     tags={study.tags}
-                                    textColor="text-indigo-400 hover:text-indigo-300"
-                                    backgroundColor="bg-indigo-600/15 hover:bg-indigo-500/20"
-                                    borderColor="border-indigo-400/15 hover:border-indigo-300/20"
+                                    textColor="text-blue-400 hover:text-blue-300"
+                                    backgroundColor="bg-blue-600/15 hover:bg-blue-500/20"
+                                    borderColor="border-blue-400/15 hover:border-blue-300/20"
                                 />
                             </div>
                         </GlowingCard>
