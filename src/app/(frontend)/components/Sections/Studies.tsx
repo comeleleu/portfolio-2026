@@ -9,18 +9,19 @@ import { Tags } from "@components/Cards/Elements/Tags";
 import { Description } from "@components/Common/Description";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
-export const Studies = async () => {
+export const Studies = async ({ sectionParameters }: { sectionParameters: any }) => {
     let studies: any[] = [];
     try {
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'studies',
             limit: 100,
-            depth: 1,
+            depth: 2,
             overrideAccess: true,
             where: {
                 published: { equals: true },
             },
+            sort: ['-endDate'],
         });
         studies = result?.docs || [];
     } catch (err) {
@@ -30,48 +31,63 @@ export const Studies = async () => {
     return (
         <section id="studies" className="scroll-mt-16 sm:scroll-mt-0">
 
-            <div className="flex items-center my-8 font-semibold text-neutral-600 before:flex-1 before:border-t before:border-dashed before:border-neutral-700/80 before:me-8 after:flex-1 after:border-t after:border-dashed after:border-neutral-700/80 after:ms-8">
-                <div className="flex items-center gap-4">
-                    <FontAwesomeIcon icon={Fas.faGraduationCap} className="text-lg" />
-                    <div className="text-xl">
-                        Studies
+            <div className="flex items-center my-8 font-semibold text-zinc-500 before:flex-1 before:border-t before:border-dashed before:border-zinc-600/90 before:me-8 after:flex-1 after:border-t after:border-dashed after:border-zinc-600/90 after:ms-8">
+                <div className="flex items-center gap-4 text-xl">
+                    <FontAwesomeIcon icon={Fas.faGraduationCap} />
+                    <div className="is-title">
+                        {sectionParameters?.title || "Studies"}
                     </div>
                 </div>
             </div>
 
             {studies.length > 0 ? (
-                <div className="flex flex-col gap-4 mb-4">
+                <div className="flex flex-col gap-4">
                     {studies.map((study: any) => (
                         <GlowingCard
                             key={study.id ?? study._id ?? study.degree}
-                            url={study.url}
+                            glowingBorderColor="bg-linear-to-r/oklch from-cyan-400 via-blue-400 to-violet-400"
+                            url={study.url ?? study.school?.url}
                         >
-                            <div className="relative flex flex-col gap-6 p-6">
+                            <div className="relative flex flex-col gap-6 px-8 py-6">
                                 <div className="flex flex-row justify-between items-center gap-6">
                                     <Badge
                                         label={`${formatDate(study.startDate, 'short')} — ${study.currentStudy ? "Today" : formatDate(study.endDate, 'short')}`}
                                         labelHover={`${formatDate(study.startDate, 'long')} to ${study.currentStudy ? "Today" : formatDate(study.endDate, 'long')}`}
-                                        color="text-indigo-500 bg-indigo-600/10 border-indigo-400/10"
+                                        textColor="text-blue-400"
+                                        backgroundColor="bg-blue-600/10"
+                                        borderColor="border-blue-300/10"
                                     />
                                     <Badge
                                         label={`${study.level} — ${study.field}`}
                                         icon={Fas.faGraduationCap}
                                     />
                                 </div>
-                                <Title
-                                    title={study.degree}
-                                    subtitle={study.school.name}
-                                    isLink={!!study.url}
-                                >
-                                    <p className="flex items-baseline gap-2 text-sm">
-                                        <FontAwesomeIcon icon={Fas.faLocationDot} className="text-xs" />
-                                        {study.school.location}
-                                    </p>
-                                </Title>
+                                <div className="flex flex-row gap-4 items-start">
+                                    {study.school?.logo?.url && (
+                                        <img
+                                            src={study.school.logo.url}
+                                            alt={study.school.logo.alt || study.school.name}
+                                            className="w-14 h-14 object-contain rounded-xl"
+                                        />
+                                    )}
+                                    <Title
+                                        title={study.degree}
+                                        subtitle={study.school.name}
+                                        isLink={!!(study.url ?? study.school?.url)}
+                                        subtitleColor="text-blue-500"
+                                    >
+                                        <p className="flex items-center gap-2">
+                                            <FontAwesomeIcon icon={Fas.faLocationDot} className="text-md" />
+                                            {study.school.location}
+                                        </p>
+                                    </Title>
+                                </div>
                                 <Description text={study.description} />
                                 <Tags
                                     tags={study.tags}
-                                    color="text-indigo-500 bg-indigo-600/10 border-indigo-400/10 hover:bg-indigo-500/20"
+                                    textColor="text-blue-400 hover:text-blue-300"
+                                    backgroundColor="bg-blue-600/15 hover:bg-blue-500/20"
+                                    borderColor="border-blue-400/15 hover:border-blue-300/20"
                                 />
                             </div>
                         </GlowingCard>

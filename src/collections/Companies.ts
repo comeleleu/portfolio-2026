@@ -15,6 +15,12 @@ export const Companies: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'medias',
+      required: false,
+    },
     LocationField,
     {
       name: 'url',
