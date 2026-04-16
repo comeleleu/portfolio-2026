@@ -4,8 +4,9 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export type LinkItem = {
     id: string;
-    url: string;
     label: string;
+    url: string;
+    external?: boolean;
     icon: IconProp;
 };
 
@@ -40,8 +41,8 @@ export const SectionHeader = ({
                             <a
                                 key={link.id ?? link.url}
                                 href={link.url}
-                                target={link.url?.startsWith("http") ? "_blank" : undefined}
-                                rel={link.url?.startsWith("http") ? "noopener noreferrer" : undefined}
+                                target={link.external ? "_blank" : undefined}
+                                rel={link.external ? "noopener noreferrer" : undefined}
                                 className="group flex items-center gap-2 px-6 py-3 text-sm font-semibold text-neutral-400 hover:text-neutral-300 bg-neutral-500/10 hover:bg-neutral-500/20 backdrop-blur-lg border border-neutral-300/15 hover:border-neutral-300/20 rounded-full transition-colors ease-in-out duration-500"
                             >
                                 <FontAwesomeIcon icon={link.icon} className="text-lg" />

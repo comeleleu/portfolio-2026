@@ -22,7 +22,7 @@ export const Links: CollectionConfig = {
     {
       name: 'external',
       type: 'checkbox',
-      defaultValue: false,
+      defaultValue: true,
     },
     {
       name: 'icon',
