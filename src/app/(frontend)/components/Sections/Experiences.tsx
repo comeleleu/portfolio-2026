@@ -124,7 +124,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                     </div>
                                 </GlowingCard>
                                 {showLocationChange && (
-                                    <div className="w-3/4 sm:w-2/3 md:w-3/5 lg:w-2/5 flex items-center text-sm font-semibold text-neutral-500 before:flex-1 before:border-t before:border-dashed before:border-neutral-600/90 before:me-8">
+                                    <div className="w-3/4 sm:w-2/3 md:w-3/5 lg:w-2/5 flex items-center text-sm font-semibold text-zinc-500 before:flex-1 before:border-t before:border-dashed before:border-zinc-600/90 before:me-8">
                                         <div className="flex items-center gap-2">
                                             <FontAwesomeIcon icon={Fas.faTruck} className="text-lg" />
                                             Moved to {experience.location}

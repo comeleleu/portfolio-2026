@@ -22,14 +22,14 @@ export const Description = ({
 }: DescriptionProps) => {
     if (typeof text === "string") {
         return (
-            <p className="text-sm text-neutral-400">{text}</p>
+            <p className="text-sm text-zinc-400">{text}</p>
         );
     }
 
     const content = text?.root?.children || (Array.isArray(text) ? text : []);
 
     return (
-        <div className="flex flex-col gap-2 text-sm text-neutral-300">
+        <div className="flex flex-col gap-2 text-sm text-zinc-300">
             {content.map((node: any, index: number) => {
                 if (node.type === "paragraph") {
                     return (

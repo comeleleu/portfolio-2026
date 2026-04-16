@@ -4,7 +4,7 @@ import * as Fas from "@fortawesome/free-solid-svg-icons";
 
 export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
     return (
-        <footer className="flex flex-row justify-between text-sm text-neutral-400 border-t border-neutral-700 py-6 sm:py-10">
+        <footer className="flex flex-row justify-between text-sm text-zinc-400 border-t border-zinc-700 py-6 sm:py-10">
             <p>© {new Date().getFullYear()} - Côme Leleu</p>
             <div className="hidden sm:flex flex-row items-center gap-4">
                 {sectionParameters?.links?.map((link: any) => {
@@ -15,7 +15,7 @@ export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
                             href={link.url}
                             target={link.external ? "_blank" : undefined}
                             rel={link.external ? "noopener noreferrer" : undefined}
-                            className="hover:text-neutral-300 hover:scale-115 transition-all ease-in-out duration-500"
+                            className="hover:text-zinc-300 hover:scale-115 transition-all ease-in-out duration-500"
                         >
                             <FontAwesomeIcon icon={icon} className="text-lg" />
                         </a>
