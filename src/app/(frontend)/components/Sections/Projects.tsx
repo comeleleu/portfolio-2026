@@ -39,7 +39,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
             <SectionHeader
                 title={sectionParameters?.title || "Projects"}
                 sectionIcon={Fas.faFolderOpen}
-                afterColor="after:bg-cyan-500"
+                afterColor="after:bg-linear-to-r after:from-blue-400 after:to-cyan-400 after:to-70%"
                 links={headerLinks}
             />
             {projects.length > 0 ? (

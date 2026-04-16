@@ -25,7 +25,7 @@ export const SectionHeader = ({
 }: SectionHeaderProps) => {
 
     return (
-        <div className="flex flex-col md:flex-row justify-between items-baseline md:items-end gap-8 my-8">
+        <div className="flex flex-col md:flex-row justify-between items-baseline md:items-end gap-8 mt-8 mb-12">
             <div className="flex flex-row gap-4 items-baseline">
                 {sectionIcon && (
                     <span className="text-2xl text-zinc-600"><FontAwesomeIcon icon={sectionIcon} className="text-2xl" /></span>
