@@ -15,8 +15,8 @@ export const About = ({ sectionParameters }: { sectionParameters: any }) => {
     return (
         <section id="about" className="scroll-mt-32 sm:scroll-mt-0 grid grid-cols-1 md:grid-cols-[1fr_200px] lg:grid-cols-[1fr_300px] gap-16 pt-6 sm:pt-10">
             <div className="flex flex-col gap-2">
-                <h1 className="text-8xl font-bold text-neutral-100">{fullname}</h1>
-                <h2 className="text-4xl text-neutral-300 mb-6 indent-8">{jobTitle}</h2>
+                <h1 className="text-8xl font-bold text-zinc-100">{fullname}</h1>
+                <h2 className="text-4xl text-zinc-300 mb-6 indent-8">{jobTitle}</h2>
                 <Description text={description} />
             </div>
             {profilePictureUrl && (

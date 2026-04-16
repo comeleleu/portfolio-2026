@@ -9,7 +9,7 @@ type GlowingCardProps = {
 };
 
 export const GlowingCard = ({
-    glowingBorderColor = "bg-neutral-300",
+    glowingBorderColor = "bg-zinc-300",
     url,
     children,
 }: GlowingCardProps) => {
@@ -52,13 +52,13 @@ export const GlowingCard = ({
             href={url ?? undefined}
             target={url?.startsWith("http") ? "_blank" : undefined}
             rel={url?.startsWith("http") ? "noopener noreferrer" : undefined}
-            className={`glowingCard group relative block break-inside-avoid p-px bg-neutral-700/70 rounded-3xl shadow-lg overflow-hidden ${url ? "hover:bg-neutral-600/85 transition-colors ease-in-out duration-500 cursor-pointer" : "cursor-default"}`}
+            className={`glowingCard group relative block break-inside-avoid p-px bg-zinc-700/70 rounded-3xl shadow-lg overflow-hidden ${url ? "hover:bg-zinc-600/85 transition-colors ease-in-out duration-500 cursor-pointer" : "cursor-default"}`}
         >
             <div
                 className={`glowingCardBorder absolute left-(--mouse-x) top-(--mouse-y) -translate-x-1/2 -translate-y-1/2 z-0 size-80 ${glowingBorderColor} blur-3xl rounded-full transition-opacity ease-in-out duration-500 opacity-0 pointer-events-none`}
             />
 
-            <div className="relative z-10 w-full h-full bg-linear-to-br from-neutral-950/80 to-neutral-950/90 rounded-[inherit] overflow-hidden">
+            <div className="relative z-10 w-full h-full bg-linear-to-br from-zinc-950/80 to-zinc-950/90 rounded-[inherit] overflow-hidden">
                 {children ? (
                     children
                 ) : null}

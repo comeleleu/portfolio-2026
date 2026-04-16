@@ -13,9 +13,9 @@ type BadgeProps = {
 export const Badge = ({
     label,
     labelHover,
-    textColor = "text-neutral-400",
-    backgroundColor = "bg-neutral-500/10",
-    borderColor = "border-neutral-300/10",
+    textColor = "text-zinc-400",
+    backgroundColor = "bg-zinc-500/10",
+    borderColor = "border-zinc-300/10",
     icon
 }: BadgeProps) => {
     return (

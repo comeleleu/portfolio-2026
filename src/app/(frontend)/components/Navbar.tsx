@@ -46,7 +46,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
 
     return (
         <div className="sticky top-0 z-50 flex flex-row sm:flex-col items-center w-screen sm:w-auto h-auto sm:h-screen px-4 sm:px-6 py-4 sm:py-10 overflow-hidden">
-            <nav className="flex flex-row sm:flex-col items-center gap-6 grow w-auto sm:w-14 h-14 sm:h-auto px-6 sm:px-2 py-2 sm:py-6 bg-neutral-900/50 sm:bg-neutral-900/40 backdrop-blur-lg border border-neutral-800/50 sm:border-neutral-700/50 rounded-full">
+            <nav className="flex flex-row sm:flex-col items-center gap-6 grow w-auto sm:w-14 h-14 sm:h-auto px-6 sm:px-2 py-2 sm:py-6 bg-zinc-900/50 sm:bg-zinc-900/40 backdrop-blur-lg border border-zinc-800/50 sm:border-zinc-700/50 rounded-full">
                 <div className="flex flex-row sm:flex-col items-center gap-4">
                     {sectionParameters?.links?.map((link: any) => (
                         <a
@@ -54,13 +54,13 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                             href={link.url}
                             target={link.external ? "_blank" : undefined}
                             rel={link.external ? "noopener noreferrer" : undefined}
-                            className="text-neutral-200 hover:text-neutral-50 hover:scale-115 transition-all ease-in-out duration-500"
+                            className="text-zinc-200 hover:text-zinc-50 hover:scale-115 transition-all ease-in-out duration-500"
                         >
                             <FontAwesomeIcon icon={(Fas as any)[link.icon] || (Fab as any)[link.icon] || Fas.faLink} className="text-lg" />
                         </a>
                     ))}
                 </div>
-                <div className="h-px sm:h-20 w-10 sm:w-px bg-neutral-600"></div>
+                <div className="h-px sm:h-20 w-10 sm:w-px bg-zinc-600"></div>
                 <div className="flex flex-row sm:flex-col gap-1 sm:gap-2">
                     {navSections.map((section) => (
                         <a
@@ -72,8 +72,8 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                             }}
                             className={`
                                 group sm:flex-row-reverse items-center px-4 py-2 sm:[writing-mode:vertical-lr] backdrop-blur-sm border rounded-full overflow-hidden transition-all ease-in-out duration-500
-                                ${activeSection === section.id ? "flex text-neutral-200 hover:text-neutral-100 bg-neutral-500/15 hover:bg-neutral-500/20 border-neutral-300/15 hover:border-neutral-300/20"
-                                : "hidden sm:flex text-neutral-400 hover:text-neutral-300 bg-neutral-600/10 hover:bg-neutral-600/20 border-neutral-300/10 hover:border-neutral-300/15"}
+                                ${activeSection === section.id ? "flex text-zinc-200 hover:text-zinc-100 bg-zinc-500/15 hover:bg-zinc-500/20 border-zinc-300/15 hover:border-zinc-300/20"
+                                : "hidden sm:flex text-zinc-400 hover:text-zinc-300 bg-zinc-600/10 hover:bg-zinc-600/20 border-zinc-300/10 hover:border-zinc-300/15"}
                             `}
                         >
                             
@@ -100,7 +100,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
             <button
                 type="button"
                 className={`
-                    flex items-center justify-center cursor-pointer text-neutral-200 hover:text-neutral-50 bg-neutral-900/50 sm:bg-neutral-900/40 hover:bg-neutral-800/50 backdrop-blur-lg border border-neutral-800/50 sm:border-neutral-700/50 hover:border-neutral-700/50 hover:sm:border-neutral-600/50 rounded-full overflow-hidden transition-all duration-500 ease-in-out 
+                    flex items-center justify-center cursor-pointer text-zinc-200 hover:text-zinc-50 bg-zinc-900/50 sm:bg-zinc-900/40 hover:bg-zinc-800/50 backdrop-blur-lg border border-zinc-800/50 sm:border-zinc-700/50 hover:border-zinc-700/50 hover:sm:border-zinc-600/50 rounded-full overflow-hidden transition-all duration-500 ease-in-out 
                     ${showScrollTop ? 'w-14 h-14 opacity-100 translate-0 ml-6 sm:ml-0 sm:mt-6'
                     : 'w-0 h-0 opacity-0 translate-x-24 sm:translate-x-0 sm:translate-y-24 pointer-events-none ml-0 sm:mt-0'}
                 `}
