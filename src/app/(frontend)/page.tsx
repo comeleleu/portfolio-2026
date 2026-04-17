@@ -33,7 +33,7 @@ export default async function Home() {
 
     return (
         <div className="sm:grid sm:grid-cols-[auto_1fr] min-h-screen max-w-7xl mx-auto">
-            <Navbar sectionParameters={sectionsData?.navbar} />
+            <Navbar sectionParameters={sectionsData} />
 
             <div className="flex flex-col gap-16 px-8">
                 <main
