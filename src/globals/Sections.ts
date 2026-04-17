@@ -30,6 +30,12 @@ export const Sections: GlobalConfig = {
           label: 'About Section',
           fields: [
             {
+              name: 'shortTitle',
+              label: 'Short Title',
+              type: 'text',
+              required: true,
+            },
+            {
               name: 'fullname',
               label: 'Full Name',
               type: 'text',
@@ -66,6 +72,12 @@ export const Sections: GlobalConfig = {
               required: true,
             },
             {
+              name: 'shortTitle',
+              label: 'Short Title',
+              type: 'text',
+              required: true,
+            },
+            {
               name: 'links',
               type: 'relationship',
               relationTo: 'links',
@@ -82,6 +94,12 @@ export const Sections: GlobalConfig = {
               type: 'text',
               required: true,
             },
+            {
+              name: 'shortTitle',
+              label: 'Short Title',
+              type: 'text',
+              required: true,
+            },
           ],
         },
         {
@@ -90,6 +108,12 @@ export const Sections: GlobalConfig = {
           fields: [
             {
               name: 'title',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'shortTitle',
+              label: 'Short Title',
               type: 'text',
               required: true,
             },
