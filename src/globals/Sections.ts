@@ -1,4 +1,5 @@
 import { GlobalConfig } from 'payload';
+import { revalidateTag } from 'next/cache';
 import { RichText } from '@fields/RichText'
 
 export const Sections: GlobalConfig = {
@@ -103,4 +104,12 @@ export const Sections: GlobalConfig = {
       ]
     }
   ],
+  hooks: {
+    afterChange: [
+      ({ doc }) => {
+        revalidateTag('sections', 'max');
+        return doc;
+      },
+    ],
+  },
 };
