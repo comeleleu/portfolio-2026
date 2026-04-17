@@ -31,7 +31,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
     return (
         <section id="studies" className="scroll-mt-16 sm:scroll-mt-0">
 
-            <div className="flex items-center my-8 font-semibold text-zinc-500 before:flex-1 before:border-t before:border-dashed before:border-zinc-600/90 before:me-8 after:flex-1 after:border-t after:border-dashed after:border-zinc-600/90 after:ms-8">
+            <div className="flex items-center my-8 font-semibold text-zinc-400 before:flex-1 before:border-t before:border-dashed before:border-zinc-500/90 before:me-8 after:flex-1 after:border-t after:border-dashed after:border-zinc-500/90 after:ms-8">
                 <div className="flex items-center gap-4 text-xl">
                     <FontAwesomeIcon icon={Fas.faGraduationCap} />
                     <div className="is-title">
