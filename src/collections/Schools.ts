@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateTag } from 'next/cache';
 import { LocationField } from '@fields/location/field';
 
 export const Schools: CollectionConfig = {
@@ -27,4 +28,12 @@ export const Schools: CollectionConfig = {
       type: 'text',
     },
   ],
+  hooks: {
+    afterChange: [
+      ({ doc }) => {
+        revalidateTag('schools', 'max');
+        return doc;
+      },
+    ],
+  },
 }

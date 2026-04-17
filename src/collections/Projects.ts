@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateTag } from 'next/cache';
 import { RichText } from '@fields/RichText'
 
 export const Projects: CollectionConfig = {
@@ -43,4 +44,12 @@ export const Projects: CollectionConfig = {
       hasMany: true,
     },
   ],
+  hooks: {
+    afterChange: [
+      ({ doc }) => {
+        revalidateTag('projects', 'max');
+        return doc;
+      },
+    ],
+  },
 }

@@ -1,4 +1,5 @@
 import { getPayload } from "@utils/getPayload";
+import { unstable_cache } from "next/cache";
 import { Navbar } from "@components/Navbar";
 import { About } from "@components/Sections/About";
 import { Experiences } from "@components/Sections/Experiences";
@@ -6,16 +7,26 @@ import { Studies } from "@components/Sections/Studies";
 import { Projects } from "@components/Sections/Projects";
 import { Footer } from "@components/Footer";
 
+const getCachedSections = unstable_cache(
+    async () => {
+        const payload = await getPayload();
+        return payload.findGlobal({
+            slug: 'sections',
+            depth: 1,
+        });
+    },
+    ['global-sections'],
+    {
+        tags: ['sections', 'links', 'medias']
+    }
+);
+
 export default async function Home() {
 
     let sectionsData: any = null;
 
     try {
-        const payload = await getPayload();
-        sectionsData = await payload.findGlobal({
-            slug: 'sections',
-            depth: 1,
-        });
+        sectionsData = await getCachedSections();
     } catch (err) {
         console.error('Error fetching section data', err);
     }

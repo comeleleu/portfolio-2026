@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Fas from "@fortawesome/free-solid-svg-icons";
 import { getPayload } from "@utils/getPayload";
+import { unstable_cache } from "next/cache";
 import { formatDate } from "@utils/formatDate";
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
@@ -9,9 +10,8 @@ import { Tags } from "@components/Cards/Elements/Tags";
 import { Description } from "@components/Common/Description";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
-export const Studies = async ({ sectionParameters }: { sectionParameters: any }) => {
-    let studies: any[] = [];
-    try {
+const getCachedStudies = unstable_cache(
+    async () => {
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'studies',
@@ -23,7 +23,18 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
             },
             sort: ['-endDate'],
         });
-        studies = result?.docs || [];
+        return result?.docs || [];
+    },
+    ['studies-list'],
+    {
+        tags: ['studies', 'schools', 'tags', 'medias']
+    }
+);
+
+export const Studies = async ({ sectionParameters }: { sectionParameters: any }) => {
+    let studies: any[] = [];
+    try {
+        studies = await getCachedStudies();
     } catch (err) {
         console.error('Error fetching studies', err);
     }
