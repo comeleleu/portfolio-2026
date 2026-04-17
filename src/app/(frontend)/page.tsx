@@ -25,17 +25,22 @@ export default async function Home() {
             <Navbar sectionParameters={sectionsData?.navbar} />
 
             <div className="flex flex-col gap-16 px-8">
-                <About sectionParameters={sectionsData?.about} />
+                <main
+                    className="flex flex-col gap-16"
+                    role="main"
+                >
+                    <About sectionParameters={sectionsData?.about} />
 
-                
-                <div className="flex flex-col">
-                    <Experiences sectionParameters={sectionsData?.experiences} />
+                    
+                    <div className="flex flex-col">
+                        <Experiences sectionParameters={sectionsData?.experiences} />
 
-                    <Studies sectionParameters={sectionsData?.studies} />
-                </div>
-                
+                        <Studies sectionParameters={sectionsData?.studies} />
+                    </div>
+                    
 
-                <Projects sectionParameters={sectionsData?.projects} />
+                    <Projects sectionParameters={sectionsData?.projects} />
+                </main>
 
                 <Footer sectionParameters={sectionsData?.navbar} />
             </div>
