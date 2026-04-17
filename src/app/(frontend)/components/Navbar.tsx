@@ -5,16 +5,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Fab from "@fortawesome/free-brands-svg-icons";
 import * as Fas from "@fortawesome/free-solid-svg-icons";
 
-const navSections = [
-    { id: 'about', label: 'About', icon: 'faCircleUser' },
-    { id: 'experiences', label: 'Experiences', icon: 'faLaptopCode' },
-    { id: 'studies', label: 'Studies', icon: 'faGraduationCap' },
-    { id: 'projects', label: 'Projects', icon: 'faFolderOpen' },
-];
-
 export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
     const [showScrollTop, setShowScrollTop] = useState(false);
     const [activeSection, setActiveSection] = useState<string>('');
+
+    const navSections = [
+        {
+            id: 'about',
+            label: sectionParameters?.about?.shortTitle || "About",
+            icon: 'faCircleUser'
+        },
+        {
+            id:
+            'experiences',
+            label: sectionParameters?.experiences?.shortTitle || "Experiences",
+            icon: 'faLaptopCode'
+        },
+        {
+            id: 'studies',
+            label: sectionParameters?.studies?.shortTitle || "Studies",
+            icon: 'faGraduationCap'
+        },
+        {
+            id: 'projects',
+            label: sectionParameters?.projects?.shortTitle || "Projects",
+            icon: 'faFolderOpen'
+        },
+    ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -51,7 +68,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                 role="navigation"
             >
                 <div className="flex flex-row sm:flex-col items-center gap-4">
-                    {sectionParameters?.links?.map((link: any) => (
+                    {sectionParameters?.navbar?.links?.map((link: any) => (
                         <a
                             key={link.id ?? link.url}
                             href={link.url}
