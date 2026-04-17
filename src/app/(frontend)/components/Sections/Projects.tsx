@@ -1,6 +1,7 @@
 import * as Fab from "@fortawesome/free-brands-svg-icons";
 import * as Fas from "@fortawesome/free-solid-svg-icons";
 import { getPayload } from "@utils/getPayload";
+import { unstable_cache } from "next/cache";
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Title } from "@components/Cards/Elements/Title";
 import { Tags } from "@components/Cards/Elements/Tags";
@@ -8,9 +9,8 @@ import { Description } from "@components/Common/Description";
 import { SectionHeader } from "@components/Sections/Elements/SectionHeader";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
-export const Projects = async ({ sectionParameters }: { sectionParameters: any }) => {
-    let projects: any[] = [];
-    try {
+const getCachedProjects = unstable_cache(
+    async () => {
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'projects',
@@ -21,7 +21,18 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                 published: { equals: true },
             },
         });
-        projects = result?.docs || [];
+        return result?.docs || [];
+    },
+    ['projects-list'],
+    {
+        tags: ['projects', 'tags']
+    }
+);
+
+export const Projects = async ({ sectionParameters }: { sectionParameters: any }) => {
+    let projects: any[] = [];
+    try {
+        projects = await getCachedProjects();
     } catch (err) {
         console.error('Error fetching projects', err);
     }

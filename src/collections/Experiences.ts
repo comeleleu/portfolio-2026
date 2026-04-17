@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateTag } from 'next/cache';
 import { LocationField } from '@fields/location/field';
 import { RichText } from '@fields/RichText'
 
@@ -85,4 +86,12 @@ export const Experiences: CollectionConfig = {
       hasMany: true,
     },
   ],
+  hooks: {
+    afterChange: [
+      ({ doc }) => {
+        revalidateTag('experiences', 'max');
+        return doc;
+      },
+    ],
+  },
 }

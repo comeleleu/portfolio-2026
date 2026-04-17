@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateTag } from 'next/cache';
 
 export const Tags: CollectionConfig = {
   slug: 'tags',
@@ -15,4 +16,12 @@ export const Tags: CollectionConfig = {
       required: true,
     },
   ],
+  hooks: {
+    afterChange: [
+      ({ doc }) => {
+        revalidateTag('tags', 'max');
+        return doc;
+      },
+    ],
+  },
 }
