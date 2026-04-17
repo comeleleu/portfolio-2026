@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateTag } from 'next/cache';
 
 export const Medias: CollectionConfig = {
   slug: 'medias',
@@ -39,4 +40,12 @@ export const Medias: CollectionConfig = {
       type: 'text',
     },
   ],
+  hooks: {
+    afterChange: [
+      ({ doc }) => {
+        revalidateTag('medias', 'max');
+        return doc;
+      },
+    ],
+  },
 }

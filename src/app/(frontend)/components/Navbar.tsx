@@ -46,7 +46,10 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
 
     return (
         <div className="sticky top-0 z-50 flex flex-row sm:flex-col items-center w-screen sm:w-auto h-auto sm:h-screen px-4 sm:px-6 py-4 sm:py-10 overflow-hidden">
-            <nav className="flex flex-row sm:flex-col items-center gap-6 grow w-auto sm:w-14 h-14 sm:h-auto px-6 sm:px-2 py-2 sm:py-6 bg-zinc-900/50 sm:bg-zinc-900/40 backdrop-blur-lg border border-zinc-800/50 sm:border-zinc-700/50 rounded-full">
+            <nav
+                className="flex flex-row sm:flex-col items-center gap-6 grow w-auto sm:w-14 h-14 sm:h-auto px-6 sm:px-2 py-2 sm:py-6 bg-zinc-900/50 sm:bg-zinc-900/40 backdrop-blur-lg border border-zinc-800/50 sm:border-zinc-700/50 rounded-full"
+                role="navigation"
+            >
                 <div className="flex flex-row sm:flex-col items-center gap-4">
                     {sectionParameters?.links?.map((link: any) => (
                         <a
@@ -55,6 +58,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                             target={link.external ? "_blank" : undefined}
                             rel={link.external ? "noopener noreferrer" : undefined}
                             className="text-zinc-200 hover:text-zinc-50 hover:scale-115 transition-all ease-in-out duration-500"
+                            aria-label={link.label}
                         >
                             <FontAwesomeIcon icon={(Fas as any)[link.icon] || (Fab as any)[link.icon] || Fas.faLink} className="text-lg" />
                         </a>
@@ -105,6 +109,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                     : 'w-0 h-0 opacity-0 translate-x-24 sm:translate-x-0 sm:translate-y-24 pointer-events-none ml-0 sm:mt-0'}
                 `}
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                aria-label="Scroll to top"
             >
                 <FontAwesomeIcon icon={Fas.faChevronUp} className="text-lg" />
             </button>

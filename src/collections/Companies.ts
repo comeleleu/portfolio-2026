@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateTag } from 'next/cache'; // Importation de la fonction Next.js
 import { LocationField } from '@fields/location/field';
 
 export const Companies: CollectionConfig = {
@@ -27,4 +28,12 @@ export const Companies: CollectionConfig = {
       type: 'text',
     },
   ],
+  hooks: {
+    afterChange: [
+      ({ doc }) => {
+        revalidateTag('companies', 'max');
+        return doc;
+      },
+    ],
+  },
 }

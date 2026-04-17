@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Fab from "@fortawesome/free-brands-svg-icons";
 import * as Fas from "@fortawesome/free-solid-svg-icons";
 import { getPayload } from "@utils/getPayload";
+import { unstable_cache } from "next/cache";
 import { formatDate } from "@utils/formatDate";
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
@@ -24,9 +25,8 @@ const getLocationIcon = (locationType: string) => {
     }
 };
 
-export const Experiences = async ({ sectionParameters }: { sectionParameters: any }) => {
-    let experiences: any[] = [];
-    try {
+const getCachedExperiences = unstable_cache(
+    async () => {
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'experiences',
@@ -38,7 +38,18 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
             },
             sort: ['-endDate'],
         });
-        experiences = result?.docs || [];
+        return result?.docs || [];
+    },
+    ['experiences-list'],
+    {
+        tags: ['experiences', 'companies', 'tags', 'medias']
+    }
+);
+
+export const Experiences = async ({ sectionParameters }: { sectionParameters: any }) => {
+    let experiences: any[] = [];
+    try {
+        experiences = await getCachedExperiences();
     } catch (err) {
         console.error('Error fetching experiences', err);
     }
@@ -124,7 +135,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                     </div>
                                 </GlowingCard>
                                 {showLocationChange && (
-                                    <div className="w-3/4 sm:w-2/3 md:w-3/5 lg:w-2/5 flex items-center text-sm font-semibold text-zinc-500 before:flex-1 before:border-t before:border-dashed before:border-zinc-600/90 before:me-8">
+                                    <div className="w-3/4 sm:w-2/3 md:w-3/5 lg:w-2/5 flex items-center text-sm font-semibold text-zinc-400 before:flex-1 before:border-t before:border-dashed before:border-zinc-500/90 before:me-8">
                                         <div className="flex items-center gap-2">
                                             <FontAwesomeIcon icon={Fas.faTruck} className="text-lg" />
                                             Moved to {experience.location}
