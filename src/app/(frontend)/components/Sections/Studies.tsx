@@ -1,8 +1,7 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as Fas from "@fortawesome/free-solid-svg-icons";
-import { getPayload } from "@utils/getPayload";
 import { unstable_cache } from "next/cache";
 import { formatDate } from "@utils/formatDate";
+import { getIcon } from "@utils/getIcon";
+import { getPayload } from "@utils/getPayload";
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
 import { Title } from "@components/Cards/Elements/Title";
@@ -44,7 +43,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
 
             <div className="flex items-center my-8 font-semibold text-zinc-400 before:flex-1 before:border-t before:border-dashed before:border-zinc-500/90 before:me-8 after:flex-1 after:border-t after:border-dashed after:border-zinc-500/90 after:ms-8">
                 <div className="flex items-center gap-4 text-xl">
-                    <FontAwesomeIcon icon={Fas.faGraduationCap} />
+                    {getIcon("faGraduationCap", true)}
                     <div className="is-title">
                         {sectionParameters?.title || "Studies"}
                     </div>
@@ -70,7 +69,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                                     />
                                     <Badge
                                         label={`${study.level} — ${study.field}`}
-                                        icon={Fas.faGraduationCap}
+                                        icon="faGraduationCap"
                                     />
                                 </div>
                                 <div className="flex flex-row gap-4 items-start">
@@ -88,7 +87,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                                         subtitleColor="text-blue-500"
                                     >
                                         <p className="flex items-center gap-2">
-                                            <FontAwesomeIcon icon={Fas.faLocationDot} className="text-md" />
+                                            {getIcon("faLocationDot", true, "text-md")}
                                             {study.school.location}
                                         </p>
                                     </Title>

@@ -1,9 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as Fab from "@fortawesome/free-brands-svg-icons";
-import * as Fas from "@fortawesome/free-solid-svg-icons";
+import { getIcon } from "@utils/getIcon";
 
 export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
     const [showScrollTop, setShowScrollTop] = useState(false);
@@ -77,7 +75,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                             className="text-zinc-200 hover:text-zinc-50 hover:scale-115 transition-all ease-in-out duration-500"
                             aria-label={link.label}
                         >
-                            <FontAwesomeIcon icon={(Fas as any)[link.icon] || (Fab as any)[link.icon] || Fas.faLink} className="text-lg" />
+                            {link.icon && getIcon(link.icon, true, "text-lg")}
                         </a>
                     ))}
                 </div>
@@ -103,7 +101,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                                 ${activeSection === section.id ? ""
                                 : ""}
                             `}>
-                                {section.icon && <FontAwesomeIcon icon={(Fas as any)[section.icon] || (Fab as any)[section.icon] || Fas.faLink} className="text-lg" />}
+                                {section.icon && getIcon(section.icon, true, "text-lg")}
                             </span>
                             <span
                                 className={`
@@ -128,7 +126,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 aria-label="Scroll to top"
             >
-                <FontAwesomeIcon icon={Fas.faChevronUp} className="text-lg" />
+                {getIcon("faChevronUp", true, "text-lg")}
             </button>
         </div>
     );

@@ -1,6 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as Fab from "@fortawesome/free-brands-svg-icons";
-import * as Fas from "@fortawesome/free-solid-svg-icons";
+import { getIcon } from "@utils/getIcon";
 
 export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
     return (
@@ -11,7 +9,6 @@ export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
             <p>© {new Date().getFullYear()} - Côme Leleu</p>
             <div className="hidden sm:flex flex-row items-center gap-4">
                 {sectionParameters?.links?.map((link: any) => {
-                    const icon = (Fas as any)[link.icon] || (Fab as any)[link.icon] || Fas.faLink;
                     return (
                         <a
                             key={link.id ?? link.url}
@@ -21,7 +18,7 @@ export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
                             className="hover:text-zinc-300 hover:scale-115 transition-all ease-in-out duration-500"
                             aria-label={link.label}
                         >
-                            <FontAwesomeIcon icon={icon} className="text-lg" />
+                            {link.icon && getIcon(link.icon, true, "text-lg")}
                         </a>
                     );
                 })}

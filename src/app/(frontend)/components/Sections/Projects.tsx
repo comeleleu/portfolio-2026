@@ -1,7 +1,5 @@
-import * as Fab from "@fortawesome/free-brands-svg-icons";
-import * as Fas from "@fortawesome/free-solid-svg-icons";
-import { getPayload } from "@utils/getPayload";
 import { unstable_cache } from "next/cache";
+import { getPayload } from "@utils/getPayload";
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Title } from "@components/Cards/Elements/Title";
 import { Tags } from "@components/Cards/Elements/Tags";
@@ -37,21 +35,13 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
         console.error('Error fetching projects', err);
     }
 
-    const headerLinks = sectionParameters?.links?.map((link: any) => ({
-        id: link.id,
-        label: link.label,
-        url: link.url,
-        external: link.external,
-        icon: (Fas as any)[link.icon] || (Fab as any)[link.icon] || Fas.faLink
-    })) || [];
-
     return (
         <section id="projects" className="scroll-mt-16 sm:scroll-mt-0">
             <SectionHeader
                 title={sectionParameters?.title || "Projects"}
-                sectionIcon={Fas.faFolderOpen}
+                sectionIcon="faFolderOpen"
                 afterColor="after:bg-linear-to-r/oklch after:from-blue-400 after:to-cyan-400 after:to-70%"
-                links={headerLinks}
+                links={sectionParameters?.links}
             />
             {projects.length > 0 ? (
                 <div className="columns-1 md:columns-2 lg:columns-3 gap-4 *:mb-4">
