@@ -4,13 +4,6 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import * as Fas from '@fortawesome/free-solid-svg-icons';
 import * as Fab from '@fortawesome/free-brands-svg-icons';
 
-/**
- * Récupère un objet icône FontAwesome ou retourne directement le composant <FontAwesomeIcon />
- *
- * @param name
- * @param asComponent
- * @param className
- */
 export function getIcon(name?: string | null): IconDefinition | null;
 export function getIcon(name: string | null | undefined, asComponent: true, className?: string): React.ReactElement | null;
 export function getIcon(
