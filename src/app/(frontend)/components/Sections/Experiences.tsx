@@ -1,9 +1,7 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as Fab from "@fortawesome/free-brands-svg-icons";
-import * as Fas from "@fortawesome/free-solid-svg-icons";
-import { getPayload } from "@utils/getPayload";
 import { unstable_cache } from "next/cache";
 import { formatDate } from "@utils/formatDate";
+import { getIcon } from "@utils/getIcon";
+import { getPayload } from "@utils/getPayload";
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
 import { Title } from "@components/Cards/Elements/Title";
@@ -15,13 +13,13 @@ import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 const getLocationIcon = (locationType: string) => {
     switch (locationType) {
         case "Remote":
-            return Fas.faHouseLaptop;
+            return "faHouseLaptop";
         case "Hybrid":
-            return Fas.faLaptop;
+            return "faLaptop";
         case "On-site":
-            return Fas.faBuilding;
+            return "faBuilding";
         default:
-            return Fas.faLaptop;
+            return "faLaptop";
     }
 };
 
@@ -54,21 +52,13 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
         console.error('Error fetching experiences', err);
     }
 
-    const headerLinks = sectionParameters?.links?.map((link: any) => ({
-        id: link.id,
-        label: link.label,
-        url: link.url,
-        external: link.external,
-        icon: (Fas as any)[link.icon] || (Fab as any)[link.icon] || Fas.faLink
-    })) || [];
-
     return (
         <section id="experiences" className="scroll-mt-16 sm:scroll-mt-0">
             <SectionHeader
                 title={sectionParameters?.title || "Experiences"}
-                sectionIcon={Fas.faLaptopCode}
+                sectionIcon="faLaptopCode"
                 afterColor="after:bg-linear-to-r/oklch after:from-indigo-500 after:to-blue-500 after:from-30%"
-                links={headerLinks}
+                links={sectionParameters?.links}
             />
 
             {experiences.length > 0 ? (
@@ -96,7 +86,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                                 {experience.selfEmployed && (
                                                     <Badge
                                                         label="Self-employed"
-                                                        icon={Fas.faAddressCard}
+                                                        icon="faAddressCard"
                                                     />
                                                 )}
                                                 <Badge
@@ -120,7 +110,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                                 subtitleColor="text-indigo-500"
                                             >
                                                 <p className="flex items-center gap-2">
-                                                    <FontAwesomeIcon icon={Fas.faLocationDot} className="text-md" />
+                                                    {getIcon("faLocationDot", true, "text-md")}
                                                     {experience.company.location}
                                                 </p>
                                             </Title>
@@ -137,7 +127,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                 {showLocationChange && (
                                     <div className="w-3/4 sm:w-2/3 md:w-3/5 lg:w-2/5 flex items-center text-sm font-semibold text-zinc-400 before:flex-1 before:border-t before:border-dashed before:border-zinc-500/90 before:me-8">
                                         <div className="flex items-center gap-2">
-                                            <FontAwesomeIcon icon={Fas.faTruck} className="text-lg" />
+                                            {getIcon("faTruck", true, "text-lg")}
                                             Moved to {experience.location}
                                         </div>
                                     </div>

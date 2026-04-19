@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { getIcon } from "@utils/getIcon";
 
 type BadgeProps = {
     label: string;
@@ -7,7 +6,7 @@ type BadgeProps = {
     textColor?: string;
     backgroundColor?: string;
     borderColor?: string;
-    icon?: IconProp;
+    icon?: string;
 };
 
 export const Badge = ({
@@ -23,7 +22,7 @@ export const Badge = ({
             title={labelHover}
             className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold ${textColor} ${backgroundColor} backdrop-blur-sm border rounded-full ${borderColor} ${labelHover ? "cursor-help" : ""}`}
         >
-            {icon && <FontAwesomeIcon icon={icon} className="text-sm" />}
+            {icon && getIcon(icon, true, "text-sm")}
             {label}
         </div>
     );
