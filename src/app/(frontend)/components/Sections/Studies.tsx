@@ -4,7 +4,7 @@ import { getIcon } from "@utils/getIcon";
 import { getPayload } from "@utils/getPayload";
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
-import { Title } from "@components/Cards/Elements/Title";
+import { TitleImage } from "@components/Cards/Elements/TitleImage";
 import { Tags } from "@components/Cards/Elements/Tags";
 import { Description } from "@components/Common/Description";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
@@ -72,26 +72,19 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                                         icon="faGraduationCap"
                                     />
                                 </div>
-                                <div className="flex flex-row gap-4 items-start">
-                                    {study.school?.logo?.url && (
-                                        <img
-                                            src={study.school.logo.url}
-                                            alt={study.school.logo.alt || study.school.name}
-                                            className="w-14 h-14 object-contain rounded-xl"
-                                        />
-                                    )}
-                                    <Title
-                                        title={study.degree}
-                                        subtitle={study.school.name}
-                                        isLink={!!(study.link?.url ?? study.school?.link?.url)}
-                                        subtitleColor="text-blue-500"
-                                    >
-                                        <p className="flex items-center gap-2">
-                                            {getIcon("faLocationDot", true, "text-md")}
-                                            {study.school.location}
-                                        </p>
-                                    </Title>
-                                </div>
+                                <TitleImage
+                                    title={study.degree}
+                                    subtitle={study.school.name}
+                                    isLink={!!(study.link?.url ?? study.school?.link?.url)}
+                                    subtitleColor="text-blue-500"
+                                    imageUrl={study.school?.logo?.url}
+                                    imageAlt={study.school?.logo?.alt || study.school?.name}
+                                >
+                                    <p className="flex items-center gap-2">
+                                        {getIcon("faLocationDot", true, "text-md")}
+                                        {study.school.location}
+                                    </p>
+                                </TitleImage>
                                 <Description text={study.description} />
                                 <Tags
                                     tags={study.tags}

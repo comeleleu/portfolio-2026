@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Description } from "@components/Common/Description";
 
@@ -22,7 +23,13 @@ export const About = ({ sectionParameters }: { sectionParameters: any }) => {
             {profilePictureUrl && (
                 <div className="self-start md:sticky md:top-10">
                     <GlowingCard glowingBorderColor={glowingBorderColor || undefined}>
-                        <img src={profilePictureUrl} alt={profilePictureAlt} className="w-full max-h-96 object-cover brightness-85" />
+                    <Image 
+                        src={profilePictureUrl} 
+                        alt={profilePictureAlt} 
+                        width={profilePicture?.width || 400} 
+                        height={profilePicture?.height || 400} 
+                        className="w-full max-h-96 object-cover brightness-85" 
+                    />
                     </GlowingCard>
                 </div>
             )}
