@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, ReactNode } from "react";
-import { RenderLink, PayloadLink } from "@utils/RenderLink";
+import { RenderLink, CustomLink } from "@components/Common/RenderLink";
 
 type GlowingCardProps = {
     glowingBorderColor?: string;
-    link?: PayloadLink | null;
+    link?: CustomLink | null;
     children?: ReactNode;
 };
 
