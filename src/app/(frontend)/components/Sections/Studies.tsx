@@ -56,7 +56,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                         <GlowingCard
                             key={study.id ?? study._id ?? study.degree}
                             glowingBorderColor="bg-linear-to-r/oklch from-cyan-400 via-blue-400 to-violet-400"
-                            url={study.url ?? study.school?.url}
+                            link={study.link ?? study.school?.link}
                         >
                             <div className="relative flex flex-col gap-6 px-8 py-6">
                                 <div className="flex flex-row justify-between items-center gap-6">
@@ -83,7 +83,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                                     <Title
                                         title={study.degree}
                                         subtitle={study.school.name}
-                                        isLink={!!(study.url ?? study.school?.url)}
+                                        isLink={!!(study.link?.url ?? study.school?.link?.url)}
                                         subtitleColor="text-blue-500"
                                     >
                                         <p className="flex items-center gap-2">

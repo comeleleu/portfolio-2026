@@ -24,8 +24,10 @@ export const Schools: CollectionConfig = {
     },
     LocationField,
     {
-      name: 'url',
-      type: 'text',
+      name: 'link',
+      type: 'relationship',
+      relationTo: 'links',
+      hasMany: false,
     },
   ],
   hooks: {

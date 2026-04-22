@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { getIcon } from "@utils/getIcon";
+import { RenderLink } from "@components/Common/RenderLink";
 
 export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
     const [showScrollTop, setShowScrollTop] = useState(false);
@@ -67,24 +68,22 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
             >
                 <div className="flex flex-row sm:flex-col items-center gap-4">
                     {sectionParameters?.navbar?.links?.map((link: any) => (
-                        <a
-                            key={link.id ?? link.url}
-                            href={link.url}
-                            target={link.external ? "_blank" : undefined}
-                            rel={link.external ? "noopener noreferrer" : undefined}
+                        <RenderLink
+                            key={link.id}
+                            link={link}
                             className="text-zinc-200 hover:text-zinc-50 hover:scale-115 transition-all ease-in-out duration-500"
                             aria-label={link.label}
                         >
                             {link.icon && getIcon(link.icon, true, "text-lg")}
-                        </a>
+                        </RenderLink>
                     ))}
                 </div>
                 <div className="h-px sm:h-20 w-10 sm:w-px bg-zinc-600"></div>
                 <div className="flex flex-row sm:flex-col gap-1 sm:gap-2">
                     {navSections.map((section) => (
-                        <a
+                        <RenderLink
                             key={section.id}
-                            href={`#${section.id}`}
+                            link={{ url: `#${section.id}`, label: section.label }}
                             onClick={(e) => {
                                 e.preventDefault();
                                 document.getElementById(section.id)?.scrollIntoView({ behavior: 'smooth' });
@@ -112,7 +111,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                             >
                                 {section.label}
                             </span>
-                        </a>
+                        </RenderLink>
                     ))}
                 </div>
             </nav>
