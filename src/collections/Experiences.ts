@@ -76,8 +76,10 @@ export const Experiences: CollectionConfig = {
     },
     RichText({ name: 'description', required: true }),
     {
-      name: 'url',
-      type: 'text',
+      name: 'link',
+      type: 'relationship',
+      relationTo: 'links',
+      hasMany: false,
     },
     {
       name: 'tags',
