@@ -4,7 +4,7 @@ import { getIcon } from "@utils/getIcon";
 import { getPayload } from "@utils/getPayload";
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
-import { Title } from "@components/Cards/Elements/Title";
+import { TitleImage } from "@components/Cards/Elements/TitleImage";
 import { Tags } from "@components/Cards/Elements/Tags";
 import { Description } from "@components/Common/Description";
 import { SectionHeader } from "@components/Sections/Elements/SectionHeader";
@@ -95,26 +95,19 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                                 />
                                             </div>
                                         </div>
-                                        <div className="flex flex-row gap-4 items-start">
-                                            {experience.company?.logo?.url && (
-                                                <img
-                                                    src={experience.company.logo.url}
-                                                    alt={experience.company.logo.alt || experience.company.name}
-                                                    className="w-14 h-14 object-contain rounded-xl"
-                                                />
-                                            )}
-                                            <Title
-                                                title={experience.title}
-                                                subtitle={experience.company.name}
-                                                isLink={!!(experience.link?.url ?? experience.company?.link?.url)}
-                                                subtitleColor="text-indigo-500"
-                                            >
-                                                <p className="flex items-center gap-2">
-                                                    {getIcon("faLocationDot", true, "text-md")}
-                                                    {experience.company.location}
-                                                </p>
-                                            </Title>
-                                        </div>
+                                        <TitleImage
+                                            title={experience.title}
+                                            subtitle={experience.company.name}
+                                            isLink={!!(experience.link?.url ?? experience.company?.link?.url)}
+                                            subtitleColor="text-indigo-500"
+                                            imageUrl={experience.company?.logo?.url}
+                                            imageAlt={experience.company?.logo?.alt || experience.company?.name}
+                                        >
+                                            <p className="flex items-center gap-2">
+                                                {getIcon("faLocationDot", true, "text-md")}
+                                                {experience.company.location}
+                                            </p>
+                                        </TitleImage>
                                         <Description text={experience.description} />
                                         <Tags
                                             tags={experience.tags}
