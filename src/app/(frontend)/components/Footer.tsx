@@ -1,4 +1,5 @@
 import { getIcon } from "@utils/getIcon";
+import { RenderLink } from "@utils/RenderLink";
 
 export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
     return (
@@ -6,25 +7,23 @@ export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
             className="flex flex-row justify-between text-sm text-zinc-400 border-t border-zinc-700 py-6 sm:py-10"
             role="contentinfo"
         >
-            <p>© {new Date().getFullYear()} - Côme Leleu</p>
+            <p>© {new Date().getFullYear()} — Côme Leleu</p>
             <div className="hidden sm:flex flex-row items-center gap-4">
                 {sectionParameters?.links?.map((link: any) => {
                     return (
-                        <a
-                            key={link.id ?? link.url}
-                            href={link.url}
-                            target={link.external ? "_blank" : undefined}
-                            rel={link.external ? "noopener noreferrer" : undefined}
+                        <RenderLink
+                            key={link.id}
+                            link={link}
                             className="hover:text-zinc-300 hover:scale-115 transition-all ease-in-out duration-500"
                             aria-label={link.label}
                         >
                             {link.icon && getIcon(link.icon, true, "text-lg")}
-                        </a>
+                        </RenderLink>
                     );
                 })}
             </div>
             <p>
-                Build with <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer">Next.js</a>, <a href="https://payloadcms.com/" target="_blank" rel="noopener noreferrer">Payload</a> and <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">Tailwind CSS</a>
+                Build with <RenderLink link={{url:"https://nextjs.org/", label:"Next.js"}} />, <RenderLink link={{url:"https://payloadcms.com/", label:"Payload"}} /> and <RenderLink link={{url:"https://tailwindcss.com/", label:"Tailwind CSS"}} />
             </p>
         </footer>
     );

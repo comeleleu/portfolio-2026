@@ -1,19 +1,19 @@
 "use client";
 
-import { useEffect, ReactNode, ElementType } from "react";
+import { useEffect, ReactNode } from "react";
+import { RenderLink, PayloadLink } from "@utils/RenderLink";
 
 type GlowingCardProps = {
     glowingBorderColor?: string;
-    url?: string;
+    link?: PayloadLink | null;
     children?: ReactNode;
 };
 
 export const GlowingCard = ({
     glowingBorderColor = "bg-zinc-300",
-    url,
+    link,
     children,
 }: GlowingCardProps) => {
-
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             const cards = document.getElementsByClassName("glowingCard") as HTMLCollectionOf<HTMLElement>;
@@ -45,14 +45,10 @@ export const GlowingCard = ({
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, []);
 
-    const Tag = (url ? "a" : "div") as ElementType;
-
     return (
-        <Tag
-            href={url ?? undefined}
-            target={url?.startsWith("http") ? "_blank" : undefined}
-            rel={url?.startsWith("http") ? "noopener noreferrer" : undefined}
-            className={`glowingCard group relative block break-inside-avoid p-px bg-zinc-700/70 rounded-3xl shadow-lg overflow-hidden ${url ? "hover:bg-zinc-600/85 transition-colors ease-in-out duration-500 cursor-pointer" : "cursor-default"}`}
+        <RenderLink
+            link={link}
+            className={`glowingCard group relative block break-inside-avoid p-px bg-zinc-700/70 rounded-3xl shadow-lg overflow-hidden ${link?.url ? "hover:bg-zinc-600/85 transition-colors ease-in-out duration-500 cursor-pointer" : "cursor-default"}`}
         >
             <div
                 className={`glowingCardBorder absolute left-(--mouse-x) top-(--mouse-y) -translate-x-1/2 -translate-y-1/2 z-0 size-80 ${glowingBorderColor} blur-3xl rounded-full transition-opacity ease-in-out duration-500 opacity-0 pointer-events-none`}
@@ -63,6 +59,6 @@ export const GlowingCard = ({
                     children
                 ) : null}
             </div>
-        </Tag>
+        </RenderLink>
     );
 };
