@@ -49,13 +49,13 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                         <GlowingCard
                             key={project.id ?? project._id ?? project.title}
                             glowingBorderColor="bg-linear-to-r/oklch from-emerald-200 via-cyan-400 to-blue-400"
-                            url={project.url}
+                            link={project.link}
                         >
                             <div className="flex flex-col gap-6 p-6">
                                 <Title
                                     title={project.title}
                                     subtitle={project.context}
-                                    isLink={!!project.url}
+                                    isLink={!!project.link?.url}
                                     subtitleColor="text-cyan-500"
                                 />
                                 <Description text={project.description} />
