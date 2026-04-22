@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 
-// Typing based on the configuration of your "Links" Payload collection
-export interface PayloadLink {
+// A generic link type that can be used with Payload or other CMS
+export interface CustomLink {
   label?: string | undefined;
   url?: string | undefined;
   external?: boolean | null;
@@ -11,7 +11,7 @@ export interface PayloadLink {
 
 // Extend standard anchor attributes to allow passing onClick, aria-label, etc.
 interface RenderLinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
-  link?: PayloadLink | null;
+  link?: CustomLink | null;
 }
 
 export const RenderLink: React.FC<RenderLinkProps> = ({ link, className, children, ...rest }) => {

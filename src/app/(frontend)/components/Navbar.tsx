@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { getIcon } from "@utils/getIcon";
-import { RenderLink } from "@utils/RenderLink";
+import { RenderLink } from "@components/Common/RenderLink";
 
 export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
     const [showScrollTop, setShowScrollTop] = useState(false);

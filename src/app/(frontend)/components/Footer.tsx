@@ -1,5 +1,5 @@
 import { getIcon } from "@utils/getIcon";
-import { RenderLink } from "@utils/RenderLink";
+import { RenderLink } from "@components/Common/RenderLink";
 
 export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
     return (
