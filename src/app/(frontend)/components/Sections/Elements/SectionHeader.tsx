@@ -1,5 +1,5 @@
 import { Icon } from "@components/Common/Icon";
-import { RenderLink } from "@components/Common/RenderLink";
+import { Link } from "@components/Common/Link";
 
 type SectionHeaderProps = {
     title: string;
@@ -29,7 +29,7 @@ export const SectionHeader = ({
                 <div className="flex justify-between md:justify-end flex-wrap gap-2">
                     {links && (
                         links.map((link) => (
-                            <RenderLink
+                            <Link
                                 key={link.id}
                                 link={link}
                                 className="group flex items-center gap-2 px-6 py-3 text-sm font-semibold text-zinc-400 hover:text-zinc-300 bg-zinc-500/10 hover:bg-zinc-500/20 backdrop-blur-lg border border-zinc-300/15 hover:border-zinc-300/20 rounded-full transition-colors ease-in-out duration-500"
@@ -39,7 +39,7 @@ export const SectionHeader = ({
                                 )}
                                 {link.label}
                                 <Icon name="faArrowUpRightFromSquare" className="inline-block text-xs text-zinc-700 group-hover:text-zinc-500 transition-all ease-in-out duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5" />
-                            </RenderLink>
+                            </Link>
                         ))
                     )}
                 </div>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Icon } from "@components/Common/Icon";
-import { RenderLink } from "@components/Common/RenderLink";
+import { Link } from "@components/Common/Link";
 
 export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
     const [showScrollTop, setShowScrollTop] = useState(false);
@@ -68,7 +68,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
             >
                 <div className="flex flex-row sm:flex-col items-center gap-4">
                     {sectionParameters?.navbar?.links?.map((link: any) => (
-                        <RenderLink
+                        <Link
                             key={link.id}
                             link={link}
                             className="text-zinc-200 hover:text-zinc-50 hover:scale-115 transition-all ease-in-out duration-500"
@@ -77,13 +77,13 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                             {link.icon && (
                                 <Icon name={link.icon} className="text-lg" />
                             )}
-                        </RenderLink>
+                        </Link>
                     ))}
                 </div>
                 <div className="h-px sm:h-20 w-10 sm:w-px bg-zinc-600"></div>
                 <div className="flex flex-row sm:flex-col gap-1 sm:gap-2">
                     {navSections.map((section) => (
-                        <RenderLink
+                        <Link
                             key={section.id}
                             link={{ url: `#${section.id}`, label: section.label }}
                             onClick={(e) => {
@@ -115,7 +115,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                             >
                                 {section.label}
                             </span>
-                        </RenderLink>
+                        </Link>
                     ))}
                 </div>
             </nav>
