@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, ReactNode } from "react";
-import { RenderLink, CustomLink } from "@components/Common/RenderLink";
+import { Link, CustomLink } from "@components/Common/Link";
 
 type GlowingCardProps = {
     glowingBorderColor?: string;
@@ -46,7 +46,7 @@ export const GlowingCard = ({
     }, []);
 
     return (
-        <RenderLink
+        <Link
             link={link}
             className={`glowingCard group relative block break-inside-avoid p-px bg-zinc-700/70 rounded-3xl shadow-lg overflow-hidden ${link?.url ? "hover:bg-zinc-600/85 transition-colors ease-in-out duration-500 cursor-pointer" : "cursor-default"}`}
         >
@@ -59,6 +59,6 @@ export const GlowingCard = ({
                     children
                 ) : null}
             </div>
-        </RenderLink>
+        </Link>
     );
 };

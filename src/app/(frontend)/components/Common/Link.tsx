@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import NextLink from 'next/link';
 
 // A generic link type that can be used with Payload or other CMS
 export interface CustomLink {
@@ -10,11 +10,11 @@ export interface CustomLink {
 }
 
 // Extend standard anchor attributes to allow passing onClick, aria-label, etc.
-interface RenderLinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
+interface LinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
   link?: CustomLink | null;
 }
 
-export const RenderLink: React.FC<RenderLinkProps> = ({ link, className, children, ...rest }) => {
+export const Link: React.FC<LinkProps> = ({ link, className, children, ...rest }) => {
   const { url, external, label } = link || {};
   
   // Display children if provided, otherwise fallback to the default label
@@ -43,8 +43,8 @@ export const RenderLink: React.FC<RenderLinkProps> = ({ link, className, childre
 
   // Otherwise, it's an internal link, use Next.js router
   return (
-    <Link href={url} className={className} {...rest}>
+    <NextLink href={url} className={className} {...rest}>
       {content}
-    </Link>
+    </NextLink>
   );
 };
