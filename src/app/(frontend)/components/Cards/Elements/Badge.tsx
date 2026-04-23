@@ -1,4 +1,4 @@
-import { getIcon } from "@utils/getIcon";
+import { Icon } from "@components/Common/Icon";
 
 type BadgeProps = {
     label: string;
@@ -22,7 +22,9 @@ export const Badge = ({
             title={labelHover}
             className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold ${textColor} ${backgroundColor} backdrop-blur-sm border rounded-full ${borderColor} ${labelHover ? "cursor-help" : ""}`}
         >
-            {icon && getIcon(icon, true, "text-sm")}
+            {icon && (
+                <Icon name={icon} className="text-sm" />
+            )}
             {label}
         </div>
     );

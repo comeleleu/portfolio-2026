@@ -1,12 +1,12 @@
 import { unstable_cache } from "next/cache";
 import { formatDate } from "@utils/formatDate";
-import { getIcon } from "@utils/getIcon";
 import { getPayload } from "@utils/getPayload";
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
 import { TitleImage } from "@components/Cards/Elements/TitleImage";
 import { Tags } from "@components/Cards/Elements/Tags";
 import { Description } from "@components/Common/Description";
+import { Icon } from "@components/Common/Icon";
 import { SectionHeader } from "@components/Sections/Elements/SectionHeader";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
@@ -104,7 +104,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                             imageAlt={experience.company?.logo?.alt || experience.company?.name}
                                         >
                                             <p className="flex items-center gap-2">
-                                                {getIcon("faLocationDot", true, "text-md")}
+                                                <Icon name="faLocationDot" className="text-md" />
                                                 {experience.company.location}
                                             </p>
                                         </TitleImage>
@@ -120,7 +120,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                 {showLocationChange && (
                                     <div className="w-3/4 sm:w-2/3 md:w-3/5 lg:w-2/5 flex items-center text-sm font-semibold text-zinc-400 before:flex-1 before:border-t before:border-dashed before:border-zinc-500/90 before:me-8">
                                         <div className="flex items-center gap-2">
-                                            {getIcon("faTruck", true, "text-lg")}
+                                            <Icon name="faTruck" className="text-lg" />
                                             Moved to {experience.location}
                                         </div>
                                     </div>
