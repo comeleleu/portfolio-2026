@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { getIcon } from "@utils/getIcon";
+import { Icon } from "@components/Common/Icon";
 import { RenderLink } from "@components/Common/RenderLink";
 
 export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
@@ -74,7 +74,9 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                             className="text-zinc-200 hover:text-zinc-50 hover:scale-115 transition-all ease-in-out duration-500"
                             aria-label={link.label}
                         >
-                            {link.icon && getIcon(link.icon, true, "text-lg")}
+                            {link.icon && (
+                                <Icon name={link.icon} className="text-lg" />
+                            )}
                         </RenderLink>
                     ))}
                 </div>
@@ -100,7 +102,9 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                                 ${activeSection === section.id ? ""
                                 : ""}
                             `}>
-                                {section.icon && getIcon(section.icon, true, "text-lg")}
+                                {section.icon && (
+                                    <Icon name={section.icon} className="text-lg" />
+                                )}
                             </span>
                             <span
                                 className={`
@@ -125,7 +129,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 aria-label="Scroll to top"
             >
-                {getIcon("faChevronUp", true, "text-lg")}
+                <Icon name="faChevronUp" className="text-lg" />
             </button>
         </div>
     );
