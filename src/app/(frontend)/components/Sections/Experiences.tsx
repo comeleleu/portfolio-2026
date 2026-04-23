@@ -74,7 +74,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                     link={experience.link ?? experience.company?.link}
                                 >
                                     <div className="relative flex flex-col gap-6 px-8 py-6">
-                                        <div className="flex flex-row justify-between items-center gap-6">
+                                        <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-2 md:gap-6">
                                             <Badge
                                                 label={`${formatDate(experience.startDate, 'short')} — ${experience.currentWork ? "Today" : formatDate(experience.endDate, 'short')}`}
                                                 labelHover={`${formatDate(experience.startDate, 'long')} to ${experience.currentWork ? "Today" : formatDate(experience.endDate, 'long')}`}
@@ -82,7 +82,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                                 backgroundColor="bg-indigo-600/10"
                                                 borderColor="border-indigo-300/10"
                                             />
-                                            <div className="flex items-center gap-2">
+                                            <div className="flex flex-row-reverse md:flex-row items-center gap-2">
                                                 {experience.selfEmployed && (
                                                     <Badge
                                                         label="Self-employed"
