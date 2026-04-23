@@ -1,4 +1,4 @@
-import { getIcon } from "@utils/getIcon";
+import { Icon } from "@components/Common/Icon";
 import { RenderLink } from "@components/Common/RenderLink";
 
 export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
@@ -17,7 +17,9 @@ export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
                             className="hover:text-zinc-300 hover:scale-115 transition-all ease-in-out duration-500"
                             aria-label={link.label}
                         >
-                            {link.icon && getIcon(link.icon, true, "text-lg")}
+                            {link.icon && (
+                                <Icon name={link.icon} className="text-lg" />
+                            )}
                         </RenderLink>
                     );
                 })}

@@ -1,12 +1,12 @@
 import { unstable_cache } from "next/cache";
 import { formatDate } from "@utils/formatDate";
-import { getIcon } from "@utils/getIcon";
 import { getPayload } from "@utils/getPayload";
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
 import { TitleImage } from "@components/Cards/Elements/TitleImage";
 import { Tags } from "@components/Cards/Elements/Tags";
 import { Description } from "@components/Common/Description";
+import { Icon } from "@components/Common/Icon";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
 const getCachedStudies = unstable_cache(
@@ -43,7 +43,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
 
             <div className="flex items-center my-8 font-semibold text-zinc-400 before:flex-1 before:border-t before:border-dashed before:border-zinc-500/90 before:me-8 after:flex-1 after:border-t after:border-dashed after:border-zinc-500/90 after:ms-8">
                 <div className="flex items-center gap-4 text-xl">
-                    {getIcon("faGraduationCap", true)}
+                    <Icon name="faGraduationCap" />
                     <div className="is-title">
                         {sectionParameters?.title || "Studies"}
                     </div>
@@ -81,7 +81,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                                     imageAlt={study.school?.logo?.alt || study.school?.name}
                                 >
                                     <p className="flex items-center gap-2">
-                                        {getIcon("faLocationDot", true, "text-md")}
+                                        <Icon name="faLocationDot" className="text-md" />
                                         {study.school.location}
                                     </p>
                                 </TitleImage>
