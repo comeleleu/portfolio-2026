@@ -59,7 +59,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                             link={study.link ?? study.school?.link}
                         >
                             <div className="relative flex flex-col gap-6 px-8 py-6">
-                                <div className="flex flex-row justify-between items-center gap-6">
+                                <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-2 md:gap-6">
                                     <Badge
                                         label={`${formatDate(study.startDate, 'short')} — ${study.currentStudy ? "Today" : formatDate(study.endDate, 'short')}`}
                                         labelHover={`${formatDate(study.startDate, 'long')} to ${study.currentStudy ? "Today" : formatDate(study.endDate, 'long')}`}
