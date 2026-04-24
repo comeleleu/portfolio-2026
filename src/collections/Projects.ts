@@ -32,6 +32,35 @@ export const Projects: CollectionConfig = {
       ],
       required: true,
     },
+    {
+      name: 'currentProject',
+      type: 'checkbox',
+      label: 'Current Project',
+      defaultValue: false,
+    },
+    {
+      name: 'startDate',
+      type: 'date',
+      required: true,
+      admin: {
+        date: {
+          pickerAppearance: 'monthOnly',
+          displayFormat: 'MMM yyyy',
+        },
+      },
+    },
+    {
+      name: 'endDate',
+      type: 'date',
+      required: false,
+      admin: {
+        condition: (data, siblingData) => !siblingData.currentProject,
+        date: {
+          pickerAppearance: 'monthOnly',
+          displayFormat: 'MMM yyyy',
+        },
+      },
+    },
     RichText({ name: 'description', required: true }),
     {
       name: 'link',
