@@ -5,9 +5,6 @@ import { Icon } from "@components/Common/Icon";
 import { Link } from "@components/Common/Link";
 
 export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
-    const [showScrollTop, setShowScrollTop] = useState(false);
-    const [activeSection, setActiveSection] = useState<string>('');
-
     const navSections = [
         {
             id: 'about',
@@ -15,8 +12,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
             icon: 'faCircleUser'
         },
         {
-            id:
-            'experiences',
+            id: 'experiences',
             label: sectionParameters?.experiences?.shortTitle || "Experiences",
             icon: 'faLaptopCode'
         },
@@ -32,6 +28,9 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
         },
     ];
 
+    const [showScrollTop, setShowScrollTop] = useState(false);
+    const [activeSection, setActiveSection] = useState<string>(navSections[0]?.id || '');
+
     useEffect(() => {
         const handleScroll = () => {
             setShowScrollTop(window.scrollY > 300);
@@ -45,7 +44,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                     }
                 });
             },
-            { threshold: 0, rootMargin: "-35% 0px -55% 0px" }
+            {threshold: 0, rootMargin: "-20% 0px -80% 0px"}
         );
 
         navSections.forEach((section) => {
@@ -85,10 +84,10 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                     {navSections.map((section) => (
                         <Link
                             key={section.id}
-                            link={{ url: `#${section.id}`, label: section.label }}
+                            link={{url: `#${section.id}`, label: section.label}}
                             onClick={(e) => {
                                 e.preventDefault();
-                                document.getElementById(section.id)?.scrollIntoView({ behavior: 'smooth' });
+                                document.getElementById(section.id)?.scrollIntoView({behavior: 'smooth'});
                             }}
                             className={`
                                 group sm:flex-row-reverse items-center px-4 py-2 sm:[writing-mode:vertical-lr] backdrop-blur-sm border rounded-full overflow-hidden transition-all ease-in-out duration-500
@@ -126,7 +125,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                     ${showScrollTop ? 'w-14 h-14 opacity-100 translate-0 ml-6 sm:ml-0 sm:mt-6'
                     : 'w-0 h-0 opacity-0 translate-x-24 sm:translate-x-0 sm:translate-y-24 pointer-events-none ml-0 sm:mt-0'}
                 `}
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
                 aria-label="Scroll to top"
             >
                 <Icon name="faChevronUp" className="text-lg" />
