@@ -48,7 +48,7 @@ export const GlowingCard = ({
     return (
         <Link
             link={link}
-            className={`glowingCard group relative block break-inside-avoid p-px bg-zinc-700/70 rounded-3xl shadow-lg overflow-hidden ${link?.url ? "hover:bg-zinc-600/85 transition-colors ease-in-out duration-500 cursor-pointer" : "cursor-default"}`}
+            className={`glowingCard group relative block break-inside-avoid p-px bg-zinc-700/70 rounded-3xl shadow-lg overflow-hidden ${link?.url ? "hover:bg-zinc-600/95 transition-colors ease-in-out duration-500 cursor-pointer" : "cursor-default"}`}
         >
             <div
                 className={`glowingCardBorder absolute left-(--mouse-x) top-(--mouse-y) -translate-x-1/2 -translate-y-1/2 z-0 size-80 ${glowingBorderColor} blur-3xl rounded-full transition-opacity ease-in-out duration-500 opacity-0 pointer-events-none`}
