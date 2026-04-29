@@ -2,6 +2,7 @@ import sharp from 'sharp'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { buildConfig } from 'payload'
+import { Pool } from 'pg'
 import { Companies } from '@collections/Companies'
 import { Experiences } from '@collections/Experiences'
 import { Links } from '@collections/Links'
@@ -11,6 +12,13 @@ import { Schools } from '@/collections/Schools'
 import { Studies } from '@/collections/Studies'
 import { Tags } from '@collections/Tags'
 import { Sections } from '@globals/Sections'
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+})
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -32,11 +40,7 @@ export default buildConfig({
 
 
   secret: process.env.PAYLOAD_SECRET || '',
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URL || '',
-    },
-  }),
-  
+  db: postgresAdapter({ pool }),
+
   sharp,
 })
