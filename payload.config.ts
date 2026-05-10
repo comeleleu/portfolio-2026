@@ -11,6 +11,7 @@ import { Schools } from '@/collections/Schools'
 import { Studies } from '@/collections/Studies'
 import { Tags } from '@collections/Tags'
 import { Sections } from '@globals/Sections'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -40,6 +41,15 @@ export default buildConfig({
       },
     },
   }),
+
+  plugins: [
+    vercelBlobStorage({
+      collections: {
+        medias: true, // Assurez-vous que 'medias' correspond exactement au "slug" de votre collection Medias
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
+  ],
 
   sharp,
 })
