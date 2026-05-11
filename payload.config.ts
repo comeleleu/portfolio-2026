@@ -13,6 +13,7 @@ import { Tags } from '@collections/Tags'
 import { Sections } from '@globals/Sections'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
+console.warn('BLOB_READ_WRITE_TOKEN');
 if (!process.env.BLOB_READ_WRITE_TOKEN) {
   console.warn('⚠️ ATTENTION: BLOB_READ_WRITE_TOKEN est manquant. Le stockage Vercel Blob sera désactivé.');
 }
