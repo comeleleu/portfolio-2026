@@ -26,7 +26,7 @@ const getCachedStudies = unstable_cache(
     },
     ['studies-list'],
     {
-        tags: ['studies', 'schools', 'tags', 'medias']
+        tags: ['studies', 'links', 'medias', 'schools', 'tags']
     }
 );
 

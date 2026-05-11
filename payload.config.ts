@@ -1,7 +1,8 @@
-import sharp from 'sharp'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { buildConfig } from 'payload'
+import { postgresAdapter } from '@payloadcms/db-postgres'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import sharp from 'sharp'
 import { Companies } from '@collections/Companies'
 import { Experiences } from '@collections/Experiences'
 import { Links } from '@collections/Links'
@@ -32,12 +33,25 @@ export default buildConfig({
 
 
   secret: process.env.PAYLOAD_SECRET || '',
-  db: sqliteAdapter({
-    client: {
-      url: process.env.DATABASE_URL || '',
-      authToken: process.env.DATABASE_AUTH_TOKEN,
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URL || '',
+      ssl: {
+        rejectUnauthorized: false,
+      },
     },
   }),
-  
+
+  plugins: [
+    vercelBlobStorage({
+      collections: {
+        medias: {
+          disablePayloadAccessControl: true,
+        },
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
+  ],
+
   sharp,
 })
