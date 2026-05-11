@@ -3,6 +3,7 @@ import { withPayload } from '@payloadcms/next/withPayload'
 
 const nextConfig: NextConfig = {
   // Your Next.js config here
+  serverExternalPackages: ['sharp'],
   images: {
     remotePatterns: [
       {
