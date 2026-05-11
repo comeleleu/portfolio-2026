@@ -26,7 +26,7 @@ const getCachedProjects = unstable_cache(
     },
     ['projects-list'],
     {
-        tags: ['projects', 'tags']
+        tags: ['projects', 'links', 'tags']
     }
 );
 

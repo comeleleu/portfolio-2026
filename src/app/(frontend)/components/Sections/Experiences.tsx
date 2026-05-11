@@ -40,7 +40,7 @@ const getCachedExperiences = unstable_cache(
     },
     ['experiences-list'],
     {
-        tags: ['experiences', 'companies', 'tags', 'medias']
+        tags: ['experiences', 'companies', 'medias', 'links', 'tags']
     }
 );
 
