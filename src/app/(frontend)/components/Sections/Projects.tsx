@@ -68,7 +68,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                                 glowingBorderColor="bg-linear-to-r/oklch from-emerald-200 via-cyan-400 to-blue-400"
                                 link={project.link}
                             >
-                                <div className="flex flex-col gap-6 p-6">
+                                <div className="flex flex-col gap-4 sm:gap-6 p-4 sm:px-6">
                                     {dateLabel && (
                                         <div className="flex">
                                             <Badge
