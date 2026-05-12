@@ -4,7 +4,7 @@ import { Link } from "@components/Common/Link";
 export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
     return (
         <footer
-            className="flex flex-row justify-between text-sm text-zinc-400 border-t border-zinc-700 py-6 sm:py-10"
+            className="flex flex-col-reverse md:flex-row justify-between items-start gap-4 md:gap-8 text-sm text-zinc-400 border-t border-zinc-700 py-6 sm:py-10"
             role="contentinfo"
         >
             <p>© {new Date().getFullYear()} — Côme Leleu</p>
@@ -25,7 +25,8 @@ export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
                 })}
             </div>
             <p>
-                Build with <Link link={{url:"https://nextjs.org/", label:"Next.js"}} />, <Link link={{url:"https://payloadcms.com/", label:"Payload"}} /> and <Link link={{url:"https://tailwindcss.com/", label:"Tailwind CSS"}} />
+                Created with <Link link={{url:"https://nextjs.org/", label:"Next.js"}} />, <Link link={{url:"https://payloadcms.com/", label:"Payload"}} /> and <Link link={{url:"https://tailwindcss.com/", label:"Tailwind CSS"}} />.
+                Hosted by <Link link={{url:"https://vercel.com/", label:"Vercel"}} />.
             </p>
         </footer>
     );

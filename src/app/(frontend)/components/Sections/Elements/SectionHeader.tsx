@@ -16,12 +16,12 @@ export const SectionHeader = ({
 }: SectionHeaderProps) => {
 
     return (
-        <div className="flex flex-col md:flex-row justify-between items-baseline md:items-end gap-8 mt-8 mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-baseline md:items-end gap-6 sm:gap-8 mt-8 mb-6 sm:mb-12">
             <div className="flex flex-row gap-4 items-baseline">
                 {sectionIcon && (
-                    <Icon name={sectionIcon} className="text-2xl text-zinc-600" />
+                    <Icon name={sectionIcon} className="text-lg text-zinc-600" />
                 )}
-                <h2 className={`text-5xl font-semibold text-zinc-200 tracking-wide relative after:content-[''] after:absolute after:h-1 after:w-4/5 ${afterColor} after:rounded-full after:-bottom-1 after:-left-6`}>
+                <h2 className={`text-3xl font-semibold text-zinc-200 tracking-wide relative after:content-[''] after:absolute after:h-1 after:w-4/5 ${afterColor} after:rounded-full after:-bottom-1 after:-left-6`}>
                     {title}
                 </h2>
             </div>
