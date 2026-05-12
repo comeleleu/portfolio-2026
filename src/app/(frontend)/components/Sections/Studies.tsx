@@ -58,7 +58,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                             glowingBorderColor="bg-linear-to-r/oklch from-cyan-400 via-blue-400 to-violet-400"
                             link={study.link ?? study.school?.link}
                         >
-                            <div className="relative flex flex-col gap-6 px-8 py-6">
+                            <div className="relative flex flex-col gap-4 sm:gap-6 p-4 sm:px-8 sm:py-6">
                                 <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-2 md:gap-6">
                                     <Badge
                                         label={`${formatDate(study.startDate, 'short')} — ${study.currentStudy ? "Today" : formatDate(study.endDate, 'short')}`}
@@ -80,8 +80,8 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                                     imageUrl={study.school?.logo?.url}
                                     imageAlt={study.school?.logo?.alt || study.school?.name}
                                 >
-                                    <p className="flex items-center gap-2">
-                                        <Icon name="faLocationDot" className="text-md" />
+                                    <p className="flex items-center gap-1">
+                                        <Icon name="faLocationDot" className="text-sm" />
                                         {study.school.location}
                                     </p>
                                 </TitleImage>
