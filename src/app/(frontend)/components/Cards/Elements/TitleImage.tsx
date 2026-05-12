@@ -29,7 +29,7 @@ export const TitleImage = ({
                     alt={imageAlt || title}
                     width={56}
                     height={56}
-                    className="w-14 h-14 object-contain rounded-xl"
+                    className="w-12 sm:w-14 h-12 sm:h-14 object-contain rounded-xl"
                 />
             )}
             <Title
