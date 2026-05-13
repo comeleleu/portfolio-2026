@@ -36,9 +36,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
       <body
-        className={`${bricolageGrotesque.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${bricolageGrotesque.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-linear-to-br/oklch from-zinc-950/30 to-zinc-950/70`}
         suppressHydrationWarning
       >
         {children}
