@@ -25,7 +25,7 @@ export const Tags = ({
     const hasMore = tags.length > maxTags;
 
     return (
-        <ul className="flex flex-row flex-wrap gap-2">
+        <ul className="flex flex-row flex-wrap gap-x-1 sm:gap-x-2 gap-y-1">
             {displayedTags.map((tag) => (
                 <li key={tag.id} className="px-4 py-2 text-xs text-zinc-400 bg-zinc-500/10 backdrop-blur-sm border border-zinc-300/10 rounded-full">{tag.label}</li>
             ))}
