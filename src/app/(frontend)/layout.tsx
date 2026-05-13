@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
       <body
-        className={`${bricolageGrotesque.variable} ${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-zinc-900 bg-linear-to-br/oklch from-zinc-950/50 to-zinc-950/80`}
+        className={`${bricolageGrotesque.variable} ${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-zinc-900 bg-linear-to-br/oklch from-zinc-950/75 to-zinc-950/90`}
         suppressHydrationWarning
       >
         {children}
