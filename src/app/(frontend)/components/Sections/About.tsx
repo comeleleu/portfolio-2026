@@ -14,10 +14,10 @@ export const About = ({ sectionParameters }: { sectionParameters: any }) => {
     const profilePictureAlt = profilePicture?.alt || fullname;
 
     return (
-        <section id="about" className="scroll-mt-32 sm:scroll-mt-0 grid grid-cols-1 md:grid-cols-[1fr_200px] lg:grid-cols-[1fr_300px] gap-4 sm:gap-8 md:gap-16 pt-6 sm:pt-10">
+        <section id="about" className="scroll-mt-32 sm:scroll-mt-0 grid grid-cols-1 md:grid-cols-[1fr_200px] lg:grid-cols-[1fr_300px] gap-6 sm:gap-8 md:gap-16 pt-6 sm:pt-10">
             <div className="flex flex-col gap-2">
                 <h1 className="text-5xl md:text-7xl font-bold text-zinc-100">{fullname}</h1>
-                <p className="text-2xl font-semibold text-zinc-300 mb-4">{jobTitle}</p>
+                <p className="is-title text-2xl font-semibold text-zinc-300 mb-4">{jobTitle}</p>
                 <Description text={description} textSize="text-md" />
             </div>
             {profilePictureUrl && (
