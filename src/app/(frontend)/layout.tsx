@@ -23,8 +23,11 @@ const bricolageGrotesque = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "Côme Leleu's Portfolio",
-  description: "Software engineer specializing in web development.",
+  title: "Côme Leleu",
+  description: "Software engineer specializing in web development",
+  icons: {
+    icon: process.env.FAVICON_URL || "",
+  },
 };
 
 export default function RootLayout({

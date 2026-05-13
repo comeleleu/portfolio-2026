@@ -67,12 +67,12 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
             >
                 {sectionParameters?.navbar?.links && sectionParameters.navbar.links.length > 0 && (
                     <>
-                        <div className="flex flex-row sm:flex-col items-center gap-4">
+                        <div className="flex flex-row sm:flex-col items-center justify-center gap-4">
                             {sectionParameters.navbar.links.map((link: any) => (
                                 <Link
                                     key={link.id}
                                     link={link}
-                                    className="text-zinc-200 hover:text-zinc-50 hover:scale-115 transition-all ease-in-out duration-500"
+                                    className="flex items-center justify-center text-zinc-200 hover:text-zinc-50 hover:scale-115 transition-all ease-in-out duration-500"
                                     aria-label={link.label}
                                 >
                                     {link.icon && (
@@ -94,14 +94,14 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                                 document.getElementById(section.id)?.scrollIntoView({behavior: 'smooth'});
                             }}
                             className={`
-                                group sm:flex-row-reverse items-center px-4 py-2 sm:[writing-mode:vertical-lr] backdrop-blur-sm border rounded-full overflow-hidden transition-all ease-in-out duration-500
+                                group sm:flex-row-reverse items-center justify-center px-4 py-2 sm:[writing-mode:vertical-lr] backdrop-blur-sm border rounded-full overflow-hidden transition-all ease-in-out duration-500
                                 ${activeSection === section.id ? "flex text-zinc-200 hover:text-zinc-100 bg-zinc-500/15 hover:bg-zinc-500/20 border-zinc-300/15 hover:border-zinc-300/20"
                                 : "hidden sm:flex text-zinc-400 hover:text-zinc-300 bg-zinc-600/10 hover:bg-zinc-600/20 border-zinc-300/10 hover:border-zinc-300/15"}
                             `}
                         >
                             
                             <span className={`
-                                transition-all ease-in-out duration-500 sm:rotate-270
+                                flex items-center justify-center transition-all ease-in-out duration-500 sm:rotate-270
                                 ${activeSection === section.id ? ""
                                 : ""}
                             `}>
