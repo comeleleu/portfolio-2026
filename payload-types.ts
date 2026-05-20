@@ -259,7 +259,7 @@ export interface Project {
   id: number;
   published?: boolean | null;
   title: string;
-  context: 'Personnal' | 'Professional' | 'Hackathon' | 'Open Source';
+  context: 'Personal' | 'Professional' | 'Hackathon' | 'Open Source';
   currentProject?: boolean | null;
   startDate: string;
   endDate?: string | null;
