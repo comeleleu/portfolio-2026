@@ -25,7 +25,7 @@ export const Projects: CollectionConfig = {
       name: 'context',
       type: 'select',
       options: [
-        { label: 'Personnal', value: 'Personnal' },
+        { label: 'Personal', value: 'Personal' },
         { label: 'Professional', value: 'Professional' },
         { label: 'Hackathon', value: 'Hackathon' },
         { label: 'Open Source', value: 'Open Source' },
