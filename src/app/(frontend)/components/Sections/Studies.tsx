@@ -44,7 +44,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
             <div className="flex items-center my-8 font-semibold text-zinc-400 before:flex-1 before:border-t before:border-dashed before:border-zinc-500/90 before:me-8 after:flex-1 after:border-t after:border-dashed after:border-zinc-500/90 after:ms-8">
                 <div className="flex items-center gap-4 text-xl">
                     <Icon name="faGraduationCap" />
-                    <div className="is-title">
+                    <div className="is-title relative after:content-[''] after:absolute after:h-0.5 after:w-6/5 after:bg-blue-500 after:rounded-full after:-bottom-1 after:left-1/2 after:-translate-x-1/2">
                         {sectionParameters?.title || "Studies"}
                     </div>
                 </div>
@@ -76,7 +76,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                                     title={study.degree}
                                     subtitle={study.school.name}
                                     isLink={!!(study.link?.url ?? study.school?.link?.url)}
-                                    subtitleColor="text-blue-500"
+                                    subtitleColor="text-blue-400"
                                     imageUrl={study.school?.logo?.url}
                                     imageAlt={study.school?.logo?.alt || study.school?.name}
                                 >
