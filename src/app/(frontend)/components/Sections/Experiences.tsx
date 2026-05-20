@@ -121,7 +121,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                     <div className="w-3/4 sm:w-2/3 md:w-3/5 lg:w-2/5 flex items-center text-sm font-semibold text-zinc-400 before:flex-1 before:border-t before:border-dashed before:border-zinc-500/90 before:me-6">
                                         <div className="flex items-center gap-3">
                                             <Icon name="faTruck" className="text-lg" />
-                                            <span className="relative after:content-[''] after:absolute after:h-0.5 after:w-4/5 after:bg-indigo-500 after:rounded-full after:-bottom-1 after:-left-1">
+                                            <span className="relative after:content-[''] after:absolute after:h-0.5 after:w-4/5 after:bg-indigo-500 after:rounded-full after:-bottom-0.5 after:-left-1">
                                                 <span className="hidden md:inline">Moved to </span>
                                                 {experience.location}
                                             </span>

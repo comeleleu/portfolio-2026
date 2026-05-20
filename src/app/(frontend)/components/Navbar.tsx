@@ -131,6 +131,8 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
                 `}
                 onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
                 aria-label="Scroll to top"
+                tabIndex={showScrollTop ? 0 : -1}
+                aria-hidden={!showScrollTop}
             >
                 <Icon name="faChevronUp" className="text-lg" />
             </button>
