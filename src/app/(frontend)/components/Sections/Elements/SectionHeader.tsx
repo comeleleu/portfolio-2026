@@ -16,7 +16,7 @@ export const SectionHeader = ({
 }: SectionHeaderProps) => {
 
     return (
-        <div className="flex flex-col md:flex-row justify-between items-baseline md:items-end gap-6 sm:gap-8 my-6 sm:mb-12">
+        <div className="flex flex-col lg:flex-row justify-between items-baseline lg:items-end gap-6 sm:gap-8 my-6 lg:mb-12">
             <div className="flex flex-row gap-4 items-baseline">
                 {sectionIcon && (
                     <Icon name={sectionIcon} className="text-lg text-zinc-600" />
@@ -26,7 +26,7 @@ export const SectionHeader = ({
                 </h2>
             </div>
             {(links && links.length > 0) && (
-                <div className="flex justify-between md:justify-end flex-wrap gap-2">
+                <div className="flex justify-between lg:justify-end flex-wrap gap-2">
                     {links && (
                         links.map((link) => (
                             <Link
