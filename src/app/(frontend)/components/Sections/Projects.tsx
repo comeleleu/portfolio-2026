@@ -47,7 +47,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                 links={sectionParameters?.links}
             />
             {projects.length > 0 ? (
-                <div className="columns-1 md:columns-2 lg:columns-3 gap-4 *:mb-4">
+                <div className="columns-1 md:columns-2 lg:columns-3 gap-4 *:mb-4 *:last:mb-0">
                     {projects.map((project: any) => {
                         const {startDate, endDate, currentProject} = project;
 
