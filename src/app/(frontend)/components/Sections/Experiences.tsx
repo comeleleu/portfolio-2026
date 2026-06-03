@@ -53,7 +53,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
     }
 
     return (
-        <section id="experiences" className="scroll-mt-16 sm:scroll-mt-0">
+        <section id="experiences" className="scroll-mt-16 md:scroll-mt-0">
             <SectionHeader
                 title={sectionParameters?.title || "Experiences"}
                 sectionIcon="faLaptopCode"
@@ -73,7 +73,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                     glowingBorderColor="bg-linear-to-r/oklch from-sky-400 via-indigo-400 to-purple-400"
                                     link={experience.link ?? experience.company?.link}
                                 >
-                                    <div className="relative flex flex-col gap-4 sm:gap-6 p-4 sm:px-8 sm:py-6">
+                                    <div className="relative flex flex-col gap-4 sm:gap-6 p-4 sm:px-6 md:px-8">
                                         <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-2 md:gap-6">
                                             <Badge
                                                 label={`${formatDate(experience.startDate, 'short')} — ${experience.currentWork ? "Today" : formatDate(experience.endDate, 'short')}`}

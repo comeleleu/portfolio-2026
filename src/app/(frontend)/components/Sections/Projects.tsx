@@ -39,7 +39,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
     }
 
     return (
-        <section id="projects" className="scroll-mt-16 sm:scroll-mt-0">
+        <section id="projects" className="scroll-mt-16 md:scroll-mt-0">
             <SectionHeader
                 title={sectionParameters?.title || "Projects"}
                 sectionIcon="faFolderOpen"
