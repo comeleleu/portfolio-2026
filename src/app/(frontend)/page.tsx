@@ -35,7 +35,7 @@ export default async function Home() {
         <div className="md:grid md:grid-cols-[auto_1fr] min-h-screen max-w-7xl mx-auto">
             <Navbar sectionParameters={sectionsData} />
 
-            <div className="flex flex-col gap-12 md:gap-16 px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col gap-12 md:gap-16 px-4 sm:px-6 md:px-4 lg:pl-6">
                 <main
                     className="flex flex-col gap-16"
                     role="main"
