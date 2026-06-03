@@ -3,6 +3,9 @@
 import { ChangeEvent, KeyboardEvent, useState, useRef, useEffect} from 'react';
 import { TextInput, useField } from '@payloadcms/ui';
 
+/**
+ * Represents a geographic feature returned by the Photon (Komoot) Geocoding API.
+ */
 type Feature = {
   properties: {
     name?: string
@@ -14,6 +17,9 @@ type Feature = {
   }
 }
 
+/**
+ * Mapping of US states and Canadian provinces to their standard 2-letter abbreviations.
+ */
 const STATE_MAPPING: Record<string, string> = {
   // Canada
   'Alberta': 'AB',
@@ -103,6 +109,12 @@ const STATE_MAPPING: Record<string, string> = {
   'District of Columbia': 'DC'
 };
 
+/**
+ * Formats/normalizes the state or province name to its 2-letter abbreviation if in North America.
+ * 
+ * @param properties - The feature properties from the Photon API.
+ * @returns The 2-letter abbreviation of the state/province, or the original state name, or undefined.
+ */
 const getStateToDisplay = (properties: Feature['properties']) => {
   const isNorthAmerica = ['United States', 'Canada'].includes(properties.country || '');
   
@@ -111,12 +123,25 @@ const getStateToDisplay = (properties: Feature['properties']) => {
   return STATE_MAPPING[properties.state] || properties.state;
 }
 
+/**
+ * A custom React client component for Payload CMS admin interface.
+ * Implements a debounced location search using the Photon Komoot geocoding API.
+ * 
+ * Features:
+ * - Debounced searches (500ms delay) to prevent hitting API rate limits.
+ * - Keyboard navigation (closes suggestions dropdown with Escape).
+ * - Automatic formatting of chosen suggestions with state abbreviations for US/Canada.
+ * - Mouse hover and keyboard focus styling for autocomplete results.
+ * 
+ * @param props.path - The database field path.
+ * @param props.label - Optional label for the text input.
+ */
 export const LocationComponent = ({ path, label }: { path: string; label?: string }) => {
   const { value, setValue } = useField<string>({ path });
   const [suggestions, setSuggestions] = useState<Feature[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const timeoutRef = useRef<any>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
