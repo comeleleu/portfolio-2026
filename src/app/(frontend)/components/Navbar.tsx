@@ -60,7 +60,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
     }, []);
 
     return (
-        <div className="sticky top-0 z-50 flex flex-row md:flex-col items-center w-screen md:w-auto h-auto md:h-screen px-2 sm:px-4 md:pl-6 md:pr-3 lg:pl-8 lg:pr-4 py-2 md:py-10 overflow-hidden">
+        <div className="sticky top-0 z-50 flex flex-row md:flex-col items-center w-screen md:w-auto h-auto md:h-screen px-2 sm:px-4 py-2 md:py-8 overflow-hidden">
             <nav
                 className="flex flex-row md:flex-col items-center gap-6 grow w-auto md:w-14 h-14 md:h-auto px-6 md:px-2 py-2 md:py-6 bg-zinc-900/50 md:bg-zinc-900/40 backdrop-blur-lg border border-zinc-800/50 md:border-zinc-700/50 rounded-full"
                 role="navigation"
