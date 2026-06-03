@@ -39,7 +39,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
     }
 
     return (
-        <section id="studies" className="scroll-mt-16 sm:scroll-mt-0">
+        <section id="studies" className="scroll-mt-14 md:scroll-mt-0">
 
             <div className="flex items-center my-8 font-semibold text-zinc-400 before:flex-1 before:border-t before:border-dashed before:border-zinc-500/90 before:me-8 after:flex-1 after:border-t after:border-dashed after:border-zinc-500/90 after:ms-8">
                 <div className="flex items-center gap-4 text-xl">
@@ -58,7 +58,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                             glowingBorderColor="bg-linear-to-r/oklch from-cyan-400 via-blue-400 to-violet-400"
                             link={study.link ?? study.school?.link}
                         >
-                            <div className="relative flex flex-col gap-4 sm:gap-6 p-4 sm:px-8 sm:py-6">
+                            <div className="relative flex flex-col gap-4 sm:gap-6 p-4 sm:px-6 md:px-8">
                                 <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-2 md:gap-6">
                                     <Badge
                                         label={`${formatDate(study.startDate, 'short')} — ${study.currentStudy ? "Today" : formatDate(study.endDate, 'short')}`}

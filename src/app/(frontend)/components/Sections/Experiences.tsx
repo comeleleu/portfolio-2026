@@ -53,7 +53,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
     }
 
     return (
-        <section id="experiences" className="scroll-mt-16 sm:scroll-mt-0">
+        <section id="experiences" className="scroll-mt-16 md:scroll-mt-0">
             <SectionHeader
                 title={sectionParameters?.title || "Experiences"}
                 sectionIcon="faLaptopCode"
@@ -73,7 +73,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                     glowingBorderColor="bg-linear-to-r/oklch from-sky-400 via-indigo-400 to-purple-400"
                                     link={experience.link ?? experience.company?.link}
                                 >
-                                    <div className="relative flex flex-col gap-4 sm:gap-6 p-4 sm:px-8 sm:py-6">
+                                    <div className="relative flex flex-col gap-4 sm:gap-6 p-4 sm:px-6 md:px-8">
                                         <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-2 md:gap-6">
                                             <Badge
                                                 label={`${formatDate(experience.startDate, 'short')} — ${experience.currentWork ? "Today" : formatDate(experience.endDate, 'short')}`}
@@ -118,7 +118,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                     </div>
                                 </GlowingCard>
                                 {showLocationChange && (
-                                    <div className="w-3/4 sm:w-2/3 md:w-3/5 lg:w-2/5 flex items-center text-sm font-semibold text-zinc-400 before:flex-1 before:border-t before:border-dashed before:border-zinc-500/90 before:me-6">
+                                    <div className="flex items-center text-sm font-semibold text-zinc-400 before:w-12 sm:before:w-18 md:before:w-24 lg:before:w-32 before:shrink-0 before:border-t before:border-dashed before:border-zinc-500/90 before:me-6">
                                         <div className="flex items-center gap-3">
                                             <Icon name="faTruck" className="text-lg" />
                                             <span className="relative after:content-[''] after:absolute after:h-0.5 after:w-4/5 after:bg-indigo-500 after:rounded-full after:-bottom-0.5 after:-left-1">
