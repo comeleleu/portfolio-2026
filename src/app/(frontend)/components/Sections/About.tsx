@@ -14,7 +14,7 @@ export const About = ({ sectionParameters }: { sectionParameters: any }) => {
     const profilePictureAlt = profilePicture?.alt || fullname;
 
     return (
-        <section id="about" className="scroll-mt-32 sm:scroll-mt-0 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 lg:gap-16 pt-6 sm:pt-10">
+        <section id="about" className="scroll-mt-32 md:scroll-mt-0 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 lg:gap-16 pt-6 md:pt-10">
             <div className="flex flex-col gap-2">
                 <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-zinc-100">{fullname}</h1>
                 <p className="is-title text-2xl font-semibold text-zinc-300 mb-4">{jobTitle}</p>
