@@ -4,7 +4,7 @@ import { Link } from "@components/Common/Link";
 export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
     return (
         <footer
-            className="flex flex-col-reverse md:flex-row justify-between items-start gap-4 md:gap-12 text-sm text-zinc-400 border-t border-zinc-700 py-6 md:py-10"
+            className="flex flex-col-reverse md:flex-row justify-between items-start gap-4 md:gap-12 text-sm text-zinc-400 border-t border-zinc-700 py-6 md:py-8"
             role="contentinfo"
         >
             <p>© {new Date().getFullYear()} — Côme Leleu</p>
