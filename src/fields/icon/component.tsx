@@ -150,9 +150,7 @@ export const IconComponent = ({ path, label }: { path: string; label?: string })
         }}>
           {selectedIconObj ? (
             <FontAwesomeIcon icon={selectedIconObj} />
-          ) : (
-            <span style={{ fontSize: '0.8rem', opacity: 0.5 }}>None</span>
-          )}
+          ) : null}
         </div>
         <div style={{ flex: 1 }}>
           <TextInput
