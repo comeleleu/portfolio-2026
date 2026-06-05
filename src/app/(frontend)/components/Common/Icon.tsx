@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Fas from '@fortawesome/free-solid-svg-icons';
 import * as Fab from '@fortawesome/free-brands-svg-icons';
 
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+
 type IconProps = {
     name?: string | null;
     className?: string;
@@ -10,7 +12,7 @@ type IconProps = {
 
 /**
  * A generic Icon component that dynamically renders a FontAwesome icon
- * based on its string name. It searches in both solid and brand icon sets.
+ * based on its string name. It searches in solid, regular, and brand icon sets.
  */
 export function Icon({
     name,
@@ -19,14 +21,17 @@ export function Icon({
     // If no name is provided, do not render anything
     if (!name) return null;
 
-    // Attempt to find the icon in the solid and brand icons set
-    const solidIcon = (Fas as any)[name];
-    const brandIcon = (Fab as any)[name];
+    const FasPack = Fas as unknown as Record<string, IconDefinition>;
+    const FabPack = Fab as unknown as Record<string, IconDefinition>;
 
-    // Use the solid icon if found, otherwise fallback to the brand icon
+    // Attempt to find the icon in the solid, regular, and brand icons set
+    const solidIcon = FasPack[name];
+    const brandIcon = FabPack[name];
+
+    // Use the solid icon if found, fallback to regular, then brand icon
     const icon = solidIcon || brandIcon;
 
-    // If the icon is not found in either set, return null to avoid errors
+    // If the icon is not found in any set, return null to avoid errors
     if (!icon) return null;
 
     return (
