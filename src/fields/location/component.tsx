@@ -201,7 +201,11 @@ export const LocationComponent = ({ path, label }: { path: string; label?: strin
   };
 
   return (
-    <div className="field-type text" ref={wrapperRef} style={{ position: 'relative', marginBottom: 'var(--spacing-field)' }}>
+    <div
+      className="field-type text"
+      ref={wrapperRef}
+      style={{ position: 'relative', marginBottom: 'var(--spacing-field)' }}
+    >
       <TextInput
         path={path}
         label={label || 'Location'}
@@ -222,8 +226,9 @@ export const LocationComponent = ({ path, label }: { path: string; label?: strin
             zIndex: 100,
             listStyle: 'none',
             padding: 0,
-            margin: 0,
-            boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
+            margin: '4px 0 0 0',
+            boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+            borderRadius: '4px'
         }}>
           {suggestions.map((feature, i) => {
             const stateToDisplay = getStateToDisplay(feature.properties);
@@ -243,9 +248,10 @@ export const LocationComponent = ({ path, label }: { path: string; label?: strin
                   }
                 }}
                 style={{
-                  padding: '10px',
+                  padding: '10px 15px',
                   cursor: 'pointer',
-                  borderBottom: '1px solid var(--theme-elevation-150)'
+                  borderBottom: '1px solid var(--theme-elevation-150)',
+                  outlineOffset: '-2px'
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--theme-elevation-150)'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
