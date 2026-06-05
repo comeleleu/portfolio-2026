@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { revalidateTag } from 'next/cache';
+import { IconField } from '@fields/icon/field';
 
 export const Links: CollectionConfig = {
   slug: 'links',
@@ -25,37 +26,7 @@ export const Links: CollectionConfig = {
       type: 'checkbox',
       defaultValue: true,
     },
-    {
-      name: 'icon',
-      type: 'select',
-      options: [
-        {
-          label: 'Link',
-          value: 'faLink',
-        },
-        {
-          label: 'External link',
-          value: 'faArrowUpRightFromSquare',
-        },
-        {
-          label: 'LinkedIn',
-          value: 'faSquareLinkedin',
-        },
-        {
-          label: 'GitHub',
-          value: 'faGithub',
-        },
-        {
-          label: 'GitLab',
-          value: 'faGitlab',
-        },
-        {
-          label: 'Globe',
-          value: 'faGlobe',
-        },
-      ],
-      required: false,
-    },
+    IconField,
   ],
   hooks: {
     afterChange: [

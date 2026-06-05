@@ -202,7 +202,7 @@ export interface Link {
   label: string;
   url: string;
   external?: boolean | null;
-  icon?: ('faLink' | 'faArrowUpRightFromSquare' | 'faSquareLinkedin' | 'faGithub' | 'faGitlab' | 'faGlobe') | null;
+  icon?: string | null;
   updatedAt: string;
   createdAt: string;
 }
