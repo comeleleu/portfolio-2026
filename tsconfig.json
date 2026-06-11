@@ -25,6 +25,7 @@
       "@collections/*": ["./src/collections/*"],
       "@fields/*": ["./src/fields/*"],
       "@globals/*": ["./src/globals/*"],
+      "@locales/*": ["./locales/*"],
       "@utils/*": ["./src/utils/*"],
       "@payload-config": ["./payload.config.ts"]
     }
