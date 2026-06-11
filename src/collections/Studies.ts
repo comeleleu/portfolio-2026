@@ -25,6 +25,7 @@ export const Studies: CollectionConfig = {
     {
       name: 'degree',
       type: 'text',
+      localized: true,
       required: true,
     },
     {
@@ -40,6 +41,7 @@ export const Studies: CollectionConfig = {
     {
       name: 'field',
       type: 'text',
+      localized: true,
       label: 'Field of Study',
       required: true,
     },

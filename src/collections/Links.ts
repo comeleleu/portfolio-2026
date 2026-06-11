@@ -14,11 +14,13 @@ export const Links: CollectionConfig = {
     {
       name: 'label',
       type: 'text',
+      localized: true,
       required: true,
     },
     {
       name: 'url',
       type: 'text',
+      localized: true,
       required: true,
     },
     {

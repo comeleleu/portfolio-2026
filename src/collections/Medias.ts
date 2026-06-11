@@ -38,6 +38,7 @@ export const Medias: CollectionConfig = {
     {
       name: 'alt',
       type: 'text',
+      localized: true,
     },
   ],
   hooks: {

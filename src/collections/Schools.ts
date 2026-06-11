@@ -14,6 +14,7 @@ export const Schools: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+      localized: true,
       required: true,
     },
     {
