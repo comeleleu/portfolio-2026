@@ -2,36 +2,32 @@ import en from '@locales/en.json';
 import fr from '@locales/fr.json';
 import { getLocale, type Locale } from '@utils/getLocale';
 
-/**
- * Shape of a simple translation dictionary.
- * Keys are the translation identifiers used in the UI.
- */
-export type Translations = Record<string, string>;
+/** Translation dictionary type (may be nested). */
+export type Translations = Record<string, unknown>;
 
-/**
- * Load the correct translation object based on the locale header.
- *
- * The JSON files are imported statically – Next.js bundles them at build time.
- * At request time we simply pick the right object, which is a cheap O(1) lookup.
- */
+/** Load the appropriate translation dictionary based on the locale header. */
 export async function getTranslations(): Promise<Translations> {
-    const locale: Locale = await getLocale();
-    
-    switch (locale) {
-        case "fr":
-            return fr as Translations;
-        case "en":
-        default:
-            return en as Translations;
-    }
+  const locale: Locale = await getLocale();
+  return locale === 'fr' ? (fr as Translations) : (en as Translations);
 }
 
-/**
- * Helper to fetch a single translation value.
- * Returns the key itself when the translation is missing – useful as a fallback.
- */
-export async function t(key: string): Promise<string> {
-    const dict = await getTranslations();
+/** Resolve dot‑notation keys (e.g., "about.fullname") within a possibly nested dictionary. */
+function resolveKey(dict: unknown, key: string): unknown {
+  if (typeof dict !== 'object' || dict === null) return undefined;
+  let result: unknown = dict;
+  for (const part of key.split('.')) {
+    if (result && typeof result === 'object' && part in (result as Record<string, unknown>)) {
+      result = (result as Record<string, unknown>)[part];
+    } else {
+      return undefined;
+    }
+  }
+  return result;
+}
 
-    return dict[key] ?? key;
+/** Async helper returning the translation string (or the key itself if missing). */
+export async function t(key: string): Promise<string> {
+  const dict = await getTranslations();
+  const value = resolveKey(dict, key);
+  return typeof value === 'string' ? value : key;
 }

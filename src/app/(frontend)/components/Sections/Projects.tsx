@@ -1,6 +1,8 @@
 import { unstable_cache } from "next/cache";
 import { formatDate } from "@utils/formatDate";
+import { getLocale, type Locale } from '@utils/getLocale';
 import { getPayload } from "@utils/getPayload";
+import { t } from '@utils/getTranslations';
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
 import { Tags } from "@components/Cards/Elements/Tags";
@@ -10,10 +12,11 @@ import { SectionHeader } from "@components/Sections/Elements/SectionHeader";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
 const getCachedProjects = unstable_cache(
-    async () => {
+    async (locale: Locale) => {
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'projects',
+            locale: locale,
             limit: 100,
             depth: 1,
             overrideAccess: true,
@@ -31,17 +34,21 @@ const getCachedProjects = unstable_cache(
 );
 
 export const Projects = async ({ sectionParameters }: { sectionParameters: any }) => {
+    const locale = await getLocale();
     let projects: any[] = [];
+
+    const noResult = await t('projects.noResult');
+
     try {
-        projects = await getCachedProjects();
+        projects = await getCachedProjects(locale);
     } catch (err) {
-        console.error('Error fetching projects', err);
+        console.error(await t('projects.fetchingFailed'), err);
     }
 
     return (
         <section id="projects" className="scroll-mt-16 md:scroll-mt-0">
             <SectionHeader
-                title={sectionParameters?.title || "Projects"}
+                title={sectionParameters?.title || await t('projects.title')}
                 sectionIcon="faFolderOpen"
                 afterColor="after:bg-linear-to-r/oklch after:from-blue-400 after:to-cyan-400 after:to-70%"
                 links={sectionParameters?.links}
@@ -100,7 +107,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                     })}
                 </div>
             ) : (
-                <NoResultMessage message="No projects found" />
+                <NoResultMessage message={noResult} />
             )}
         </section>
     );
