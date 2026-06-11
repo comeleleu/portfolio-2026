@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Bricolage_Grotesque } from "next/font/google";
-import "./globals.css";
+import { getLocale } from '@utils/getLocale';
+import "@app/globals.css";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -30,13 +31,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
-    <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
+    <html lang={locale} className="dark" style={{ colorScheme: "dark" }}>
       <body
         className={`${bricolageGrotesque.variable} ${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-zinc-900 bg-linear-to-br/oklch from-zinc-950/75 to-zinc-950/90`}
         suppressHydrationWarning
