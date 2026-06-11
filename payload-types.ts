@@ -100,14 +100,14 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale: null;
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'fr') | ('en' | 'fr')[];
   globals: {
     sections: Section;
   };
   globalsSelect: {
     sections: SectionsSelect<false> | SectionsSelect<true>;
   };
-  locale: null;
+  locale: 'en' | 'fr';
   widgets: {
     collections: CollectionsWidget;
   };
