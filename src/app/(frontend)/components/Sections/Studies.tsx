@@ -1,6 +1,8 @@
 import { unstable_cache } from "next/cache";
 import { formatDate } from "@utils/formatDate";
+import { getLocale, type Locale } from '@utils/getLocale';
 import { getPayload } from "@utils/getPayload";
+import { t } from '@utils/getTranslations';
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
 import { TitleImage } from "@components/Cards/Elements/TitleImage";
@@ -10,10 +12,11 @@ import { Icon } from "@components/Common/Icon";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
 const getCachedStudies = unstable_cache(
-    async () => {
+    async (locale: Locale) => {
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'studies',
+            locale: locale,
             limit: 100,
             depth: 2,
             overrideAccess: true,
@@ -31,11 +34,15 @@ const getCachedStudies = unstable_cache(
 );
 
 export const Studies = async ({ sectionParameters }: { sectionParameters: any }) => {
+    const locale = await getLocale();
     let studies: any[] = [];
+
+    const noResult = await t('studies.noResult');
+    
     try {
-        studies = await getCachedStudies();
+        studies = await getCachedStudies(locale);
     } catch (err) {
-        console.error('Error fetching studies', err);
+        console.error(await t('studies.fetchingFailed'), err);
     }
 
     return (
@@ -45,7 +52,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                 <div className="flex items-center gap-4 text-xl">
                     <Icon name="faGraduationCap" />
                     <div className="is-title relative after:content-[''] after:absolute after:h-0.5 after:w-6/5 after:bg-blue-500 after:rounded-full after:-bottom-1 after:left-1/2 after:-translate-x-1/2">
-                        {sectionParameters?.title || "Studies"}
+                        {sectionParameters?.title || await t('studies.title')}
                     </div>
                 </div>
             </div>
@@ -97,7 +104,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                     ))}
                 </div>
             ) : (
-                <NoResultMessage message="No studies found" />
+                <NoResultMessage message={noResult} />
             )}
         </section>
     );

@@ -1,6 +1,8 @@
 import { unstable_cache } from "next/cache";
 import { formatDate } from "@utils/formatDate";
+import { getLocale, type Locale } from '@utils/getLocale';
 import { getPayload } from "@utils/getPayload";
+import { t } from '@utils/getTranslations';
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
 import { TitleImage } from "@components/Cards/Elements/TitleImage";
@@ -24,10 +26,11 @@ const getLocationIcon = (locationType: string) => {
 };
 
 const getCachedExperiences = unstable_cache(
-    async () => {
+    async (locale: Locale) => {
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'experiences',
+            locale: locale,
             limit: 100,
             depth: 2,
             overrideAccess: true,
@@ -45,17 +48,21 @@ const getCachedExperiences = unstable_cache(
 );
 
 export const Experiences = async ({ sectionParameters }: { sectionParameters: any }) => {
+    const locale = await getLocale();
     let experiences: any[] = [];
+
+    const noResult = await t('experiences.noResult');
+    
     try {
-        experiences = await getCachedExperiences();
+        experiences = await getCachedExperiences(locale);
     } catch (err) {
-        console.error('Error fetching experiences', err);
+        console.error(await t('experiences.fetchingFailed'), err);
     }
 
     return (
         <section id="experiences" className="scroll-mt-16 md:scroll-mt-0">
             <SectionHeader
-                title={sectionParameters?.title || "Experiences"}
+                title={sectionParameters?.title || await t('experiences.title')}
                 sectionIcon="faLaptopCode"
                 afterColor="after:bg-linear-to-r/oklch after:from-indigo-500 after:to-blue-500 after:from-30%"
                 links={sectionParameters?.links}
@@ -122,7 +129,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                         <div className="flex items-center gap-3">
                                             <Icon name="faTruck" className="text-lg" />
                                             <span className="relative after:content-[''] after:absolute after:h-0.5 after:w-4/5 after:bg-indigo-500 after:rounded-full after:-bottom-0.5 after:-left-1">
-                                                <span className="hidden md:inline">Moved to </span>
+                                                <span className="hidden md:inline">{t('experiences.movedTo')} </span>
                                                 {experience.location}
                                             </span>
                                         </div>
@@ -133,7 +140,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                     })}
                 </div>
             ) : (
-                <NoResultMessage message="No experiences found" />
+                <NoResultMessage message={noResult} />
             )}
         </section>
     );

@@ -1,3 +1,27 @@
 {
-  "greeting": "Bonjour"
+  "footer": {
+    "createdWith": "Créé avec {nextJs}, {payload} et {tailwindCss}.",
+    "hostedBy": "Hébergé par {vercel}"
+  },
+  "about": {
+    "fullname": "Côme Leleu",
+    "jobTitle": "Développeur web full-stack",
+    "profilePictureAlt": "Photo de profil"
+  },
+  "experiences": {
+    "title": "Expériences",
+    "movedTo": "Déménagement à",
+    "noResult": "Aucune expérience trouvée...",
+    "fetchingFailed": "Erreur lors de la récupération des expériences..."
+  },
+  "projects": {
+    "title": "Projets",
+    "noResult": "Aucun projet trouvé...",
+    "fetchingFailed": "Erreur lors de la récupération des projets..."
+  },
+  "studies": {
+    "title": "Études",
+    "noResult": "Aucune étude trouvée...",
+    "fetchingFailed": "Erreur lors de la récupération des études..."
+  }
 }
