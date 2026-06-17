@@ -55,18 +55,24 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
             />
             {projects.length > 0 ? (
                 <div className="columns-1 md:columns-2 lg:columns-3 gap-4 *:mb-4 *:last:mb-0">
-                    {projects.map((project: any) => {
-                        const {startDate, endDate, currentProject} = project;
+                    {projects.map(async (project: any) => {
+                        let dateShort;
+                        let dateLong;
 
-                        const startDateShort = startDate ? formatDate(startDate, 'short') : '';
-                        const endDateShort = currentProject ? "Today" : (endDate ? formatDate(endDate, 'short') : '');
+                        if (project.startDate == project.endDate || (!project.endDate && !project.currentProject)) {
+                            dateShort = formatDate(project.startDate, 'shortNoDay', locale);
+                            dateLong = formatDate(project.startDate, 'longNoDay', locale);
+                        } else {
+                            const today = (await t('general.dateToday')) as string;
 
-                        let dateLabel = startDateShort || endDateShort;
-                        let dateLabelHover = startDateShort || endDateShort;
-
-                        if (startDateShort && endDateShort && startDateShort !== endDateShort) {
-                            dateLabel = `${startDateShort} — ${endDateShort}`;
-                            dateLabelHover = `${startDateShort} to ${endDateShort}`;
+                            dateShort = await t('general.dateShort', {
+                                startDate: formatDate(project.startDate, 'shortNoDay', locale),
+                                endDate: project.currentProject ? today : formatDate(project.endDate, 'shortNoDay', locale)
+                            });
+                            dateLong = await t('general.dateLongMonth', {
+                                startDate: formatDate(project.startDate, 'longNoDay', locale),
+                                endDate: project.currentProject ? today.toLowerCase() : formatDate(project.endDate, 'longNoDay', locale)
+                            });
                         }
 
                         return (
@@ -76,17 +82,15 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                                 link={project.link}
                             >
                                 <div className="flex flex-col gap-4 sm:gap-6 p-4 sm:px-6">
-                                    {dateLabel && (
-                                        <div className="flex">
-                                            <Badge
-                                                label={dateLabel}
-                                                labelHover={dateLabelHover}
-                                                textColor="text-cyan-400"
-                                                backgroundColor="bg-cyan-600/10"
-                                                borderColor="border-cyan-300/10"
-                                            />
-                                        </div>
-                                    )}
+                                    <div className="flex">
+                                        <Badge
+                                            label={dateShort}
+                                            labelHover={dateLong}
+                                            textColor="text-cyan-400"
+                                            backgroundColor="bg-cyan-600/10"
+                                            borderColor="border-cyan-300/10"
+                                        />
+                                    </div>
                                     <Title
                                         title={project.title}
                                         subtitle={project.context}

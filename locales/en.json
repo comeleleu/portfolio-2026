@@ -1,27 +1,46 @@
 {
-  "footer": {
-    "createdWith": "Created with {nextJs}, {payload} and {tailwindCss}.",
-    "hostedBy": "Hosted by {vercel}"
-  },
-  "about": {
-    "fullname": "Côme Leleu",
-    "jobTitle": "Full-stack Web Developer",
-    "profilePictureAlt": "Profile picture"
-  },
-  "experiences": {
-    "title": "Experiences",
-    "movedTo": "Moved to",
-    "noResult": "No experiences found...",
-    "fetchingFailed": "Error while fetching experiences..."
-  },
-  "projects": {
-    "title": "Projects",
-    "noResult": "No projects found...",
-    "fetchingFailed": "Error while fetching projects..."
-  },
-  "studies": {
-    "title": "Studies",
-    "noResult": "No studies found...",
-    "fetchingFailed": "Error while fetching studies..."
-  }
+    "navbar": {
+        "scrollTop": "Scroll to top"
+    },
+    "footer": {
+        "createdWith": "Created with {nextJs}, {payload} and {tailwindCss}.",
+        "hostedBy": "Hosted by {vercel}"
+    },
+    "about": {
+        "title": "About",
+        "fullname": "Côme Leleu",
+        "jobTitle": "Full-stack Web Developer",
+        "profilePictureAlt": "Profile picture"
+    },
+    "experiences": {
+        "title": "Experiences",
+        "movedTo": "Moved to",
+        "selfEmployed": "Self-employed",
+        "location": {
+            "remote": "Remote",
+            "hybrid": "Hybrid",
+            "onSite": "On-site"
+        },
+        "noResult": "No experiences found...",
+        "fetchingFailed": "Error while fetching experiences..."
+    },
+    "projects": {
+        "title": "Projects",
+        "noResult": "No projects found...",
+        "fetchingFailed": "Error while fetching projects..."
+    },
+    "studies": {
+        "title": "Studies",
+        "noResult": "No studies found...",
+        "fetchingFailed": "Error while fetching studies..."
+    },
+    "general": {
+        "dateShort": "{startDate} — {endDate}",
+        "dateLong": "{startDate} to {endDate}",
+        "dateLongToday": "{startDate} to {endDate}",
+        "dateLongMonth": "{startDate} to {endDate}",
+        "dateToday": "Today",
+        "noResult": "No results found...",
+        "fetchingFailed": "Error while fetching..."
+    }
 }
