@@ -4,30 +4,7 @@ import { useState, useEffect } from "react";
 import { Icon } from "@components/Common/Icon";
 import { Link } from "@components/Common/Link";
 
-export const Navbar = ({ sectionParameters }: { sectionParameters: any }) => {
-    const navSections = [
-        {
-            id: 'about',
-            label: sectionParameters?.about?.shortTitle || "About",
-            icon: 'faCircleUser'
-        },
-        {
-            id: 'experiences',
-            label: sectionParameters?.experiences?.shortTitle || "Experiences",
-            icon: 'faLaptopCode'
-        },
-        {
-            id: 'studies',
-            label: sectionParameters?.studies?.shortTitle || "Studies",
-            icon: 'faGraduationCap'
-        },
-        {
-            id: 'projects',
-            label: sectionParameters?.projects?.shortTitle || "Projects",
-            icon: 'faFolderOpen'
-        },
-    ];
-
+export const Navbar = ({ sectionParameters, navSections }: { sectionParameters: any, navSections: any[] }) => {
     const [showScrollTop, setShowScrollTop] = useState(false);
     const [activeSection, setActiveSection] = useState<string>(navSections[0]?.id || '');
 

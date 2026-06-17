@@ -24,15 +24,15 @@ export const About = async ({ sectionParameters }: { sectionParameters: any }) =
         </div>
         {profilePictureUrl && (
             <div className="self-start lg:sticky lg:top-10 w-2/3 lg:w-full mx-auto">
-            <GlowingCard glowingBorderColor={glowingBorderColor || undefined}>
-                <Image 
-                src={profilePictureUrl} 
-                alt={profilePictureAlt} 
-                width={profilePicture?.width || 400} 
-                height={profilePicture?.height || 400} 
-                className="w-full max-h-96 object-cover brightness-85" 
-                />
-            </GlowingCard>
+                <GlowingCard glowingBorderColor={glowingBorderColor || undefined}>
+                    <Image 
+                        src={profilePictureUrl} 
+                        alt={profilePictureAlt} 
+                        width={profilePicture?.width || 400} 
+                        height={profilePicture?.height || 400} 
+                        className="w-full max-h-96 object-cover brightness-85" 
+                    />
+                </GlowingCard>
             </div>
         )}
         </section>

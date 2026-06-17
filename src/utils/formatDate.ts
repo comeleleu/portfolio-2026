@@ -24,14 +24,34 @@ export const formatDate = (
 
     switch (format) {
         case "short":
+        case "shortNoDay":
+            // Month and year, e.g., "Jun 2026"
             options = { month: 'short', year: 'numeric' };
             break;
+        case "shortWithDay":
+            // Day, month, and year, e.g., "3 Jun 2026"
+            options = { day: 'numeric', month: 'short', year: 'numeric' };
+            break;
         case "long":
+        case "longWithDay":
+            // Full day, month name, and year, e.g., "June 3, 2026"
             options = { day: 'numeric', month: 'long', year: 'numeric' };
             break;
+        case "longNoDay":
+            // Month name and year only, e.g., "June 2026"
+            options = { month: 'long', year: 'numeric' };
+            break;
         default:
+            // Preserve original default: short month with day
             options = { day: 'numeric', month: 'short', year: 'numeric' };
     }
 
-    return date.toLocaleDateString(locale, options);
+    let formatted = date.toLocaleDateString(locale, options);
+    
+    // Capitalize month abbreviation for French short format (e.g., "oct." → "Oct.")
+    if (locale.startsWith('fr') && (format === 'short' || format === 'shortNoDay')) {
+        formatted = formatted.replace(/^([a-zéàâû])/ , (m) => m.toUpperCase());
+    }
+
+    return formatted;
 };

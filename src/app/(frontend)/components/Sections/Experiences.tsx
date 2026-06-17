@@ -25,6 +25,19 @@ const getLocationIcon = (locationType: string) => {
     }
 };
 
+const getLocationLabel = async (locationType: string) => {
+    switch (locationType) {
+        case "Remote":
+            return await t('experiences.location.remote');
+        case "Hybrid":
+            return await t('experiences.location.hybrid');
+        case "On-site":
+            return await t('experiences.location.onSite');
+        default:
+            return locationType;
+    }
+};
+
 const getCachedExperiences = unstable_cache(
     async (locale: Locale) => {
         const payload = await getPayload();
@@ -70,9 +83,19 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
 
             {experiences.length > 0 ? (
                 <div className="flex flex-col gap-4">
-                    {experiences.map((experience: any, index: number) => {
+                    {experiences.map(async (experience: any, index: number) => {
                         const previousExperience = experiences[index + 1];
                         const showLocationChange = previousExperience && experience.location !== previousExperience.location;
+
+                        const today = (await t('general.dateToday')) as string;
+                        const dateShort = await t('general.dateShort', {
+                            startDate: formatDate(experience.startDate, 'short', locale),
+                            endDate: experience.currentWork ? today : formatDate(experience.endDate, 'short', locale)
+                        });
+                        const dateLong = await t(experience.currentWork ? 'general.dateLongToday' : 'general.dateLong', {
+                            startDate: formatDate(experience.startDate, 'long', locale),
+                            endDate: experience.currentWork ? today.toLowerCase() : formatDate(experience.endDate, 'long', locale)
+                        });
 
                         return (
                             <div key={experience.id ?? experience._id ?? experience.title} className="flex flex-col justify-start gap-4">
@@ -83,8 +106,8 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                     <div className="relative flex flex-col gap-4 sm:gap-6 p-4 sm:px-6 md:px-8 md:py-6">
                                         <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-2 md:gap-6">
                                             <Badge
-                                                label={`${formatDate(experience.startDate, 'short')} — ${experience.currentWork ? "Today" : formatDate(experience.endDate, 'short')}`}
-                                                labelHover={`${formatDate(experience.startDate, 'long')} to ${experience.currentWork ? "Today" : formatDate(experience.endDate, 'long')}`}
+                                                label={dateShort}
+                                                labelHover={dateLong}
                                                 textColor="text-indigo-400"
                                                 backgroundColor="bg-indigo-600/10"
                                                 borderColor="border-indigo-300/10"
@@ -92,12 +115,12 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                             <div className="flex flex-row-reverse md:flex-row items-center gap-2">
                                                 {experience.selfEmployed && (
                                                     <Badge
-                                                        label="Self-employed"
+                                                        label={await t("experiences.selfEmployed")}
                                                         icon="faAddressCard"
                                                     />
                                                 )}
                                                 <Badge
-                                                    label={experience.locationType}
+                                                    label={await getLocationLabel(experience.locationType)}
                                                     icon={getLocationIcon(experience.locationType)}
                                                 />
                                             </div>
@@ -129,7 +152,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                         <div className="flex items-center gap-3">
                                             <Icon name="faTruck" className="text-lg" />
                                             <span className="relative after:content-[''] after:absolute after:h-0.5 after:w-4/5 after:bg-indigo-500 after:rounded-full after:-bottom-0.5 after:-left-1">
-                                                <span className="hidden md:inline">{t('experiences.movedTo')} </span>
+                                                <span className="hidden md:inline">{await t('experiences.movedTo')} </span>
                                                 {experience.location}
                                             </span>
                                         </div>

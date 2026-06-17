@@ -59,49 +59,61 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
 
             {studies.length > 0 ? (
                 <div className="flex flex-col gap-4">
-                    {studies.map((study: any) => (
-                        <GlowingCard
-                            key={study.id ?? study._id ?? study.degree}
-                            glowingBorderColor="bg-linear-to-r/oklch from-cyan-400 via-blue-400 to-violet-400"
-                            link={study.link ?? study.school?.link}
-                        >
-                            <div className="relative flex flex-col gap-4 sm:gap-6 p-4 sm:px-6 md:px-8 md:py-6">
-                                <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-2 md:gap-6">
-                                    <Badge
-                                        label={`${formatDate(study.startDate, 'short')} — ${study.currentStudy ? "Today" : formatDate(study.endDate, 'short')}`}
-                                        labelHover={`${formatDate(study.startDate, 'long')} to ${study.currentStudy ? "Today" : formatDate(study.endDate, 'long')}`}
-                                        textColor="text-blue-400"
-                                        backgroundColor="bg-blue-600/10"
-                                        borderColor="border-blue-300/10"
-                                    />
-                                    <Badge
-                                        label={`${study.level} — ${study.field}`}
-                                        icon="faGraduationCap"
+                    {studies.map(async (study: any) => {
+                        const today = (await t('general.dateToday')) as string;
+                        const dateShort = await t('general.dateShort', {
+                            startDate: formatDate(study.startDate, 'short', locale),
+                            endDate: study.currentStudy ? today : formatDate(study.endDate, 'short', locale)
+                        });
+                        const dateLong = await t(study.currentStudy ? 'general.dateLongToday' : 'general.dateLong', {
+                            startDate: formatDate(study.startDate, 'long', locale),
+                            endDate: study.currentStudy ? today.toLowerCase() : formatDate(study.endDate, 'long', locale)
+                        });
+
+                        return (
+                            <GlowingCard
+                                key={study.id ?? study._id ?? study.degree}
+                                glowingBorderColor="bg-linear-to-r/oklch from-cyan-400 via-blue-400 to-violet-400"
+                                link={study.link ?? study.school?.link}
+                            >
+                                <div className="relative flex flex-col gap-4 sm:gap-6 p-4 sm:px-6 md:px-8 md:py-6">
+                                    <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-2 md:gap-6">
+                                        <Badge
+                                            label={dateShort}
+                                            labelHover={dateLong}
+                                            textColor="text-blue-400"
+                                            backgroundColor="bg-blue-600/10"
+                                            borderColor="border-blue-300/10"
+                                        />
+                                        <Badge
+                                            label={`${study.level} — ${study.field}`}
+                                            icon="faGraduationCap"
+                                        />
+                                    </div>
+                                    <TitleImage
+                                        title={study.degree}
+                                        subtitle={study.school.name}
+                                        isLink={!!(study.link?.url ?? study.school?.link?.url)}
+                                        subtitleColor="text-blue-400"
+                                        imageUrl={study.school?.logo?.url}
+                                        imageAlt={study.school?.logo?.alt || study.school?.name}
+                                    >
+                                        <p className="flex items-center gap-1">
+                                            <Icon name="faLocationDot" className="text-sm" />
+                                            {study.school.location}
+                                        </p>
+                                    </TitleImage>
+                                    <Description text={study.description} />
+                                    <Tags
+                                        tags={study.tags}
+                                        textColor="text-blue-400 hover:text-blue-300"
+                                        backgroundColor="bg-blue-600/15 hover:bg-blue-500/20"
+                                        borderColor="border-blue-400/15 hover:border-blue-300/20"
                                     />
                                 </div>
-                                <TitleImage
-                                    title={study.degree}
-                                    subtitle={study.school.name}
-                                    isLink={!!(study.link?.url ?? study.school?.link?.url)}
-                                    subtitleColor="text-blue-400"
-                                    imageUrl={study.school?.logo?.url}
-                                    imageAlt={study.school?.logo?.alt || study.school?.name}
-                                >
-                                    <p className="flex items-center gap-1">
-                                        <Icon name="faLocationDot" className="text-sm" />
-                                        {study.school.location}
-                                    </p>
-                                </TitleImage>
-                                <Description text={study.description} />
-                                <Tags
-                                    tags={study.tags}
-                                    textColor="text-blue-400 hover:text-blue-300"
-                                    backgroundColor="bg-blue-600/15 hover:bg-blue-500/20"
-                                    borderColor="border-blue-400/15 hover:border-blue-300/20"
-                                />
-                            </div>
-                        </GlowingCard>
-                    ))}
+                            </GlowingCard>
+                        );
+                    })}
                 </div>
             ) : (
                 <NoResultMessage message={noResult} />
