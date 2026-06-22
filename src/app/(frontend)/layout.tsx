@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Bricolage_Grotesque } from "next/font/google";
 import { getLocale } from '@utils/getLocale';
+import { getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
 import "@app/globals.css";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -37,6 +39,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const locale = await getLocale();
+  const messages = await getMessages({ locale });
 
   return (
     <html lang={locale} className="dark" style={{ colorScheme: "dark" }}>
@@ -44,7 +47,9 @@ export default async function RootLayout({
         className={`${bricolageGrotesque.variable} ${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-zinc-900 bg-linear-to-br/oklch from-zinc-950/75 to-zinc-950/90`}
         suppressHydrationWarning
       >
-        {children}
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

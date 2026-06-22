@@ -1,19 +1,20 @@
 import Image from "next/image";
-import { t } from '@utils/getTranslations';
+import { useTranslations } from 'next-intl';
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Description } from "@components/Common/Description";
 
-export const About = async ({ sectionParameters }: { sectionParameters: any }) => {
+export const About = ({ sectionParameters }: { sectionParameters: any }) => {
+    const t = useTranslations('about');
     const {
-        fullname = await t('about.fullname'),
-        jobTitle = await t('about.jobTitle'),
+        fullname = t('fullname'),
+        jobTitle = t('jobTitle'),
         description,
         profilePicture,
         glowingBorderColor,
     } = sectionParameters;
 
     const profilePictureUrl = profilePicture?.url;
-    const profilePictureAlt = profilePicture?.alt || await t('about.profilePictureAlt');
+    const profilePictureAlt = profilePicture?.alt || t('profilePictureAlt');
 
     return (
         <section id="about" className="scroll-mt-32 md:scroll-mt-0 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 lg:gap-16 pt-6 md:pt-10">

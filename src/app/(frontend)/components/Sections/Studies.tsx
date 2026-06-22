@@ -1,8 +1,7 @@
 import { unstable_cache } from "next/cache";
+import { getTranslations, getLocale } from 'next-intl/server';
 import { formatDate } from "@utils/formatDate";
-import { getLocale, type Locale } from '@utils/getLocale';
 import { getPayload } from "@utils/getPayload";
-import { t } from '@utils/getTranslations';
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
 import { TitleImage } from "@components/Cards/Elements/TitleImage";
@@ -12,7 +11,7 @@ import { Icon } from "@components/Common/Icon";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
 const getCachedStudies = unstable_cache(
-    async (locale: Locale) => {
+    async (locale: string) => {
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'studies',
@@ -34,15 +33,14 @@ const getCachedStudies = unstable_cache(
 );
 
 export const Studies = async ({ sectionParameters }: { sectionParameters: any }) => {
+    const t = await getTranslations();
     const locale = await getLocale();
     let studies: any[] = [];
-
-    const noResult = await t('studies.noResult');
     
     try {
         studies = await getCachedStudies(locale);
     } catch (err) {
-        console.error(await t('studies.fetchingFailed'), err);
+        console.error(t('studies.fetchingFailed'), err);
     }
 
     return (
@@ -52,7 +50,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                 <div className="flex items-center gap-4 text-xl">
                     <Icon name="faGraduationCap" />
                     <div className="is-title relative after:content-[''] after:absolute after:h-0.5 after:w-6/5 after:bg-blue-500 after:rounded-full after:-bottom-1 after:left-1/2 after:-translate-x-1/2">
-                        {sectionParameters?.title || await t('studies.title')}
+                        {sectionParameters?.title || t('studies.title')}
                     </div>
                 </div>
             </div>
@@ -60,12 +58,12 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
             {studies.length > 0 ? (
                 <div className="flex flex-col gap-4">
                     {studies.map(async (study: any) => {
-                        const today = (await t('general.dateToday')) as string;
-                        const dateShort = await t('general.dateShort', {
+                        const today = (t('general.dateToday')) as string;
+                        const dateShort = t('general.dateShort', {
                             startDate: formatDate(study.startDate, 'short', locale),
                             endDate: study.currentStudy ? today : formatDate(study.endDate, 'short', locale)
                         });
-                        const dateLong = await t(study.currentStudy ? 'general.dateLongToday' : 'general.dateLong', {
+                        const dateLong = t(study.currentStudy ? 'general.dateLongToday' : 'general.dateLong', {
                             startDate: formatDate(study.startDate, 'long', locale),
                             endDate: study.currentStudy ? today.toLowerCase() : formatDate(study.endDate, 'long', locale)
                         });
@@ -116,7 +114,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                     })}
                 </div>
             ) : (
-                <NoResultMessage message={noResult} />
+                <NoResultMessage message={t('studies.noResult')} />
             )}
         </section>
     );
