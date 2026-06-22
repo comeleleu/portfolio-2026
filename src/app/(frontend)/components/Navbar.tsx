@@ -1,10 +1,36 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import { useTranslations } from 'next-intl';
 import { Icon } from "@components/Common/Icon";
 import { Link } from "@components/Common/Link";
 
-export const Navbar = ({ sectionParameters, navSections }: { sectionParameters: any, navSections: any[] }) => {
+export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
+    const t = useTranslations();
+
+    const navSections = [
+        {
+            id: 'about',
+            label: sectionParameters?.about?.shortTitle || t('about.title'),
+            icon: 'faCircleUser'
+        },
+        {
+            id: 'experiences',
+            label: sectionParameters?.experiences?.shortTitle || t('experiences.title'),
+            icon: 'faLaptopCode'
+        },
+        {
+            id: 'studies',
+            label: sectionParameters?.studies?.shortTitle || t('studies.title'),
+            icon: 'faGraduationCap'
+        },
+        {
+            id: 'projects',
+            label: sectionParameters?.projects?.shortTitle || t('projects.title'),
+            icon: 'faFolderOpen'
+        },
+    ];
+
     const [showScrollTop, setShowScrollTop] = useState(false);
     const [activeSection, setActiveSection] = useState<string>(navSections[0]?.id || '');
 
@@ -107,7 +133,7 @@ export const Navbar = ({ sectionParameters, navSections }: { sectionParameters: 
                     : 'w-0 h-0 opacity-0 translate-x-24 md:translate-x-0 md:translate-y-24 pointer-events-none ml-0 md:mt-0'}
                 `}
                 onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
-                aria-label="Scroll to top"
+                aria-label={t('navbar.scrollTop')}
                 tabIndex={showScrollTop ? 0 : -1}
                 aria-hidden={!showScrollTop}
             >

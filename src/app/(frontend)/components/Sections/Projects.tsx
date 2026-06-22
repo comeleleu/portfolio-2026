@@ -1,8 +1,7 @@
 import { unstable_cache } from "next/cache";
+import { getTranslations, getLocale } from 'next-intl/server';
 import { formatDate } from "@utils/formatDate";
-import { getLocale, type Locale } from '@utils/getLocale';
 import { getPayload } from "@utils/getPayload";
-import { t } from '@utils/getTranslations';
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
 import { Tags } from "@components/Cards/Elements/Tags";
@@ -12,7 +11,7 @@ import { SectionHeader } from "@components/Sections/Elements/SectionHeader";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
 const getCachedProjects = unstable_cache(
-    async (locale: Locale) => {
+    async (locale: string) => {
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'projects',
@@ -34,21 +33,20 @@ const getCachedProjects = unstable_cache(
 );
 
 export const Projects = async ({ sectionParameters }: { sectionParameters: any }) => {
+    const t = await getTranslations();
     const locale = await getLocale();
     let projects: any[] = [];
-
-    const noResult = await t('projects.noResult');
 
     try {
         projects = await getCachedProjects(locale);
     } catch (err) {
-        console.error(await t('projects.fetchingFailed'), err);
+        console.error(t('projects.fetchingFailed'), err);
     }
 
     return (
         <section id="projects" className="scroll-mt-16 md:scroll-mt-0">
             <SectionHeader
-                title={sectionParameters?.title || await t('projects.title')}
+                title={sectionParameters?.title || t('projects.title')}
                 sectionIcon="faFolderOpen"
                 afterColor="after:bg-linear-to-r/oklch after:from-blue-400 after:to-cyan-400 after:to-70%"
                 links={sectionParameters?.links}
@@ -63,13 +61,13 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                             dateShort = formatDate(project.startDate, 'shortNoDay', locale);
                             dateLong = formatDate(project.startDate, 'longNoDay', locale);
                         } else {
-                            const today = (await t('general.dateToday')) as string;
+                            const today = (t('general.dateToday')) as string;
 
-                            dateShort = await t('general.dateShort', {
+                            dateShort = t('general.dateShort', {
                                 startDate: formatDate(project.startDate, 'shortNoDay', locale),
                                 endDate: project.currentProject ? today : formatDate(project.endDate, 'shortNoDay', locale)
                             });
-                            dateLong = await t('general.dateLongMonth', {
+                            dateLong = t('general.dateLongMonth', {
                                 startDate: formatDate(project.startDate, 'longNoDay', locale),
                                 endDate: project.currentProject ? today.toLowerCase() : formatDate(project.endDate, 'longNoDay', locale)
                             });
@@ -111,7 +109,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                     })}
                 </div>
             ) : (
-                <NoResultMessage message={noResult} />
+                <NoResultMessage message={t('projects.noResult')} />
             )}
         </section>
     );

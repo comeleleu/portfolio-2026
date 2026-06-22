@@ -1,8 +1,7 @@
 import { unstable_cache } from "next/cache";
+import { getTranslations, getLocale } from 'next-intl/server';
 import { formatDate } from "@utils/formatDate";
-import { getLocale, type Locale } from '@utils/getLocale';
 import { getPayload } from "@utils/getPayload";
-import { t } from '@utils/getTranslations';
 import { GlowingCard } from "@components/Cards/GlowingCard";
 import { Badge } from "@components/Cards/Elements/Badge";
 import { TitleImage } from "@components/Cards/Elements/TitleImage";
@@ -26,20 +25,22 @@ const getLocationIcon = (locationType: string) => {
 };
 
 const getLocationLabel = async (locationType: string) => {
+    const t = await getTranslations('experiences');
+    
     switch (locationType) {
         case "Remote":
-            return await t('experiences.location.remote');
+            return t('location.remote');
         case "Hybrid":
-            return await t('experiences.location.hybrid');
+            return t('location.hybrid');
         case "On-site":
-            return await t('experiences.location.onSite');
+            return t('location.onSite');
         default:
             return locationType;
     }
 };
 
 const getCachedExperiences = unstable_cache(
-    async (locale: Locale) => {
+    async (locale: string) => {
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'experiences',
@@ -61,21 +62,20 @@ const getCachedExperiences = unstable_cache(
 );
 
 export const Experiences = async ({ sectionParameters }: { sectionParameters: any }) => {
+    const t = await getTranslations();
     const locale = await getLocale();
     let experiences: any[] = [];
-
-    const noResult = await t('experiences.noResult');
     
     try {
         experiences = await getCachedExperiences(locale);
     } catch (err) {
-        console.error(await t('experiences.fetchingFailed'), err);
+        console.error(t('experiences.fetchingFailed'), err);
     }
 
     return (
         <section id="experiences" className="scroll-mt-16 md:scroll-mt-0">
             <SectionHeader
-                title={sectionParameters?.title || await t('experiences.title')}
+                title={sectionParameters?.title || t('experiences.title')}
                 sectionIcon="faLaptopCode"
                 afterColor="after:bg-linear-to-r/oklch after:from-indigo-500 after:to-blue-500 after:from-30%"
                 links={sectionParameters?.links}
@@ -87,12 +87,12 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                         const previousExperience = experiences[index + 1];
                         const showLocationChange = previousExperience && experience.location !== previousExperience.location;
 
-                        const today = (await t('general.dateToday')) as string;
-                        const dateShort = await t('general.dateShort', {
+                        const today = (t('general.dateToday')) as string;
+                        const dateShort = t('general.dateShort', {
                             startDate: formatDate(experience.startDate, 'short', locale),
                             endDate: experience.currentWork ? today : formatDate(experience.endDate, 'short', locale)
                         });
-                        const dateLong = await t(experience.currentWork ? 'general.dateLongToday' : 'general.dateLong', {
+                        const dateLong = t(experience.currentWork ? 'general.dateLongToday' : 'general.dateLong', {
                             startDate: formatDate(experience.startDate, 'long', locale),
                             endDate: experience.currentWork ? today.toLowerCase() : formatDate(experience.endDate, 'long', locale)
                         });
@@ -115,12 +115,12 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                             <div className="flex flex-row-reverse md:flex-row items-center gap-2">
                                                 {experience.selfEmployed && (
                                                     <Badge
-                                                        label={await t("experiences.selfEmployed")}
+                                                        label={t("experiences.selfEmployed")}
                                                         icon="faAddressCard"
                                                     />
                                                 )}
                                                 <Badge
-                                                    label={await getLocationLabel(experience.locationType)}
+                                                    label={getLocationLabel(experience.locationType)}
                                                     icon={getLocationIcon(experience.locationType)}
                                                 />
                                             </div>
@@ -152,7 +152,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                         <div className="flex items-center gap-3">
                                             <Icon name="faTruck" className="text-lg" />
                                             <span className="relative after:content-[''] after:absolute after:h-0.5 after:w-4/5 after:bg-indigo-500 after:rounded-full after:-bottom-0.5 after:-left-1">
-                                                <span className="hidden md:inline">{await t('experiences.movedTo')} </span>
+                                                <span className="hidden md:inline">{t('experiences.movedTo')} </span>
                                                 {experience.location}
                                             </span>
                                         </div>
@@ -163,7 +163,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                     })}
                 </div>
             ) : (
-                <NoResultMessage message={noResult} />
+                <NoResultMessage message={t('experiences.noResult')} />
             )}
         </section>
     );
