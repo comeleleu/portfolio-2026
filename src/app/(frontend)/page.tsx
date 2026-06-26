@@ -1,4 +1,5 @@
 import { unstable_cache } from "next/cache";
+import { getLocale } from 'next-intl/server';
 import { getPayload } from "@utils/getPayload";
 import { Navbar } from "@components/Navbar";
 import { About } from "@components/Sections/About";
@@ -9,13 +10,15 @@ import { Footer } from "@components/Footer";
 
 const getCachedSections = unstable_cache(
     async () => {
+        const locale = await getLocale();
         const payload = await getPayload();
         return payload.findGlobal({
             slug: 'sections',
+            locale: locale as any,
             depth: 1,
         });
     },
-    ['global-sections'],
+    [`global-sections-${await getLocale()}`],
     {
         tags: ['sections', 'links', 'medias']
     }
