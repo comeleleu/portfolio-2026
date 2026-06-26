@@ -3,8 +3,10 @@
         "scrollTop": "Scroll to top"
     },
     "footer": {
-        "createdWith": "Created with {nextJs}, {payload} and {tailwindCss}.",
-        "hostedBy": "Hosted by {vercel}"
+        "credits": "© <startYear>2026</startYear> — <name>Côme Leleu</name>",
+        "creditsPeriod": "© <startYear>2026</startYear> - <currentYear>2026</currentYear> — <name>Côme Leleu</name>",
+        "createdWith": "Created with <nextJs>Next.js</nextJs>, <payload>Payload</payload> and <tailwindCss>Tailwind CSS</tailwindCss>.",
+        "hostedBy": "Hosted by <vercel>Vercel</vercel>"
     },
     "about": {
         "title": "About",
@@ -19,7 +21,7 @@
         "location": {
             "remote": "Remote",
             "hybrid": "Hybrid",
-            "onSite": "On-site"
+            "onsite": "On-site"
         },
         "noResult": "No experiences found...",
         "fetchingFailed": "Error while fetching experiences..."

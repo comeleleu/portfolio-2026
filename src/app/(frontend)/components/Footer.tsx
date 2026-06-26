@@ -4,13 +4,21 @@ import { Link } from "@components/Common/Link";
 
 export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
     const t = useTranslations();
+    const startYear = 2026;
+    const currentYear = new Date().getFullYear();
 
     return (
         <footer
             className="flex flex-col-reverse md:flex-row justify-between items-start gap-4 md:gap-12 text-sm text-zinc-400 border-t border-zinc-700 py-6 md:py-8"
             role="contentinfo"
         >
-            <p>© {new Date().getFullYear()} — {t('about.fullname')}</p>
+            <p>
+                {t.rich(startYear == currentYear ? 'footer.credits' : 'footer.creditsPeriod', {
+                    startYear: (chunks) => startYear,
+                    currentYear: (chunks) => currentYear,
+                    name: (chunks) => t('about.fullname')
+                })}
+            </p>
             <div className="hidden md:flex flex-row items-center gap-4">
                 {sectionParameters?.links?.map((link: any) => {
                     return (
@@ -29,11 +37,11 @@ export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
             </div>
             <p>
                 {t.rich('footer.createdWith', {
-                    nextJs: <Link key="nextJs" link={{ url: "https://nextjs.org/", label: "Next.js" }} />,
-                    payload: <Link key="payload" link={{ url: "https://payloadcms.com/", label: "Payload" }} />,
-                    tailwindCss: <Link key="tailwindCss" link={{ url: "https://tailwindcss.com/", label: "Tailwind CSS" }} />,
+                    nextJs: (chunks) => <Link link={{ url: "https://nextjs.org/", label: "Next.js" }} />,
+                    payload: (chunks) => <Link link={{ url: "https://payloadcms.com/", label: "Payload" }} />,
+                    tailwindCss: (chunks) => <Link link={{ url: "https://tailwindcss.com/", label: "Tailwind CSS" }} />
                 })} {t.rich('footer.hostedBy', {
-                    vercel: <Link key="vercel" link={{ url: "https://vercel.com/", label: "Vercel" }} />,
+                    vercel: (chunks) => <Link link={{ url: "https://vercel.com/", label: "Vercel" }} />
                 })}
             </p>
         </footer>

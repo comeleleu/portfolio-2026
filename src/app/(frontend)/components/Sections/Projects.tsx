@@ -11,11 +11,12 @@ import { SectionHeader } from "@components/Sections/Elements/SectionHeader";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
 const getCachedProjects = unstable_cache(
-    async (locale: string) => {
+    async () => {
+        const locale = await getLocale();
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'projects',
-            locale: locale,
+            locale: locale as any,
             limit: 100,
             depth: 1,
             overrideAccess: true,
@@ -26,7 +27,7 @@ const getCachedProjects = unstable_cache(
         });
         return result?.docs || [];
     },
-    ['projects-list'],
+    [`projects-list-${await getLocale()}`],
     {
         tags: ['projects', 'links', 'tags']
     }
@@ -38,7 +39,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
     let projects: any[] = [];
 
     try {
-        projects = await getCachedProjects(locale);
+        projects = await getCachedProjects();
     } catch (err) {
         console.error(t('projects.fetchingFailed'), err);
     }

@@ -24,27 +24,13 @@ const getLocationIcon = (locationType: string) => {
     }
 };
 
-const getLocationLabel = async (locationType: string) => {
-    const t = await getTranslations('experiences');
-    
-    switch (locationType) {
-        case "Remote":
-            return t('location.remote');
-        case "Hybrid":
-            return t('location.hybrid');
-        case "On-site":
-            return t('location.onSite');
-        default:
-            return locationType;
-    }
-};
-
 const getCachedExperiences = unstable_cache(
-    async (locale: string) => {
+    async () => {
+        const locale = await getLocale();
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'experiences',
-            locale: locale,
+            locale: locale as any,
             limit: 100,
             depth: 2,
             overrideAccess: true,
@@ -55,7 +41,7 @@ const getCachedExperiences = unstable_cache(
         });
         return result?.docs || [];
     },
-    ['experiences-list'],
+    [`experiences-list-${await getLocale()}`],
     {
         tags: ['experiences', 'companies', 'medias', 'links', 'tags']
     }
@@ -67,7 +53,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
     let experiences: any[] = [];
     
     try {
-        experiences = await getCachedExperiences(locale);
+        experiences = await getCachedExperiences();
     } catch (err) {
         console.error(t('experiences.fetchingFailed'), err);
     }
@@ -120,7 +106,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                                     />
                                                 )}
                                                 <Badge
-                                                    label={getLocationLabel(experience.locationType)}
+                                                    label={t(`experiences.location.${experience.locationType.toLowerCase().replace("-", "")}`)}
                                                     icon={getLocationIcon(experience.locationType)}
                                                 />
                                             </div>
