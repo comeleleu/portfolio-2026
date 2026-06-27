@@ -10,9 +10,8 @@ import { Description } from "@components/Common/Description";
 import { Icon } from "@components/Common/Icon";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
-const getCachedStudies = unstable_cache(
+const getCachedStudies = (locale: string) => unstable_cache(
     async () => {
-        const locale = await getLocale();
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'studies',
@@ -21,13 +20,13 @@ const getCachedStudies = unstable_cache(
             depth: 2,
             overrideAccess: true,
             where: {
-                published: { equals: true },
+                published: { equals: true }
             },
             sort: ['-endDate'],
         });
         return result?.docs || [];
     },
-    [`studies-list-${await getLocale()}`],
+    [`studies-list-${locale}`],
     {
         tags: ['studies', 'links', 'medias', 'schools', 'tags']
     }
@@ -39,7 +38,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
     let studies: any[] = [];
     
     try {
-        studies = await getCachedStudies();
+        studies = await getCachedStudies(locale)();
     } catch (err) {
         console.error(t('studies.fetchingFailed'), err);
     }

@@ -24,9 +24,8 @@ const getLocationIcon = (locationType: string) => {
     }
 };
 
-const getCachedExperiences = unstable_cache(
+const getCachedExperiences = (locale: string) => unstable_cache(
     async () => {
-        const locale = await getLocale();
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'experiences',
@@ -35,13 +34,13 @@ const getCachedExperiences = unstable_cache(
             depth: 2,
             overrideAccess: true,
             where: {
-                published: { equals: true },
+                published: { equals: true }
             },
             sort: ['-endDate'],
         });
         return result?.docs || [];
     },
-    [`experiences-list-${await getLocale()}`],
+    [`experiences-list-${locale}`],
     {
         tags: ['experiences', 'companies', 'medias', 'links', 'tags']
     }
@@ -53,7 +52,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
     let experiences: any[] = [];
     
     try {
-        experiences = await getCachedExperiences();
+        experiences = await getCachedExperiences(locale)();
     } catch (err) {
         console.error(t('experiences.fetchingFailed'), err);
     }

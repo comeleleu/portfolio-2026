@@ -8,9 +8,8 @@ import { Studies } from "@components/Sections/Studies";
 import { Projects } from "@components/Sections/Projects";
 import { Footer } from "@components/Footer";
 
-const getCachedSections = unstable_cache(
+const getCachedSections = (locale: string) => unstable_cache(
     async () => {
-        const locale = await getLocale();
         const payload = await getPayload();
         return payload.findGlobal({
             slug: 'sections',
@@ -18,17 +17,16 @@ const getCachedSections = unstable_cache(
             depth: 1,
         });
     },
-    [`global-sections-${await getLocale()}`],
-    {
-        tags: ['sections', 'links', 'medias']
-    }
+    [`global-sections-${locale}`],
+    { tags: ['sections', 'links', 'medias'] }
 );
 
 export default async function Home() {
     let sectionsData: any = null;
 
     try {
-        sectionsData = await getCachedSections();
+        const locale = await getLocale();
+        sectionsData = await getCachedSections(locale)();
     } catch (err) {
         console.error('Error fetching section data', err);
     }
