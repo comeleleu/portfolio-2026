@@ -10,9 +10,8 @@ import { Description } from "@components/Common/Description";
 import { SectionHeader } from "@components/Sections/Elements/SectionHeader";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
-const getCachedProjects = unstable_cache(
+const getCachedProjects = (locale: string) => unstable_cache(
     async () => {
-        const locale = await getLocale();
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'projects',
@@ -21,13 +20,13 @@ const getCachedProjects = unstable_cache(
             depth: 1,
             overrideAccess: true,
             where: {
-                published: { equals: true },
+                published: { equals: true }
             },
             sort: ['-startDate', '-endDate'],
         });
         return result?.docs || [];
     },
-    [`projects-list-${await getLocale()}`],
+    [`projects-list-${locale}`],
     {
         tags: ['projects', 'links', 'tags']
     }
@@ -39,7 +38,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
     let projects: any[] = [];
 
     try {
-        projects = await getCachedProjects();
+        projects = await getCachedProjects(locale)();
     } catch (err) {
         console.error(t('projects.fetchingFailed'), err);
     }

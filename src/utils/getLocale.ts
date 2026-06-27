@@ -9,13 +9,16 @@ export type Locale = "en" | "fr";
  * otherwise returns undefined (caller can fallback to a default).
  */
 export async function getLocale(): Promise<Locale> {
-    const headerList = await headers();
-    const raw = headerList.get('x-locale');
-
-    if (raw === 'en' || raw === 'fr') {
-        return raw as Locale;
+    try {
+        const headerList = await headers();
+        const raw = headerList.get('x-locale');
+        if (raw === 'en' || raw === 'fr') {
+            return raw as Locale;
+        }
+    } catch (e) {
+        // headers() not available (e.g., during static generation)
     }
-
-    // Default to English if header missing or invalid
+    
+    // Default locale fallback
     return 'en';
 }
