@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { getLocale } from 'next-intl/server';
 import { getPayload } from "@utils/getPayload";
+import { LanguageSelector } from "@components/LanguageSelector";
 import { Navbar } from "@components/Navbar";
 import { About } from "@components/Sections/About";
 import { Experiences } from "@components/Sections/Experiences";
@@ -34,6 +35,7 @@ export default async function Home() {
     return (
         <div className="md:grid md:grid-cols-[auto_1fr] min-h-screen max-w-7xl mx-auto">
             <Navbar sectionParameters={sectionsData} />
+            <LanguageSelector />
 
             <div className="flex flex-col gap-12 md:gap-16 px-4 sm:px-6 md:px-4 lg:pl-6">
                 <main
