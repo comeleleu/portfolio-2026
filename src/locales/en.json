@@ -21,18 +21,29 @@
         "location": {
             "remote": "Remote",
             "hybrid": "Hybrid",
-            "onsite": "On-site"
+            "onSite": "On-site"
         },
         "noResult": "No experiences found...",
         "fetchingFailed": "Error while fetching experiences..."
     },
     "projects": {
         "title": "Projects",
+        "context": {
+            "personal": "Personal",
+            "professional": "Professional",
+            "hackathon": "Hackathon",
+            "openSource": "Open Source"
+        },
         "noResult": "No projects found...",
         "fetchingFailed": "Error while fetching projects..."
     },
     "studies": {
         "title": "Studies",
+        "level": {
+            "highSchool": "High School",
+            "associate": "Associate's degree",
+            "bachelor": "Bachelor's degree"
+        },
         "noResult": "No studies found...",
         "fetchingFailed": "Error while fetching studies..."
     },

@@ -91,7 +91,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                                     </div>
                                     <Title
                                         title={project.title}
-                                        subtitle={project.context}
+                                        subtitle={t(`projects.context.${project.context}`)}
                                         isLink={!!project.link?.url}
                                         subtitleColor="text-cyan-400"
                                     />

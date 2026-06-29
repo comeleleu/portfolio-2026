@@ -84,7 +84,7 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                                             borderColor="border-blue-300/10"
                                         />
                                         <Badge
-                                            label={`${study.level} — ${study.field}`}
+                                            label={`${t(`studies.level.${study.level}`)} — ${study.field}`}
                                             icon="faGraduationCap"
                                         />
                                     </div>
