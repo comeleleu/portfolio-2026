@@ -105,7 +105,7 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                                     />
                                                 )}
                                                 <Badge
-                                                    label={t(`experiences.location.${experience.locationType.toLowerCase().replace("-", "")}`)}
+                                                    label={t(`experiences.location.${experience.locationType}`)}
                                                     icon={getLocationIcon(experience.locationType)}
                                                 />
                                             </div>

@@ -32,9 +32,9 @@ export const Studies: CollectionConfig = {
       name: 'level',
       type: 'select',
       options: [
-        { label: 'High School', value: "High School" },
-        { label: 'Associate', value: "Associate's degree" },
-        { label: 'Bachelor', value: "Bachelor's degree" },
+        { label: 'High School', value: "highSchool" },
+        { label: 'Associate', value: "associate" },
+        { label: 'Bachelor', value: "bachelor" },
       ],
       required: true,
     },

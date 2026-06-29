@@ -69,9 +69,9 @@ export const Experiences: CollectionConfig = {
       name: 'locationType',
       type: 'select',
       options: [
-        { label: 'Remote', value: 'Remote' },
-        { label: 'On-Site', value: 'On-site' },
-        { label: 'Hybrid', value: 'Hybrid' },
+        { label: 'Remote', value: 'remote' },
+        { label: 'On-Site', value: 'onSite' },
+        { label: 'Hybrid', value: 'hybrid' },
       ],
       required: true,
     },
