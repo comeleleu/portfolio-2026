@@ -1,7 +1,7 @@
 'use client'
 
 import { ChangeEvent, KeyboardEvent, useState, useRef, useEffect} from 'react';
-import { TextInput, useField } from '@payloadcms/ui';
+import { TextInput, useField, useLocale } from '@payloadcms/ui';
 
 /**
  * Represents a geographic feature returned by the Photon (Komoot) Geocoding API.
@@ -138,6 +138,7 @@ const getStateToDisplay = (properties: Feature['properties']) => {
  */
 export const LocationComponent = ({ path, label }: { path: string; label?: string }) => {
   const { value, setValue } = useField<string>({ path });
+  const { code: locale } = useLocale();
   const [suggestions, setSuggestions] = useState<Feature[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -169,7 +170,7 @@ export const LocationComponent = ({ path, label }: { path: string; label?: strin
 
       try {
         const response = await fetch(
-          `https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&lang=en&limit=5&layer=city&osm_tag=place`
+          `https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&lang=${locale}&limit=5&layer=city&osm_tag=place`
         );
         const data = await response.json();
         setSuggestions(data.features || []);
