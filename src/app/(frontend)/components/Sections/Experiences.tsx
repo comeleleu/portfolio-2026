@@ -13,11 +13,11 @@ import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
 const getLocationIcon = (locationType: string) => {
     switch (locationType) {
-        case "Remote":
+        case "remote":
             return "faHouseLaptop";
-        case "Hybrid":
+        case "hybrid":
             return "faLaptop";
-        case "On-site":
+        case "onSite":
             return "faBuilding";
         default:
             return "faLaptop";

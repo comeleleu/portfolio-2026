@@ -1,6 +1,7 @@
 {
     "navbar": {
-        "scrollTop": "Retourner en haut de la page"
+        "scrollTop": "Retourner en haut de la page",
+        "languageSelector": "Changer la langue pour l'anglais"
     },
     "footer": {
         "credits": "© <startYear>2026</startYear> — <name>Côme Leleu</name>",
