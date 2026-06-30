@@ -1,6 +1,7 @@
 {
     "navbar": {
-        "scrollTop": "Scroll to top"
+        "scrollTop": "Scroll to top",
+        "languageSelector": "Change language to French"
     },
     "footer": {
         "credits": "© <startYear>2026</startYear> — <name>Côme Leleu</name>",

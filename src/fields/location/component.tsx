@@ -209,7 +209,7 @@ export const LocationComponent = ({ path, label }: { path: string; label?: strin
     >
       <TextInput
         path={path}
-        label={label || 'Location'}
+        label={label || `Location — ${locale === 'en' ? 'English' : locale === 'fr' ? 'French' : ''}`}
         value={value || ''}
         onChange={(e: ChangeEvent<HTMLInputElement>) => handleSearch(e.target.value)}
         onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
