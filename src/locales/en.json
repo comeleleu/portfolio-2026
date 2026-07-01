@@ -7,7 +7,7 @@
         "credits": "© <startYear>2026</startYear> — <name>Côme Leleu</name>",
         "creditsPeriod": "© <startYear>2026</startYear> - <currentYear>2026</currentYear> — <name>Côme Leleu</name>",
         "createdWith": "Created with <nextJs>Next.js</nextJs>, <payload>Payload</payload> and <tailwindCss>Tailwind CSS</tailwindCss>.",
-        "hostedBy": "Hosted by <vercel>Vercel</vercel>"
+        "hostedBy": "Hosted by <vercel>Vercel</vercel>."
     },
     "about": {
         "title": "About",
