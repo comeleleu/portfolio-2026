@@ -25,13 +25,21 @@ const bricolageGrotesque = Bricolage_Grotesque({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Côme Leleu",
-  description: "Software engineer specializing in web development",
-  icons: {
-    icon: process.env.FAVICON_URL || "",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const messages = await getMessages({ locale });
+  const title = messages.about?.fullname ?? "";
+  const description = messages.metadata?.description ?? "";
+
+  return {
+    title,
+    description,
+    icons: {
+      icon: process.env.FAVICON_URL || "",
+    },
+  };
+}
+
 
 export default async function RootLayout({
   children,

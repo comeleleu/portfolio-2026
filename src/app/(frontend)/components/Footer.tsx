@@ -16,11 +16,11 @@ export const Footer = ({ sectionParameters }: { sectionParameters: any }) => {
                 {t.rich(startYear == currentYear ? 'footer.credits' : 'footer.creditsPeriod', {
                     startYear: (chunks) => startYear,
                     currentYear: (chunks) => currentYear,
-                    name: (chunks) => t('about.fullname')
+                    name: (chunks) => sectionParameters?.about?.fullname || t('about.fullname')
                 })}
             </p>
             <div className="hidden md:flex flex-row items-center gap-4">
-                {sectionParameters?.links?.map((link: any) => {
+                {sectionParameters?.navbar?.links?.map((link: any) => {
                     return (
                         <Link
                             key={link.id}
