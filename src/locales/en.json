@@ -56,5 +56,9 @@
         "dateToday": "Today",
         "noResult": "No results found...",
         "fetchingFailed": "Error while fetching..."
+    },
+    "metadata": {
+        "title": "Côme Leleu | Portfolio",
+        "description": "Full-stack Web Developer | PHP & Node.js & Vue.js | 7+ years of experience"
     }
 }

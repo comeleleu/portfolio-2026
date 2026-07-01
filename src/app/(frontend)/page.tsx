@@ -55,7 +55,7 @@ export default async function Home() {
                     <Projects sectionParameters={sectionsData?.projects} />
                 </main>
 
-                <Footer sectionParameters={sectionsData?.navbar} />
+                <Footer sectionParameters={sectionsData} />
             </div>
         </div>
     );
