@@ -9,13 +9,28 @@ export function middleware(request: NextRequest) {
   // Detect locale prefix
   const hasEn = pathname.startsWith('/en/') || pathname === '/en';
   const hasFr = pathname.startsWith('/fr/') || pathname === '/fr';
-  const locale = hasFr ? 'fr' : 'en'; // default to English when no prefix
+  let locale = 'en';
 
-  // Strip the locale prefix for routing
+  if (hasEn) {
+    locale = 'en';
+  } else if (hasFr) {
+    locale = 'fr';
+  } else {
+    const acceptLang = request.headers.get('accept-language') || '';
+
+    if (acceptLang.startsWith('fr') || acceptLang.includes('fr')) {
+      locale = 'fr';
+    }
+  }
+
   if (hasEn) {
     url.pathname = pathname.replace(/^\/en/, '') || '/';
   } else if (hasFr) {
     url.pathname = pathname.replace(/^\/fr/, '') || '/';
+  } else if (pathname === '/' || pathname === '') {
+    url.pathname = `/${locale}`;
+    
+    return NextResponse.redirect(url);
   }
 
   // Inject the locale into request headers for downstream components
