@@ -1,13 +1,14 @@
 import { unstable_cache } from "next/cache";
 import { getLocale } from 'next-intl/server';
 import { getPayload } from "@utils/getPayload";
-import { LanguageSelector } from "@components/LanguageSelector";
+import { LanguageSelector } from "@components/Elements/LanguageSelector";
 import { Navbar } from "@components/Navbar";
 import { About } from "@components/Sections/About";
 import { Experiences } from "@components/Sections/Experiences";
 import { Studies } from "@components/Sections/Studies";
 import { Projects } from "@components/Sections/Projects";
 import { Footer } from "@components/Footer";
+import { SettingsMenu } from "@components/Elements/SettingsMenu";
 
 const getCachedSections = (locale: string) => unstable_cache(
     async () => {
