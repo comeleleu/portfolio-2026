@@ -1,7 +1,28 @@
 {
     "navbar": {
         "scrollTop": "Scroll to top",
-        "languageSelector": "Change language to French"
+        "languageSelector": "Change language to French",
+        "settingsMenu": {
+            "openSettings": "Open options menu",
+            "closeSettings": "Close options menu",
+            "misc": "Misc",
+            "socialLinks": "Profiles",
+            "settings": "Settings",
+            "language": {
+                "label": "Language",
+                "options": {
+                    "en": "English",
+                    "enAriaLabel": "Change language to English",
+                    "fr": "Français",
+                    "frAriaLabel": "Changer la langue pour le français"
+                }
+            },
+            "theme": {
+                "label": "Theme",
+                "comment": "Coming soon..."
+            },
+            "cookies": "Nothing else to configure here!\nThis website is guaranteed 100% cookie-free 🍪"
+        }
     },
     "footer": {
         "credits": "© <startYear>2026</startYear> — <name>Côme Leleu</name>",
