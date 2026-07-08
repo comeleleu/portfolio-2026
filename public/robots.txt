@@ -1,0 +1,5 @@
+# Allow all crawlers to index both language sections
+User-agent: *
+Allow: /en/
+Allow: /fr/
+Allow: /

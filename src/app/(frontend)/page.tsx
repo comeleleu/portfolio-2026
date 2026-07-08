@@ -1,14 +1,12 @@
 import { unstable_cache } from "next/cache";
 import { getLocale } from 'next-intl/server';
 import { getPayload } from "@utils/getPayload";
-import { LanguageSelector } from "@components/Elements/LanguageSelector";
 import { Navbar } from "@components/Navbar";
 import { About } from "@components/Sections/About";
 import { Experiences } from "@components/Sections/Experiences";
 import { Studies } from "@components/Sections/Studies";
 import { Projects } from "@components/Sections/Projects";
 import { Footer } from "@components/Footer";
-import { SettingsMenu } from "@components/Elements/SettingsMenu";
 
 const getCachedSections = (locale: string) => unstable_cache(
     async () => {
@@ -36,7 +34,6 @@ export default async function Home() {
     return (
         <div className="md:grid md:grid-cols-[auto_1fr] min-h-screen max-w-7xl mx-auto">
             <Navbar sectionParameters={sectionsData} />
-            <LanguageSelector />
 
             <div className="flex flex-col gap-12 md:gap-16 px-4 sm:px-6 md:px-4 lg:pl-6">
                 <main

@@ -1,7 +1,6 @@
 {
     "navbar": {
         "scrollTop": "Retourner en haut de la page",
-        "languageSelector": "Changer la langue pour l'anglais",
         "settingsMenu": {
             "openSettings": "Ouvrir le menu des options",
             "closeSettings": "Fermer le menu des options",

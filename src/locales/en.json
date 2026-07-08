@@ -1,7 +1,6 @@
 {
     "navbar": {
         "scrollTop": "Scroll to top",
-        "languageSelector": "Change language to French",
         "settingsMenu": {
             "openSettings": "Open options menu",
             "closeSettings": "Close options menu",
