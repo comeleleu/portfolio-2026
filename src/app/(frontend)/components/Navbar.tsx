@@ -36,7 +36,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
     const [activeSection, setActiveSection] = useState<string>(navSections[0]?.id || '');
     const [showSettings, setShowSettings] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
-    const gearRef = useRef<HTMLSpanElement>(null);
+    const gearRef = useRef<HTMLButtonElement>(null);
 
     // Update active section on scroll
     useEffect(() => {
@@ -184,7 +184,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
             </div>
 
             <div ref={menuRef} className="fixed z-40 top-17 md:top-auto right-2 md:right-auto md:bottom-8 left-2 md:left-auto md:ml-21">
-                <SettingsMenu sectionParameters={sectionParameters} showSettings={showSettings} />
+                <SettingsMenu sectionParameters={sectionParameters} showSettings={showSettings} setShowSettings={setShowSettings} />
             </div>
         </>
     );
