@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Icon } from "@components/Common/Icon";
 import { Link } from "@components/Common/Link";
 
-export const SettingsMenu = ({ sectionParameters, showSettings }: { sectionParameters: any, showSettings: boolean}) => {
+export const SettingsMenu = ({ sectionParameters, showSettings, setShowSettings }: { sectionParameters: any, showSettings: boolean, setShowSettings: (value: boolean) => void }) => {
     const t = useTranslations("navbar.settingsMenu");
     const locale = useLocale();
     const [selectedLang, setSelectedLang] = useState(locale);
@@ -29,7 +29,14 @@ export const SettingsMenu = ({ sectionParameters, showSettings }: { sectionParam
     const handleLanguageChange = (lang: 'en' | 'fr') => {
         if (selectedLang !== lang) {
             setSelectedLang(lang);
-            window.location.href = `/${lang}`;
+            // Delay before closing the settings menu
+            setTimeout(() => {
+                setShowSettings(false);
+                // After menu is closed, redirect after a short delay
+                setTimeout(() => {
+                    window.location.href = `/${lang}`;
+                }, 300);
+            }, 400);
         }
     };
 
