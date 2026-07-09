@@ -4,8 +4,8 @@
         "settingsMenu": {
             "openSettings": "Open options menu",
             "closeSettings": "Close options menu",
-            "misc": "Misc",
-            "socialLinks": "Profiles",
+            "misc": "More Info",
+            "socialLinks": "Networks & Platforms",
             "settings": "Settings",
             "language": {
                 "label": "Language",
