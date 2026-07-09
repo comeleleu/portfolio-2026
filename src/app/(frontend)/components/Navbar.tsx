@@ -87,7 +87,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
         <>
             <div className="sticky top-0 z-50 flex flex-row md:flex-col items-center w-screen md:w-auto h-auto md:h-screen px-2 sm:px-4 py-1.5 md:py-8 overflow-hidden">
                 <nav
-                    className="flex flex-row md:flex-col items-center justify-between grow w-auto md:w-14 h-14 md:h-auto px-2 md:px-2 pr-4 py-2 md:py-6 md:pb-5 bg-zinc-900/50 md:bg-zinc-900/40 backdrop-blur-lg border border-zinc-800/50 md:border-zinc-700/50 rounded-full"
+                    className="flex flex-row md:flex-col items-center justify-between gap-6 grow w-auto md:w-14 h-14 md:h-auto px-2 md:px-2 pr-4 py-2 md:py-6 md:pb-5 bg-zinc-900/50 md:bg-zinc-900/40 backdrop-blur-lg border border-zinc-800/50 md:border-zinc-700/50 rounded-full"
                     role="navigation"
                 >
                     <div className="flex flex-row md:flex-col items-center gap-6">
