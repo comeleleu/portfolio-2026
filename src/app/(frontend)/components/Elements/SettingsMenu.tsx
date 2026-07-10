@@ -1,37 +1,60 @@
 "use client";
 
-import { useState, useLayoutEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Icon } from "@components/Common/Icon";
 import { Link } from "@components/Common/Link";
 
-export const SettingsMenu = ({ sectionParameters, showSettings, setShowSettings }: { sectionParameters: any, showSettings: boolean, setShowSettings: (value: boolean) => void }) => {
+export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings }: { sectionParameters: any, openSettings: boolean, setOpenSettings: (value: boolean) => void }) => {
     const t = useTranslations("navbar.settingsMenu");
     const locale = useLocale();
     const [selectedLang, setSelectedLang] = useState(locale);
+    const [isHidden, setIsHidden] = useState(!openSettings);
+    const [showSettings, setShowSettings] = useState(openSettings);
+    const [gliderStyle, setGliderStyle] = useState({ width: 0, left: 0, height: 0, top: 0 });
+    const [isGliderInitialized, setIsGliderInitialized] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
     const enButtonRef = useRef<HTMLButtonElement>(null);
     const frButtonRef = useRef<HTMLButtonElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [gliderStyle, setGliderStyle] = useState({ width: 0, left: 0, height: 0, top: 0 });
+
+    if (openSettings && isHidden) {
+        setIsHidden(false);
+    }
+    if (!openSettings && showSettings) {
+        setShowSettings(false);
+    }
+
+    useEffect(() => {
+        let t: NodeJS.Timeout;
+        if (openSettings) {
+            t = setTimeout(() => setShowSettings(true), 10);
+        } else {
+            t = setTimeout(() => setIsHidden(true), 300);
+        }
+        return () => clearTimeout(t);
+    }, [openSettings]);
     
     useLayoutEffect(() => {
         const ref = selectedLang === 'en' ? enButtonRef : frButtonRef;
         
-        if (ref.current && containerRef.current) {
+        if (ref.current && containerRef.current && !isHidden) {
             const { offsetLeft, offsetWidth, offsetHeight } = ref.current;
             const containerStyle = getComputedStyle(containerRef.current);
             const containerPaddingLeft = parseFloat(containerStyle.paddingLeft);
 
             setGliderStyle({ width: offsetWidth, left: offsetLeft - containerPaddingLeft, height: offsetHeight, top: 0 });
+            setTimeout(() => {
+                setIsGliderInitialized(true);
+            }, 10);
         }
-    }, [selectedLang]);
+    }, [selectedLang, isHidden]);
 
     const handleLanguageChange = (lang: 'en' | 'fr') => {
         if (selectedLang !== lang) {
             setSelectedLang(lang);
             // Delay before closing the settings menu
             setTimeout(() => {
-                setShowSettings(false);
+                setOpenSettings(false);
                 // After menu is closed, redirect after a short delay
                 setTimeout(() => {
                     window.location.href = `/${lang}`;
@@ -42,9 +65,11 @@ export const SettingsMenu = ({ sectionParameters, showSettings, setShowSettings 
 
     return (
         <div className={`
-            flex flex-col items-stretch gap-4 min-w-72 md:min-w-96 p-4 px-6 md:px-8 md:py-6 bg-zinc-900/50 backdrop-blur-xl border border-zinc-800/50 md:border-zinc-700/50 rounded-3xl shadow-lg transition-all ease-in-out duration-300
+            ${isHidden ? 'hidden'
+                : 'flex'}
+            flex-col items-stretch gap-4 min-w-72 md:min-w-96 p-4 px-6 md:px-8 md:py-6 bg-zinc-900/50 backdrop-blur-xl border border-zinc-800/50 md:border-zinc-700/50 rounded-3xl shadow-lg transition-all ease-in-out duration-300
             ${showSettings ? 'opacity-100'
-            : 'opacity-0 md:-translate-x-6 -translate-y-4 md:translate-y-0'}
+                : 'opacity-0 md:-translate-x-6 -translate-y-4 md:translate-y-0'}
         `}>
             
             <div className="flex md:hidden flex-col items-stretch gap-4 pb-6 border-b border-zinc-700/50 ">
@@ -96,8 +121,12 @@ export const SettingsMenu = ({ sectionParameters, showSettings, setShowSettings 
                             {t('language.label')}
                         </p>
                         <div ref={containerRef} className="relative flex gap-1 p-1 bg-zinc-500/15 backdrop-blur-sm border border-zinc-300/15 rounded-full">
-                            <span className="absolute bg-indigo-700/20 border border-indigo-300/20 rounded-full transition-all ease-in-out duration-300"
-                                    style={{ width: gliderStyle.width, height: gliderStyle.height, transform: `translateX(${gliderStyle.left}px)` }}>
+                            <span
+                                className={`
+                                    absolute bg-indigo-700/20 border border-indigo-300/20 rounded-full
+                                    ${isGliderInitialized ? 'transition-all ease-in-out duration-300' : ''}
+                                `}
+                                style={{ width: gliderStyle.width, height: gliderStyle.height, transform: `translateX(${gliderStyle.left}px)` }}>
                             </span>
                             <button
                                 type="button"

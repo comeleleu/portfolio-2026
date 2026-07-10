@@ -34,7 +34,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
 
     const [showScrollTop, setShowScrollTop] = useState(false);
     const [activeSection, setActiveSection] = useState<string>(navSections[0]?.id || '');
-    const [showSettings, setShowSettings] = useState(false);
+    const [openSettings, setOpenSettings] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
     const gearRef = useRef<HTMLButtonElement>(null);
 
@@ -69,11 +69,11 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
 
     // Close settings menu on outside click
     useEffect(() => {
-        if (!showSettings) return;
+        if (!openSettings) return;
 
         const handleClickOutside = (e: MouseEvent) => {
             if (menuRef.current && !menuRef.current.contains(e.target as Node) && gearRef.current && !gearRef.current.contains(e.target as Node)) {
-                setShowSettings(false);
+                setOpenSettings(false);
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
@@ -81,7 +81,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [showSettings]);
+    }, [openSettings]);
 
     return (
         <>
@@ -153,10 +153,10 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
                         type="button"
                         className={`
                             flex items-center justify-center p-1 aspect-square rounded-full text-zinc-200 hover:text-zinc-50 hover:scale-115 hover:rotate-180 transition-all ease-in-out duration-500 cursor-pointer
-                            ${showSettings ? 'scale-115 md:rotate-180' : ''}
+                            ${openSettings ? 'scale-115 md:rotate-180' : ''}
                         `}
-                        onClick={() => setShowSettings(prev => !prev)}
-                        aria-label={showSettings ? t('navbar.settingsMenu.closeSettings') : t('navbar.settingsMenu.openSettings')}
+                        onClick={() => setOpenSettings(prev => !prev)}
+                        aria-label={openSettings ? t('navbar.settingsMenu.closeSettings') : t('navbar.settingsMenu.openSettings')}
                         ref={gearRef}
                     >
                         <span className="flex items-center md:hidden">
@@ -184,7 +184,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
             </div>
 
             <div ref={menuRef} className="fixed z-40 top-17 md:top-auto right-2 md:right-auto md:bottom-8 left-2 md:left-auto md:ml-21">
-                <SettingsMenu sectionParameters={sectionParameters} showSettings={showSettings} setShowSettings={setShowSettings} />
+                <SettingsMenu sectionParameters={sectionParameters} openSettings={openSettings} setOpenSettings={setOpenSettings} />
             </div>
         </>
     );
