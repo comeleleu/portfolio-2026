@@ -35,8 +35,8 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
     const [showScrollTop, setShowScrollTop] = useState(false);
     const [activeSection, setActiveSection] = useState<string>(navSections[0]?.id || '');
     const [openSettings, setOpenSettings] = useState(false);
-    const menuRef = useRef<HTMLDivElement>(null);
-    const gearRef = useRef<HTMLButtonElement>(null);
+    const settingsMenuRef = useRef<HTMLDivElement>(null);
+    const settingsButtonRef = useRef<HTMLButtonElement>(null);
 
     // Update active section on scroll
     useEffect(() => {
@@ -67,19 +67,30 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
         };
     }, []);
 
-    // Close settings menu on outside click
+    // Close settings menu on outside click, focus loss, or Escape key
     useEffect(() => {
         if (!openSettings) return;
 
-        const handleClickOutside = (e: MouseEvent) => {
-            if (menuRef.current && !menuRef.current.contains(e.target as Node) && gearRef.current && !gearRef.current.contains(e.target as Node)) {
+        const handleOutsideInteraction = (e: Event) => {
+            if (settingsMenuRef.current && !settingsMenuRef.current.contains(e.target as Node) && settingsButtonRef.current && !settingsButtonRef.current.contains(e.target as Node)) {
                 setOpenSettings(false);
             }
         };
-        document.addEventListener('mousedown', handleClickOutside);
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                setOpenSettings(false);
+                settingsButtonRef.current?.focus();
+            }
+        };
+
+        const outsideEvents = ['mousedown', 'focusin'];
+        outsideEvents.forEach(evt => document.addEventListener(evt, handleOutsideInteraction));
+        document.addEventListener('keydown', handleKeyDown);
 
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+            outsideEvents.forEach(evt => document.removeEventListener(evt, handleOutsideInteraction));
+            document.removeEventListener('keydown', handleKeyDown);
         };
     }, [openSettings]);
 
@@ -157,7 +168,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
                         `}
                         onClick={() => setOpenSettings(prev => !prev)}
                         aria-label={openSettings ? t('navbar.settingsMenu.closeSettings') : t('navbar.settingsMenu.openSettings')}
-                        ref={gearRef}
+                        ref={settingsButtonRef}
                     >
                         <span className="flex items-center md:hidden">
                             <Icon name="faEllipsisVertical" className="text-xl" />
@@ -167,6 +178,11 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
                         </span>
                     </button>
                 </nav>
+
+                <div ref={settingsMenuRef} className="fixed z-40 top-17 md:top-auto right-2 md:right-auto md:bottom-8 left-2 md:left-auto md:ml-20 md:translate-x-1/2">
+                    <SettingsMenu sectionParameters={sectionParameters} openSettings={openSettings} setOpenSettings={setOpenSettings} />
+                </div>
+
                 <button
                     type="button"
                     className={`
@@ -181,10 +197,6 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
                 >
                     <Icon name="faChevronUp" className="text-lg" />
                 </button>
-            </div>
-
-            <div ref={menuRef} className="fixed z-40 top-17 md:top-auto right-2 md:right-auto md:bottom-8 left-2 md:left-auto md:ml-21">
-                <SettingsMenu sectionParameters={sectionParameters} openSettings={openSettings} setOpenSettings={setOpenSettings} />
             </div>
         </>
     );

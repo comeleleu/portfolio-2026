@@ -13,9 +13,9 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
     const [showSettings, setShowSettings] = useState(openSettings);
     const [gliderStyle, setGliderStyle] = useState({ width: 0, left: 0, height: 0, top: 0 });
     const [isGliderInitialized, setIsGliderInitialized] = useState(false);
-    const containerRef = useRef<HTMLDivElement>(null);
-    const enButtonRef = useRef<HTMLButtonElement>(null);
-    const frButtonRef = useRef<HTMLButtonElement>(null);
+    const gliderContainerRef = useRef<HTMLDivElement>(null);
+    const gliderButtonEnRef = useRef<HTMLButtonElement>(null);
+    const gliderButtonFrRef = useRef<HTMLButtonElement>(null);
 
     if (openSettings && isHidden) {
         setIsHidden(false);
@@ -35,14 +35,14 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
     }, [openSettings]);
     
     useLayoutEffect(() => {
-        const ref = selectedLang === 'en' ? enButtonRef : frButtonRef;
+        const ref = selectedLang === 'en' ? gliderButtonEnRef : gliderButtonFrRef;
         
-        if (ref.current && containerRef.current && !isHidden) {
+        if (ref.current && gliderContainerRef.current && !isHidden) {
             const { offsetLeft, offsetWidth, offsetHeight } = ref.current;
-            const containerStyle = getComputedStyle(containerRef.current);
-            const containerPaddingLeft = parseFloat(containerStyle.paddingLeft);
+            const gliderContainerStyle = getComputedStyle(gliderContainerRef.current);
+            const gliderContainerPaddingLeft = parseFloat(gliderContainerStyle.paddingLeft);
 
-            setGliderStyle({ width: offsetWidth, left: offsetLeft - containerPaddingLeft, height: offsetHeight, top: 0 });
+            setGliderStyle({ width: offsetWidth, left: offsetLeft - gliderContainerPaddingLeft, height: offsetHeight, top: 0 });
             setTimeout(() => {
                 setIsGliderInitialized(true);
             }, 10);
@@ -120,7 +120,7 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
                         <p className="text-sm font-medium text-zinc-200">
                             {t('language.label')}
                         </p>
-                        <div ref={containerRef} className="relative flex gap-1 p-1 bg-zinc-500/15 backdrop-blur-sm border border-zinc-300/15 rounded-full">
+                        <div ref={gliderContainerRef} className="relative flex gap-1 p-1 bg-zinc-500/15 backdrop-blur-sm border border-zinc-300/15 rounded-full">
                             <span
                                 className={`
                                     absolute bg-indigo-700/20 border border-indigo-300/20 rounded-full
@@ -139,7 +139,7 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
                                 aria-label={t('language.options.enAriaLabel')}
                                 tabIndex={showSettings ? 0 : -1}
                                 aria-hidden={!showSettings}
-                                ref={enButtonRef}
+                                ref={gliderButtonEnRef}
                             >
                                 {t('language.options.en')}
                             </button>
@@ -154,7 +154,7 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
                                 aria-label={t('language.options.frAriaLabel')}
                                 tabIndex={showSettings ? 0 : -1}
                                 aria-hidden={!showSettings}
-                                ref={frButtonRef}
+                                ref={gliderButtonFrRef}
                             >
                                 {t('language.options.fr')}
                             </button>
