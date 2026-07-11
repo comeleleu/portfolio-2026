@@ -74,7 +74,7 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
             
             <div className="flex md:hidden flex-col items-stretch gap-4 pb-6 border-b border-zinc-700/50 ">
                 <p className="is-title flex flex-row items-center gap-3 text-xl font-semibold text-zinc-100">
-                    <Icon name="faEllipsisVertical" className="text-lg" />
+                    <Icon name="faEllipsis" className="text-lg" />
                     <span className="relative after:content-[''] after:absolute after:h-0.5 after:w-5/6 after:bg-indigo-500 after:rounded-full after:-bottom-1 after:-left-2">
                         {t('misc')}
                     </span>
