@@ -136,6 +136,7 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
                                     : 'text-zinc-300 hover:text-zinc-200 cursor-pointer'}
                                 `}
                                 onClick={() => handleLanguageChange('en')}
+                                disabled={selectedLang === 'en'}
                                 aria-label={t('language.options.enAriaLabel')}
                                 tabIndex={showSettings ? 0 : -1}
                                 aria-hidden={!showSettings}
@@ -151,6 +152,7 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
                                     : 'text-zinc-300 hover:text-zinc-200 cursor-pointer'}
                                 `}
                                 onClick={() => handleLanguageChange('fr')}
+                                disabled={selectedLang === 'fr'}
                                 aria-label={t('language.options.frAriaLabel')}
                                 tabIndex={showSettings ? 0 : -1}
                                 aria-hidden={!showSettings}
