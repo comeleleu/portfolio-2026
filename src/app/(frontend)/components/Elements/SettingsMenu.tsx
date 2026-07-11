@@ -132,7 +132,7 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
                                 type="button"
                                 className={`
                                     relative z-10 px-3 py-1.5 text-sm font-semibold rounded-full transition-all ease-in-out duration-300
-                                    ${selectedLang === 'en' ? 'text-indigo-400 hover:text-indigo-300'
+                                    ${selectedLang === 'en' ? 'text-indigo-400'
                                     : 'text-zinc-300 hover:text-zinc-200 cursor-pointer'}
                                 `}
                                 onClick={() => handleLanguageChange('en')}
@@ -147,7 +147,7 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
                                 type="button"
                                 className={`
                                     relative z-10 px-3 py-1.5 text-sm font-semibold rounded-full transition-all ease-in-out duration-300
-                                    ${selectedLang === 'fr' ? 'text-indigo-400 hover:text-indigo-300'
+                                    ${selectedLang === 'fr' ? 'text-indigo-400'
                                     : 'text-zinc-300 hover:text-zinc-200 cursor-pointer'}
                                 `}
                                 onClick={() => handleLanguageChange('fr')}
