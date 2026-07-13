@@ -67,7 +67,7 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
         <div className={`
             ${isHidden ? 'hidden'
                 : 'flex'}
-            flex-col items-stretch gap-4 min-w-72 md:min-w-96 p-4 px-6 md:px-8 md:py-6 bg-zinc-900/50 backdrop-blur-xl border border-zinc-800/50 md:border-zinc-700/50 rounded-3xl shadow-lg transition-all ease-in-out duration-300
+            flex-col items-stretch gap-4 min-w-72 md:min-w-96 p-4 px-6 md:px-8 md:py-6 bg-zinc-900/50 backdrop-blur-xl border border-zinc-800/50 md:border-zinc-700/50 rounded-3xl transition-all ease-in-out duration-300
             ${showSettings ? 'opacity-100'
                 : 'opacity-0 md:-translate-x-6 -translate-y-4 md:translate-y-0'}
         `}>

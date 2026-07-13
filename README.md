@@ -2,6 +2,8 @@
 
 A modern portfolio website and Content Management System (CMS) built with Next.js (App Router), Payload CMS v3, Tailwind CSS v4, Supabase (PostgreSQL), and Vercel Blob Storage.
 
+Created by [@comeleleu](https://github.com/comeleleu) and live at [comeleleu.dev](https://comeleleu.dev).
+
 ---
 
 ## 🚀 Key Features & Particularities
