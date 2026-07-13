@@ -11,12 +11,14 @@ All notable changes to this project will be documented in this file.
 - Localized fields using Next-Intl.
 - Interactive settings menu for language switching.
 - Created the `robots.txt` file.
+- Created the `CHANGELOG.md` file.
 
 ### Changed
 
 - Improved accessibility in the navbar to include the new `SettingsMenu`.
 - Refined global layout including navbar, footer, and assets.
 - Optimized caching strategy by locale.
+- Removed unused styles.
 
 ## [1.1.0](https://github.com/comeleleu/portfolio-2026/compare/1.0.10...1.1.0) - 2026-06-05
 
