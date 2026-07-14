@@ -25,21 +25,23 @@ export const Studies: CollectionConfig = {
     {
       name: 'degree',
       type: 'text',
+      localized: true,
       required: true,
     },
     {
       name: 'level',
       type: 'select',
       options: [
-        { label: 'High School', value: "High School" },
-        { label: 'Associate', value: "Associate's degree" },
-        { label: 'Bachelor', value: "Bachelor's degree" },
+        { label: 'High School', value: "highSchool" },
+        { label: 'Associate', value: "associate" },
+        { label: 'Bachelor', value: "bachelor" },
       ],
       required: true,
     },
     {
       name: 'field',
       type: 'text',
+      localized: true,
       label: 'Field of Study',
       required: true,
     },

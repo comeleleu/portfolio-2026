@@ -1,4 +1,5 @@
 import { unstable_cache } from "next/cache";
+import { getTranslations, getLocale } from 'next-intl/server';
 import { formatDate } from "@utils/formatDate";
 import { getPayload } from "@utils/getPayload";
 import { GlowingCard } from "@components/Cards/GlowingCard";
@@ -9,33 +10,37 @@ import { Description } from "@components/Common/Description";
 import { Icon } from "@components/Common/Icon";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
-const getCachedStudies = unstable_cache(
+const getCachedStudies = (locale: string) => unstable_cache(
     async () => {
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'studies',
+            locale: locale as any,
             limit: 100,
             depth: 2,
             overrideAccess: true,
             where: {
-                published: { equals: true },
+                published: { equals: true }
             },
             sort: ['-endDate'],
         });
         return result?.docs || [];
     },
-    ['studies-list'],
+    [`studies-list-${locale}`],
     {
         tags: ['studies', 'links', 'medias', 'schools', 'tags']
     }
 );
 
 export const Studies = async ({ sectionParameters }: { sectionParameters: any }) => {
+    const t = await getTranslations();
+    const locale = await getLocale();
     let studies: any[] = [];
+    
     try {
-        studies = await getCachedStudies();
+        studies = await getCachedStudies(locale)();
     } catch (err) {
-        console.error('Error fetching studies', err);
+        console.error(t('studies.fetchingFailed'), err);
     }
 
     return (
@@ -45,59 +50,71 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
                 <div className="flex items-center gap-4 text-xl">
                     <Icon name="faGraduationCap" />
                     <div className="is-title relative after:content-[''] after:absolute after:h-0.5 after:w-6/5 after:bg-blue-500 after:rounded-full after:-bottom-1 after:left-1/2 after:-translate-x-1/2">
-                        {sectionParameters?.title || "Studies"}
+                        {sectionParameters?.title || t('studies.title')}
                     </div>
                 </div>
             </div>
 
             {studies.length > 0 ? (
                 <div className="flex flex-col gap-4">
-                    {studies.map((study: any) => (
-                        <GlowingCard
-                            key={study.id ?? study._id ?? study.degree}
-                            glowingBorderColor="bg-linear-to-r/oklch from-cyan-400 via-blue-400 to-violet-400"
-                            link={study.link ?? study.school?.link}
-                        >
-                            <div className="relative flex flex-col gap-4 sm:gap-6 p-4 sm:px-6 md:px-8 md:py-6">
-                                <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-2 md:gap-6">
-                                    <Badge
-                                        label={`${formatDate(study.startDate, 'short')} — ${study.currentStudy ? "Today" : formatDate(study.endDate, 'short')}`}
-                                        labelHover={`${formatDate(study.startDate, 'long')} to ${study.currentStudy ? "Today" : formatDate(study.endDate, 'long')}`}
-                                        textColor="text-blue-400"
-                                        backgroundColor="bg-blue-600/10"
-                                        borderColor="border-blue-300/10"
-                                    />
-                                    <Badge
-                                        label={`${study.level} — ${study.field}`}
-                                        icon="faGraduationCap"
+                    {studies.map(async (study: any) => {
+                        const today = (t('general.dateToday')) as string;
+                        const dateShort = t('general.dateShort', {
+                            startDate: formatDate(study.startDate, 'short', locale),
+                            endDate: study.currentStudy ? today : formatDate(study.endDate, 'short', locale)
+                        });
+                        const dateLong = t(study.currentStudy ? 'general.dateLongToday' : 'general.dateLong', {
+                            startDate: formatDate(study.startDate, 'long', locale),
+                            endDate: study.currentStudy ? today.toLowerCase() : formatDate(study.endDate, 'long', locale)
+                        });
+
+                        return (
+                            <GlowingCard
+                                key={study.id ?? study._id ?? study.degree}
+                                glowingBorderColor="bg-linear-to-r/oklch from-cyan-400 via-blue-400 to-violet-400"
+                                link={study.link ?? study.school?.link}
+                            >
+                                <div className="relative flex flex-col gap-4 sm:gap-6 p-4 sm:px-6 md:px-8 md:py-6">
+                                    <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-2 md:gap-6">
+                                        <Badge
+                                            label={dateShort}
+                                            labelHover={dateLong}
+                                            textColor="text-blue-400"
+                                            backgroundColor="bg-blue-600/10"
+                                            borderColor="border-blue-300/10"
+                                        />
+                                        <Badge
+                                            label={`${t(`studies.level.${study.level}`)} — ${study.field}`}
+                                            icon="faGraduationCap"
+                                        />
+                                    </div>
+                                    <TitleImage
+                                        title={study.degree}
+                                        subtitle={study.school.name}
+                                        isLink={!!(study.link?.url ?? study.school?.link?.url)}
+                                        subtitleColor="text-blue-400"
+                                        imageUrl={study.school?.logo?.url}
+                                        imageAlt={study.school?.logo?.alt || study.school?.name}
+                                    >
+                                        <p className="flex items-center gap-1">
+                                            <Icon name="faLocationDot" className="text-sm" />
+                                            {study.school.location}
+                                        </p>
+                                    </TitleImage>
+                                    <Description text={study.description} />
+                                    <Tags
+                                        tags={study.tags}
+                                        textColor="text-blue-400 hover:text-blue-300"
+                                        backgroundColor="bg-blue-600/15 hover:bg-blue-500/20"
+                                        borderColor="border-blue-400/15 hover:border-blue-300/20"
                                     />
                                 </div>
-                                <TitleImage
-                                    title={study.degree}
-                                    subtitle={study.school.name}
-                                    isLink={!!(study.link?.url ?? study.school?.link?.url)}
-                                    subtitleColor="text-blue-400"
-                                    imageUrl={study.school?.logo?.url}
-                                    imageAlt={study.school?.logo?.alt || study.school?.name}
-                                >
-                                    <p className="flex items-center gap-1">
-                                        <Icon name="faLocationDot" className="text-sm" />
-                                        {study.school.location}
-                                    </p>
-                                </TitleImage>
-                                <Description text={study.description} />
-                                <Tags
-                                    tags={study.tags}
-                                    textColor="text-blue-400 hover:text-blue-300"
-                                    backgroundColor="bg-blue-600/15 hover:bg-blue-500/20"
-                                    borderColor="border-blue-400/15 hover:border-blue-300/20"
-                                />
-                            </div>
-                        </GlowingCard>
-                    ))}
+                            </GlowingCard>
+                        );
+                    })}
                 </div>
             ) : (
-                <NoResultMessage message="No studies found" />
+                <NoResultMessage message={t('studies.noResult')} />
             )}
         </section>
     );

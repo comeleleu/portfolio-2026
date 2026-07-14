@@ -1,0 +1,84 @@
+{
+    "navbar": {
+        "scrollTop": "Retourner en haut de la page",
+        "settingsMenu": {
+            "openSettings": "Ouvrir le menu des options",
+            "closeSettings": "Fermer le menu des options",
+            "misc": "Plus d'infos",
+            "socialLinks": "Réseaux & Plateformes",
+            "settings": "Paramètres",
+            "language": {
+                "label": "Langue",
+                "options": {
+                    "en": "English",
+                    "enAriaLabel": "Change language to English",
+                    "fr": "Français",
+                    "frAriaLabel": "Changer la langue pour le français"
+                }
+            },
+            "theme": {
+                "label": "Thème",
+                "comment": "Disponible prochainement..."
+            },
+            "cookies": "Rien de plus à configurer ici !\nCe site est garanti 100 % sans cookies 🍪"
+        }
+    },
+    "footer": {
+        "credits": "© <startYear>2026</startYear> — <name>Côme Leleu</name>",
+        "creditsPeriod": "© <startYear>2026</startYear> - <currentYear>2026</currentYear> — <name>Côme Leleu</name>",
+        "createdWith": "Créé avec <nextJs>Next.js</nextJs>, <payload>Payload</payload> et <tailwindCss>Tailwind CSS</tailwindCss>.",
+        "hostedBy": "Hébergé par <vercel>Vercel</vercel>."
+    },
+    "about": {
+        "title": "À propos",
+        "fullname": "Côme Leleu",
+        "jobTitle": "Développeur web full-stack",
+        "profilePictureAlt": "Photo de profil"
+    },
+    "experiences": {
+        "title": "Expériences",
+        "movedTo": "Déménagement à",
+        "selfEmployed": "Indépendant",
+        "location": {
+            "remote": "À distance",
+            "hybrid": "Hybride",
+            "onSite": "Sur site"
+        },
+        "noResult": "Aucune expérience trouvée...",
+        "fetchingFailed": "Erreur lors de la récupération des expériences..."
+    },
+    "projects": {
+        "title": "Projets",
+        "context": {
+            "personal": "Personnel",
+            "professional": "Professionnel",
+            "hackathon": "Hackathon",
+            "openSource": "Open Source"
+        },
+        "noResult": "Aucun projet trouvé...",
+        "fetchingFailed": "Erreur lors de la récupération des projets..."
+    },
+    "studies": {
+        "title": "Études",
+        "level": {
+            "highSchool": "Lycée / DES",
+            "associate": "BTS / DEC",
+            "bachelor": "Licence / Baccalauréat"
+        },
+        "noResult": "Aucune étude trouvée...",
+        "fetchingFailed": "Erreur lors de la récupération des études..."
+    },
+    "general": {
+        "dateShort": "{startDate} — {endDate}",
+        "dateLong": "Du {startDate} au {endDate}",
+        "dateLongToday": "Du {startDate} à {endDate}",
+        "dateLongMonth": "De {startDate} à {endDate}",
+        "dateToday": "Aujourd'hui",
+        "noResult": "Aucun résultat trouvé...",
+        "fetchingFailed": "Erreur lors de la récupération..."
+    },
+    "metadata": {
+        "title": "Côme Leleu | Portfolio",
+        "description": "Développeur web full-stack | PHP & Node.js & Vue.js | 7+ années d'expérience"
+    }
+}
