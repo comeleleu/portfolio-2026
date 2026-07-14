@@ -19,16 +19,17 @@ export const Projects: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
+      localized: true,
       required: true,
     },
     {
       name: 'context',
       type: 'select',
       options: [
-        { label: 'Personal', value: 'Personal' },
-        { label: 'Professional', value: 'Professional' },
-        { label: 'Hackathon', value: 'Hackathon' },
-        { label: 'Open Source', value: 'Open Source' },
+        { label: 'Personal', value: 'personal' },
+        { label: 'Professional', value: 'professional' },
+        { label: 'Hackathon', value: 'hackathon' },
+        { label: 'Open Source', value: 'openSource' },
       ],
       required: true,
     },

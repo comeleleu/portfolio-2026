@@ -2,6 +2,8 @@ import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { en } from '@payloadcms/translations/languages/en'
+import { fr } from '@payloadcms/translations/languages/fr'
 import sharp from 'sharp'
 import { Companies } from '@collections/Companies'
 import { Experiences } from '@collections/Experiences'
@@ -31,6 +33,25 @@ export default buildConfig({
     Sections,
   ],
 
+  localization: {
+    locales: [
+      {
+        label: 'English',
+        code: 'en',
+      },
+      {
+        label: 'French',
+        code: 'fr',
+      }
+    ],
+    defaultLocale: 'en',
+    fallback: true
+  },
+
+  i18n: {
+    fallbackLanguage: 'en',
+    supportedLanguages: { en, fr},
+  },
 
   secret: process.env.PAYLOAD_SECRET || '',
   db: postgresAdapter({

@@ -100,14 +100,14 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale: null;
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'fr') | ('en' | 'fr')[];
   globals: {
     sections: Section;
   };
   globalsSelect: {
     sections: SectionsSelect<false> | SectionsSelect<true>;
   };
-  locale: null;
+  locale: 'en' | 'fr';
   widgets: {
     collections: CollectionsWidget;
   };
@@ -220,7 +220,7 @@ export interface Experience {
   startDate: string;
   endDate?: string | null;
   location?: string | null;
-  locationType: 'Remote' | 'On-site' | 'Hybrid';
+  locationType: 'remote' | 'onSite' | 'hybrid';
   description: {
     root: {
       type: string;
@@ -259,7 +259,7 @@ export interface Project {
   id: number;
   published?: boolean | null;
   title: string;
-  context: 'Personal' | 'Professional' | 'Hackathon' | 'Open Source';
+  context: 'personal' | 'professional' | 'hackathon' | 'openSource';
   currentProject?: boolean | null;
   startDate: string;
   endDate?: string | null;
@@ -305,7 +305,7 @@ export interface Study {
   published?: boolean | null;
   school: number | School;
   degree: string;
-  level: 'High School' | "Associate's degree" | "Bachelor's degree";
+  level: 'highSchool' | 'associate' | 'bachelor';
   field: string;
   currentStudy?: boolean | null;
   startDate: string;

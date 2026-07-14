@@ -45,6 +45,7 @@ export const RichText = ({ name = 'richText', label, required = true }: RichText
   name,
   label,
   type: 'richText',
+  localized: true,
   required,
   editor: lexicalEditor({
     features: () => [

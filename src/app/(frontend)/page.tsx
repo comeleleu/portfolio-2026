@@ -1,5 +1,6 @@
-import { getPayload } from "@utils/getPayload";
 import { unstable_cache } from "next/cache";
+import { getLocale } from 'next-intl/server';
+import { getPayload } from "@utils/getPayload";
 import { Navbar } from "@components/Navbar";
 import { About } from "@components/Sections/About";
 import { Experiences } from "@components/Sections/Experiences";
@@ -7,26 +8,25 @@ import { Studies } from "@components/Sections/Studies";
 import { Projects } from "@components/Sections/Projects";
 import { Footer } from "@components/Footer";
 
-const getCachedSections = unstable_cache(
+const getCachedSections = (locale: string) => unstable_cache(
     async () => {
         const payload = await getPayload();
         return payload.findGlobal({
             slug: 'sections',
+            locale: locale as any,
             depth: 1,
         });
     },
-    ['global-sections'],
-    {
-        tags: ['sections', 'links', 'medias']
-    }
+    [`global-sections-${locale}`],
+    { tags: ['sections', 'links', 'medias'] }
 );
 
 export default async function Home() {
-
     let sectionsData: any = null;
 
     try {
-        sectionsData = await getCachedSections();
+        const locale = await getLocale();
+        sectionsData = await getCachedSections(locale)();
     } catch (err) {
         console.error('Error fetching section data', err);
     }
@@ -53,7 +53,7 @@ export default async function Home() {
                     <Projects sectionParameters={sectionsData?.projects} />
                 </main>
 
-                <Footer sectionParameters={sectionsData?.navbar} />
+                <Footer sectionParameters={sectionsData} />
             </div>
         </div>
     );

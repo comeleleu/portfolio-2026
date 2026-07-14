@@ -33,6 +33,7 @@ export const Sections: GlobalConfig = {
               name: 'shortTitle',
               label: 'Short Title',
               type: 'text',
+              localized: true,
               required: true,
             },
             {
@@ -45,6 +46,7 @@ export const Sections: GlobalConfig = {
               name: 'jobTitle',
               label: 'Job Title',
               type: 'text',
+              localized: true,
               required: true,
             },
             RichText({ name: 'description', required: true }),
@@ -69,12 +71,14 @@ export const Sections: GlobalConfig = {
             {
               name: 'title',
               type: 'text',
+              localized: true,
               required: true,
             },
             {
               name: 'shortTitle',
               label: 'Short Title',
               type: 'text',
+              localized: true,
               required: true,
             },
             {
@@ -92,12 +96,14 @@ export const Sections: GlobalConfig = {
             {
               name: 'title',
               type: 'text',
+        localized: true,
               required: true,
             },
             {
               name: 'shortTitle',
               label: 'Short Title',
               type: 'text',
+              localized: true,
               required: true,
             },
           ],
@@ -109,12 +115,14 @@ export const Sections: GlobalConfig = {
             {
               name: 'title',
               type: 'text',
+              localized: true,
               required: true,
             },
             {
               name: 'shortTitle',
               label: 'Short Title',
               type: 'text',
+              localized: true,
               required: true,
             },
             {

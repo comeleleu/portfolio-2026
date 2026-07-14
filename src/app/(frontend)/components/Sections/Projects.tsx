@@ -1,4 +1,5 @@
 import { unstable_cache } from "next/cache";
+import { getTranslations, getLocale } from 'next-intl/server';
 import { formatDate } from "@utils/formatDate";
 import { getPayload } from "@utils/getPayload";
 import { GlowingCard } from "@components/Cards/GlowingCard";
@@ -9,57 +10,67 @@ import { Description } from "@components/Common/Description";
 import { SectionHeader } from "@components/Sections/Elements/SectionHeader";
 import { NoResultMessage } from "@components/Sections/Elements/NoResultMessage";
 
-const getCachedProjects = unstable_cache(
+const getCachedProjects = (locale: string) => unstable_cache(
     async () => {
         const payload = await getPayload();
         const result = await payload.find({
             collection: 'projects',
+            locale: locale as any,
             limit: 100,
             depth: 1,
             overrideAccess: true,
             where: {
-                published: { equals: true },
+                published: { equals: true }
             },
             sort: ['-startDate', '-endDate'],
         });
         return result?.docs || [];
     },
-    ['projects-list'],
+    [`projects-list-${locale}`],
     {
         tags: ['projects', 'links', 'tags']
     }
 );
 
 export const Projects = async ({ sectionParameters }: { sectionParameters: any }) => {
+    const t = await getTranslations();
+    const locale = await getLocale();
     let projects: any[] = [];
+
     try {
-        projects = await getCachedProjects();
+        projects = await getCachedProjects(locale)();
     } catch (err) {
-        console.error('Error fetching projects', err);
+        console.error(t('projects.fetchingFailed'), err);
     }
 
     return (
         <section id="projects" className="scroll-mt-16 md:scroll-mt-0">
             <SectionHeader
-                title={sectionParameters?.title || "Projects"}
+                title={sectionParameters?.title || t('projects.title')}
                 sectionIcon="faFolderOpen"
                 afterColor="after:bg-linear-to-r/oklch after:from-blue-400 after:to-cyan-400 after:to-70%"
                 links={sectionParameters?.links}
             />
             {projects.length > 0 ? (
                 <div className="columns-1 md:columns-2 lg:columns-3 gap-4 *:mb-4 *:last:mb-0">
-                    {projects.map((project: any) => {
-                        const {startDate, endDate, currentProject} = project;
+                    {projects.map(async (project: any) => {
+                        let dateShort;
+                        let dateLong;
 
-                        const startDateShort = startDate ? formatDate(startDate, 'short') : '';
-                        const endDateShort = currentProject ? "Today" : (endDate ? formatDate(endDate, 'short') : '');
+                        if (project.startDate == project.endDate || (!project.endDate && !project.currentProject)) {
+                            dateShort = formatDate(project.startDate, 'shortNoDay', locale);
+                            dateLong = formatDate(project.startDate, 'longNoDay', locale);
+                        } else {
+                            const today = (t('general.dateToday')) as string;
 
-                        let dateLabel = startDateShort || endDateShort;
-                        let dateLabelHover = startDateShort || endDateShort;
-
-                        if (startDateShort && endDateShort && startDateShort !== endDateShort) {
-                            dateLabel = `${startDateShort} — ${endDateShort}`;
-                            dateLabelHover = `${startDateShort} to ${endDateShort}`;
+                            dateShort = t('general.dateShort', {
+                                startDate: formatDate(project.startDate, 'shortNoDay', locale),
+                                endDate: project.currentProject ? today : formatDate(project.endDate, 'shortNoDay', locale)
+                            });
+                            dateLong = t('general.dateLongMonth', {
+                                startDate: formatDate(project.startDate, 'longNoDay', locale),
+                                endDate: project.currentProject ? today.toLowerCase() : formatDate(project.endDate, 'longNoDay', locale)
+                            });
                         }
 
                         return (
@@ -69,20 +80,18 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                                 link={project.link}
                             >
                                 <div className="flex flex-col gap-4 sm:gap-6 p-4 sm:px-6">
-                                    {dateLabel && (
-                                        <div className="flex">
-                                            <Badge
-                                                label={dateLabel}
-                                                labelHover={dateLabelHover}
-                                                textColor="text-cyan-400"
-                                                backgroundColor="bg-cyan-600/10"
-                                                borderColor="border-cyan-300/10"
-                                            />
-                                        </div>
-                                    )}
+                                    <div className="flex">
+                                        <Badge
+                                            label={dateShort}
+                                            labelHover={dateLong}
+                                            textColor="text-cyan-400"
+                                            backgroundColor="bg-cyan-600/10"
+                                            borderColor="border-cyan-300/10"
+                                        />
+                                    </div>
                                     <Title
                                         title={project.title}
-                                        subtitle={project.context}
+                                        subtitle={t(`projects.context.${project.context}`)}
                                         isLink={!!project.link?.url}
                                         subtitleColor="text-cyan-400"
                                     />
@@ -100,7 +109,7 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
                     })}
                 </div>
             ) : (
-                <NoResultMessage message="No projects found" />
+                <NoResultMessage message={t('projects.noResult')} />
             )}
         </section>
     );
