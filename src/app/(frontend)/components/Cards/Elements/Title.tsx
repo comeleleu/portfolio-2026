@@ -16,12 +16,23 @@ export const Title = ({
     subtitleColor = "text-indigo-500",
     children
 }: TitleProps) => {
+    const lastSpaceIndex = title.lastIndexOf(" ");
+
     return (
         <div className="flex flex-col gap-1">
             <h3 className="text-xl font-semibold text-zinc-200">
-                {title}
-                {isLink && (
-                    <Icon name="faArrowUpRightFromSquare" className="relative inline-block bottom-0.5 ml-4 text-xs text-zinc-700 group-hover:text-zinc-500 transition-all ease-in-out duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5" />
+                {!isLink ? (
+                    title
+                ) : (
+                    <>
+                        {lastSpaceIndex !== -1 && (
+                            <>{title.substring(0, lastSpaceIndex + 1)}</>
+                        )}
+                        <span className="whitespace-nowrap">
+                            {title.substring(lastSpaceIndex + 1)}
+                            <Icon name="faArrowUpRightFromSquare" className="relative inline-block bottom-0.5 ml-4 text-xs text-zinc-700 group-hover:text-zinc-500 transition-all ease-in-out duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5" />
+                        </span>
+                    </>
                 )}
             </h3>
             {(subtitle || children) && (
