@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.1](https://github.com/comeleleu/portfolio-2026/compare/1.2.0...1.2.1) - 2026-07-14
+
+### Added
+
+- Created a new custom reusable rounded underline utility.
+
+### Fixed
+
+- Fixed underline on section titles and text links using the new underline utility.
+- Fixed icon positioning on card titles.
+
 ## [1.2.0](https://github.com/comeleleu/portfolio-2026/compare/1.1.0...1.2.0) - 2026-07-14
 
 ### Added
