@@ -18,10 +18,10 @@ export const Title = ({
 }: TitleProps) => {
     return (
         <div className="flex flex-col gap-1">
-            <h3 className="flex items-center gap-4 text-xl font-semibold text-zinc-200">
+            <h3 className="text-xl font-semibold text-zinc-200">
                 {title}
                 {isLink && (
-                    <Icon name="faArrowUpRightFromSquare" className="inline-block text-xs text-zinc-700 group-hover:text-zinc-500 transition-all ease-in-out duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5" />
+                    <Icon name="faArrowUpRightFromSquare" className="relative inline-block bottom-0.5 ml-4 text-xs text-zinc-700 group-hover:text-zinc-500 transition-all ease-in-out duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5" />
                 )}
             </h3>
             {(subtitle || children) && (
