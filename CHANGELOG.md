@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.1](https://github.com/comeleleu/portfolio-2026/compare/1.3.0...1.3.1) - 2026-07-15
+
+### Fixed
+
+- Fixed icon wrapping on card titles by grouping the last word of the title with a non-breaking span
+
 ## [1.3.0](https://github.com/comeleleu/portfolio-2026/compare/1.2.1...1.3.0) - 2026-07-15
 
 ### Added
