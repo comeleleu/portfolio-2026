@@ -62,7 +62,8 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
             <SectionHeader
                 title={sectionParameters?.title || t('experiences.title')}
                 sectionIcon="faLaptopCode"
-                afterColor="after:bg-linear-to-r/oklch after:from-indigo-500 after:to-blue-500 after:from-30%"
+                underlineFromColor="[--underline-from:var(--color-indigo-500)]"
+                underlineToColor="[--underline-to:var(--color-blue-500)]"
                 links={sectionParameters?.links}
             />
 
@@ -133,14 +134,18 @@ export const Experiences = async ({ sectionParameters }: { sectionParameters: an
                                     </div>
                                 </GlowingCard>
                                 {showLocationChange && (
-                                    <div className="flex items-center text-sm font-semibold text-zinc-400 before:w-12 sm:before:w-18 md:before:w-24 lg:before:w-32 before:shrink-0 before:border-t before:border-dashed before:border-zinc-500/90 before:me-6">
-                                        <div className="flex items-center gap-3">
-                                            <Icon name="faTruck" className="text-lg" />
-                                            <span className="relative after:content-[''] after:absolute after:h-0.5 after:w-4/5 after:bg-indigo-500 after:rounded-full after:-bottom-0.5 after:-left-1">
+                                    <div className="flex items-center before:w-12 sm:before:w-18 md:before:w-24 lg:before:w-32 before:shrink-0 before:border-t before:border-dashed before:border-zinc-500/90 before:me-6">
+                                        <p className="text-sm font-semibold text-zinc-400">
+                                            <Icon name="faTruck" className="inline-block mr-2 text-lg" />
+                                            <span className="pl-1
+                                                bg-underline-rounded pb-0.5 leading-normal
+                                                [--underline-width:85%] [--underline-height:2px]
+                                                [--underline-from:var(--color-indigo-500)] [--underline-to:var(--color-indigo-500)]
+                                            ">
                                                 <span className="hidden md:inline">{t('experiences.movedTo')} </span>
                                                 {experience.location}
                                             </span>
-                                        </div>
+                                        </p>
                                     </div>
                                 )}
                             </div>

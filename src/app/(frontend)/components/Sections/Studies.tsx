@@ -46,13 +46,17 @@ export const Studies = async ({ sectionParameters }: { sectionParameters: any })
     return (
         <section id="studies" className="scroll-mt-14 md:scroll-mt-0">
 
-            <div className="flex items-center my-8 font-semibold text-zinc-400 before:flex-1 before:border-t before:border-dashed before:border-zinc-500/90 before:me-8 after:flex-1 after:border-t after:border-dashed after:border-zinc-500/90 after:ms-8">
-                <div className="flex items-center gap-4 text-xl">
-                    <Icon name="faGraduationCap" />
-                    <div className="is-title relative after:content-[''] after:absolute after:h-0.5 after:w-6/5 after:bg-blue-500 after:rounded-full after:-bottom-1 after:left-1/2 after:-translate-x-1/2">
+            <div className="flex items-center my-8 before:flex-1 before:border-t before:border-dashed before:border-zinc-500/90 before:me-8 after:flex-1 after:border-t after:border-dashed after:border-zinc-500/90 after:ms-8">
+                <p className="is-title text-xl font-semibold text-zinc-400">
+                    <Icon name="faGraduationCap" className="inline-block mr-2.5" />
+                    <span className="pl-1
+                        bg-underline-rounded pb-1.5 leading-normal
+                        [--underline-width:90%] [--underline-height:2px]
+                        [--underline-from:var(--color-blue-500)] [--underline-to:var(--color-blue-500)]
+                    ">
                         {sectionParameters?.title || t('studies.title')}
-                    </div>
-                </div>
+                    </span>
+                </p>
             </div>
 
             {studies.length > 0 ? (

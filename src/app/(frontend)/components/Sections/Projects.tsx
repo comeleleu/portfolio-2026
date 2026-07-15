@@ -48,7 +48,10 @@ export const Projects = async ({ sectionParameters }: { sectionParameters: any }
             <SectionHeader
                 title={sectionParameters?.title || t('projects.title')}
                 sectionIcon="faFolderOpen"
-                afterColor="after:bg-linear-to-r/oklch after:from-blue-400 after:to-cyan-400 after:to-70%"
+                underlineFromColor="[--underline-from:var(--color-blue-500)]"
+                underlineToColor="[--underline-to:var(--color-cyan-500)]"
+                underlineFromStop="[--underline-from-stop:5%]"
+                underlineToStop="[--underline-to-stop:50%]"
                 links={sectionParameters?.links}
             />
             {projects.length > 0 ? (
