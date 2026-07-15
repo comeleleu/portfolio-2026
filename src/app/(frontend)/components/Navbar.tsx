@@ -163,7 +163,7 @@ export const Navbar = ({ sectionParameters }: { sectionParameters: any}) => {
                     <button
                         type="button"
                         className={`
-                            flex items-center justify-center p-1 aspect-square rounded-full text-zinc-200 hover:text-zinc-50 hover:scale-115 hover:rotate-180 transition-all ease-in-out duration-500 cursor-pointer
+                            flex items-center justify-center p-1 aspect-square rounded-full text-zinc-200 hover:text-zinc-50 hover:scale-115 md:hover:rotate-180 transition-all ease-in-out duration-500 cursor-pointer
                             ${openSettings ? 'scale-115 md:rotate-180' : ''}
                         `}
                         onClick={() => setOpenSettings(prev => !prev)}
