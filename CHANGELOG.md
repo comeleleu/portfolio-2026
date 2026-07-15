@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0](https://github.com/comeleleu/portfolio-2026/compare/1.2.1...1.3.0) - 2026-07-15
+
+### Added
+
+- Created a new custom parse text utility.
+
+### Changed
+
+- Updated `Projects` display by using a grid layout for manual column distribution based on estimated height.
+
+### Fixed
+
+- Fixed the navbar `SettingsMenu` button rotating on hover on mobile devices.
+
 ## [1.2.1](https://github.com/comeleleu/portfolio-2026/compare/1.2.0...1.2.1) - 2026-07-14
 
 ### Added
