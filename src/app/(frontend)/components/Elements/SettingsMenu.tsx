@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
 import { Icon } from "@components/Common/Icon";
 import { Link } from "@components/Common/Link";
 import { Glider } from "@components/Elements/Glider";
@@ -10,7 +11,8 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
     const t = useTranslations("navbar.settingsMenu");
     const locale = useLocale();
     const [selectedLang, setSelectedLang] = useState(locale);
-    const [selectedTheme, setSelectedTheme] = useState("dark");
+    const {theme, setTheme} = useTheme();
+    const [selectedTheme, setSelectedTheme] = useState(theme || "system");
     const [isHidden, setIsHidden] = useState(!openSettings);
     const [showSettings, setShowSettings] = useState(openSettings);
 
@@ -46,8 +48,10 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
     };
 
     const handleThemeChange = (theme: 'light' | 'dark' | 'system') => {
-        console.log(theme + " theme selected");
         setSelectedTheme(theme);
+        setTimeout(() => {
+            setTheme(theme);
+        }, 300);
     };
 
     return (
@@ -142,7 +146,7 @@ export const SettingsMenu = ({ sectionParameters, openSettings, setOpenSettings 
                                 {
                                     id: 'system',
                                     label: "System",
-                                    ariaLabel: "Switch to dark theme",
+                                    ariaLabel: "Switch to system theme",
                                     action: () => handleThemeChange('system'),
                                 },
                                 {

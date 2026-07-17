@@ -51,6 +51,7 @@ export const Glider = ({ options, activeId, isVisible = true, isActive = true }:
             </span>
             {options.map((option) => {
                 const isSelected = activeId === option.id;
+                
                 return (
                     <button
                         key={option.id}

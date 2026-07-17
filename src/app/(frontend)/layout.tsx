@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Bricolage_Grotesque } from "next/font/google";
 import { getLocale } from '@utils/getLocale';
 import { getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
+import { ThemeProvider } from "./providers";
 import "@app/globals.css";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -50,13 +51,15 @@ export default async function RootLayout({
   const messages = await getMessages({ locale });
 
   return (
-    <html lang={locale} className="dark" style={{ colorScheme: "dark" }}>
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={`${bricolageGrotesque.variable} ${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-zinc-900 bg-linear-to-br/oklch from-zinc-950/75 to-zinc-950/90`}
         suppressHydrationWarning
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>
